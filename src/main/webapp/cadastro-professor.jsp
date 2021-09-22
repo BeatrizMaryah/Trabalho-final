@@ -4,19 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cadastrar Escola</title>
-<link rel="stylesheet" href="style.css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
-	rel="stylesheet">
+<title>Cadastrar Professor</title>
 </head>
 <body>
-	<form id="form" method="post" action="inserir-escola">
+	<form id="form" method="post" action="inserir-professor">
 		<ul id="progresso">
-
-			<li class="ativo">Informações Gerais</li>
-			<li>Contato</li>
-			<li>Endereço</li>
+			<a href="cadastro-professor.jsp">
+				<li class="ativo">Informações Gerais</li>
+			</a>
+			<li class="ativo">Contato</li>
 		</ul>
 		<fieldset>
 			<h2>Cadastrar Escola</h2>
@@ -27,7 +23,7 @@
 				required="required" value="<c:out value='${escola.login}'/>" /> <input
 				id="senha" type="password" name="senha" placeholder="Senha"
 				required="required" value="<c:out value='${escola.senha}'/>" /> <input
-				type="submit" value="Próximo"/>
+				type="submit" value="Próximo" />
 		</fieldset>
 	</form>
 </body>
