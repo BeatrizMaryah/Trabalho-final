@@ -426,7 +426,7 @@ public class Servlet extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String cpf = request.getParameter("cpf");
 		daoAluno.atualizarAluno(new Aluno(id, nome, login, senha, cpf));
-		response.sendRedirect("listar"); // Terá botão na lista de alunos para excluir.
+		response.sendRedirect("novo-aluno"); // Terá botão na lista de alunos para excluir.
 	}
 
 	private void deletarAluno(HttpServletRequest request, HttpServletResponse response)
