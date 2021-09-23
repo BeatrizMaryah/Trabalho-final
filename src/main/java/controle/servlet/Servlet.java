@@ -1,3 +1,4 @@
+
 package controle.servlet;
 
 import java.io.IOException;
@@ -292,7 +293,7 @@ public class Servlet extends HttpServlet {
 		Usuario usuario = (Usuario) request.getAttribute("aluno");
 		contato.setUsuario(usuario);
 		daoContato.inserirContato(contato);
-		response.sendRedirect("inicio-escola");
+		response.sendRedirect("index");
 	}
 
 	private void inserirContatoProfessor(HttpServletRequest request, HttpServletResponse response)
@@ -358,7 +359,7 @@ public class Servlet extends HttpServlet {
 		Escola escola = (Escola) request.getAttribute("escola");
 		endereco.setEscola(escola);
 		daoEndereco.inserirEndereco(endereco);
-		response.sendRedirect("");
+		response.sendRedirect("inicio-escola");
 	}
 
 	private void atualizarEndereco(HttpServletRequest request, HttpServletResponse response)
@@ -397,7 +398,7 @@ public class Servlet extends HttpServlet {
 	private void mostrarFormularioNovoAluno(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-aluno.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-aluno2.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -434,7 +435,7 @@ public class Servlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		Aluno aluno = daoAluno.recuperarAluno(new Aluno(id));
 		daoAluno.deletarAluno(aluno);
-		response.sendRedirect("listar"); // Terá botão na lista de alunos para deletar.
+		response.sendRedirect("listar-alunos"); // Terá botão na lista de alunos para deletar.
 	}
 
 	// ======================================Escola===============================================
@@ -486,7 +487,7 @@ public class Servlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		Escola escola = daoEscola.recuperarEscola(new Escola(id));
 		daoEscola.deletarEscola(escola);
-		response.sendRedirect("listar"); // botao exclusivo para deletar escola, talvez no perfil.
+		//response.sendRedirect("listar"); 
 	}
 	
 	private void mostrarTelaPrincipalEscola(HttpServletRequest request, HttpServletResponse response)
@@ -583,7 +584,7 @@ public class Servlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		String nome = request.getParameter("nome");
 		daoTurma.atualizarTurma(new Turma(id, nome));
-		response.sendRedirect("listar");
+		response.sendRedirect("listar-turmas");
 	}
 
 	private void deletarTurma(HttpServletRequest request, HttpServletResponse response)
@@ -592,6 +593,6 @@ public class Servlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		Turma turma = daoTurma.recuperarTurma(new Turma(id));
 		daoTurma.deletarTurma(turma);
-		response.sendRedirect("listar");
+		response.sendRedirect("listar-turmas");
 	}
 }

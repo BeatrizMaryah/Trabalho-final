@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cadastro</title>
+<title>Cadastrar Escola</title>
 <link rel="stylesheet" href="style.css" />
 <link
 	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
@@ -17,24 +17,18 @@
 			<li class="ativo">Informações Gerais</li>
 			<li>Contato</li>
 			<li>Endereço</li>
-
 		</ul>
-
 		<fieldset>
 			<h2>Cadastrar Escola</h2>
 			<h4>Dados da Conta</h4>
-
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" value="<c:out value='${escola.nome}'/>" /> <input
 				id="login" type="text" name="login" placeholder="Login"
 				required="required" value="<c:out value='${escola.login}'/>" /> <input
 				id="senha" type="password" name="senha" placeholder="Senha"
 				required="required" value="<c:out value='${escola.senha}'/>" /> <input
-				type="submit" value="Próximo" />
-
+				type="submit" value="Próximo"/>
 		</fieldset>
-
-
 	</form>
 </body>
 </html>

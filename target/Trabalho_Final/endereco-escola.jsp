@@ -15,11 +15,9 @@
 	<form id="form" method="post" action="inserir-endereco">
 
 		<ul id="progresso">
-			<a href="cadastro-escola.jsp">
-				<li class="ativo">Informações Gerais</li>
-			</a>
+			
+			<li class="ativo">Informações Gerais</li>
 			<li class="ativo">Contato</li>
-
 			<li class="ativo">Endereço</li>
 
 		</ul>

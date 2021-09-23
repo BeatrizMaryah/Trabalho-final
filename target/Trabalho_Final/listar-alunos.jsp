@@ -25,6 +25,7 @@
 						<th>Cpf</th>
 						<th>Login</th>
 						<th>Senha</th>
+						<th>Turma</th>
 						<th>Ações</th>
 					</tr>
 				</thead>
@@ -35,7 +36,8 @@
 							<td><c:out value="${aluno.login}" /></td>
 							<td><c:out value="${aluno.senha}"/></td>
 							<td><c:out value="${aluno.cpf}" /></td>
-							<td><a href="editar-aluno?id=<c:out value='${aluno.id}'/>">Editar</a>	<a href="deletar-aluno?id=<c:out value='${aluno.id}'/>">Deletar</a></td>
+							<td><c:out value="${aluno.turma}"/></td>
+							<td><a href="editar?id=<c:out value='${aluno.id}'/>">Editar</a>	<a href="deletar?id=<c:out value='${aluno.id}'/>">Deletar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
