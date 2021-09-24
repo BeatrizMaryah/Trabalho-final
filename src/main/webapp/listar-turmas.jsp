@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
-		<h3>Lista de Professores</h3>
+		<h3>Lista de Turmas</h3>
 		<hr>
 		<br>
 		<table>

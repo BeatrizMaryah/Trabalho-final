@@ -22,6 +22,9 @@ public class Escola extends Usuario implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "escola", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Turma> turmas = new ArrayList<Turma>();
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "escola", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	
 	public Escola() {}
 	
 	public Escola(Long id) {
@@ -52,6 +55,20 @@ public class Escola extends Usuario implements Serializable {
 	public void removerTurma(Turma turma) {
 		turmas.remove(turma);
 		turma.setEscola(null);
+	}
+	
+	public List<Disciplina> getDisciplinas(){
+		return disciplinas;
+	}
+	
+	public void adicionarDisciplina(Disciplina disciplina) {
+		disciplinas.add(disciplina);
+		disciplina.setEscola(this);
+	}
+
+	public void removerDisciplina(Disciplina disciplina) {
+		disciplinas.remove(disciplina);
+		disciplina.setEscola(null);
 	}
 
 

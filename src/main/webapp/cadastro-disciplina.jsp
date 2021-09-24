@@ -4,21 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cadastrar Turma</title>
+<title>Cadastrar Disciplina</title>
 </head>
 <body>
+	<form id="form" method="post" action="inserir-disciplina">
 
-<form id="form" method="post" action="inserir-turma">
-
-	<li class="ativo"><a href="<%=request.getContextPath()%>/inicio-escola" target="_self">Voltar</a></li>
-	
 		<fieldset>
 			<h2>Cadastrar Turma</h2>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
-				required="required" value="<c:out value='${turma.nome}'/>" />
-				<input type="submit" value="Cadastrar"/>
+				required="required" value="<c:out value='${disciplina.nome}'/>" /> <input
+				type="submit" value="Cadastrar" />
 		</fieldset>
 	</form>
-
 </body>
 </html>
