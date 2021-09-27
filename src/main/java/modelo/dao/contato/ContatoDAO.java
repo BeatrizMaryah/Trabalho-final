@@ -10,9 +10,9 @@ public interface ContatoDAO {
 
 	void deletarContato(Contato contato);
 
-	void atualizarContato (Contato contato);
+	void atualizarContato(Contato contato);
 
 	Contato recuperarContato(Contato contato);
-	
+
 	List<Contato> recuperarContatos();
 }

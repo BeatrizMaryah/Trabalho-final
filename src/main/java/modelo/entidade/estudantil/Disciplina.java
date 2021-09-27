@@ -125,5 +125,4 @@ public class Disciplina implements Serializable {
 	public void setEscola(Escola escola) {
 		this.escola = escola;
 	}
-
 }

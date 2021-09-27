@@ -10,8 +10,8 @@
     <li class="ativo"><a href="<%=request.getContextPath()%>/novo-aluno" target="_self">Voltar</a></li>
     
 	<fieldset>
-		<h2>Contato</h2>
-		<h4>Dados da Conta</h4>
+		<h2>Contato do Aluno</h2>
+		<h4>Insira os dados do aluno</h4>
 
         <input id="telefone" type="number" name="telefone" placeholder="Telefone Responsável" required="required" value="<c:out value='${contato.telefone}'/>" />
         <input id="celular" type="number" name="celular" placeholder="Celular" required="required"  value="<c:out value='${contato.celular}'/>" />

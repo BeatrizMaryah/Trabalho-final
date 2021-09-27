@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "endereco", uniqueConstraints = {@UniqueConstraint(columnNames = { "nome_endereco", "numero_endereco" }) })
+@Table(name = "endereco", uniqueConstraints = {@UniqueConstraint(columnNames = {"nome_endereco", "numero_endereco" }) })
 public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,8 +47,7 @@ public class Endereco implements Serializable {
 	@JoinColumn(name = "id_escola")
 	private Escola escola;
 
-	public Endereco() {
-	}
+	public Endereco() {}
 	
 	public Endereco(Long id) {
 		setId(id);

@@ -1,4 +1,4 @@
-package modelo.entidades.jogo;
+package modelo.enumeracao;
 
 public enum Situacao {
 	

@@ -67,7 +67,6 @@ public class Servlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String action = request.getServletPath();
-		System.out.println(action);
 
 		try {
 
@@ -310,9 +309,8 @@ public class Servlet extends HttpServlet {
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
 		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		Contato contato = new Contato(email, celular, telefone);
-		Escola escola = (Escola) request.getAttribute("escola");
-		contato.setUsuario(escola);
+		Usuario usuario = (Usuario) request.getSession().getAttribute("escola");
+		Contato contato = new Contato(email, celular, telefone, usuario);
 		daoContato.inserirContato(contato);
 		response.sendRedirect("novo-endereco");
 	}
@@ -508,6 +506,7 @@ public class Servlet extends HttpServlet {
 		daoEscola.inserirEscola(escola);
 
 		request.setAttribute("escola", escola);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("contato-escola.jsp");
 		response.sendRedirect("novo-contato-escola");
 	}
 

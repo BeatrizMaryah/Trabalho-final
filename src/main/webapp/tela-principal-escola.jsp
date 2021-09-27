@@ -16,6 +16,10 @@
 	<p> <a href="<%=request.getContextPath()%>/nova-disciplina" target="_self">Cadastrar Disciplina</a></p>
 	<p> <a href="<%=request.getContextPath()%>/listar-disciplinas" target="_self">Listar Disciplinas</a></p>
 	
+	<p> <a href="<%=request.getContextPath()%>/novo-aluno" target="_self">Cadastrar Aluno</a></p>
+	<p> <a href="<%=request.getContextPath()%>/listar-alunos" target="_self">Listar Alunos</a></p>
+	
+	
 	<p> <a href="<%=request.getContextPath()%>/index" target="_self">Voltar</a></p>
 </body>
 </html>

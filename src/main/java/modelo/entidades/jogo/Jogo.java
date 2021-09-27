@@ -26,7 +26,6 @@ public class Jogo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_jogo")
@@ -99,6 +98,4 @@ public class Jogo implements Serializable {
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
-
-
 }

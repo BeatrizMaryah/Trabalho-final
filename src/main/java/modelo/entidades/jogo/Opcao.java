@@ -97,5 +97,4 @@ public class Opcao implements Serializable {
 	public void setAtividade (Atividade atividade) {
 		this.atividade = atividade;
 	}
-
 }

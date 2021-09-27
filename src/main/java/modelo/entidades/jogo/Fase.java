@@ -20,55 +20,56 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import modelo.enumeracao.Situacao;
 
 @Entity
 @Table(name = "fase")
 public class Fase implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_fase")
 	private Long id;
-	
+
 	@Column(name = "nome_fase", length = 20, nullable = false, unique = false)
 	private String nome;
-	
-	//ENUM
+
+	// ENUM
 	@Column(name = "situacao_fase", nullable = false, unique = false)
 	@Enumerated(EnumType.STRING)
 	private Situacao status;
-	
-	//Uma fase tem um mundo (Um mundo tem muitas fases)
+
+	// Uma fase tem um mundo (Um mundo tem muitas fases)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_mundo")
 	private Mundo mundo;
-	
+
 	@Column(name = "nota_fase", nullable = true, unique = false)
 	private float nota;
-	
-	//Uma fase tem muitas atividades
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
+
+	// Uma fase tem muitas atividades
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Atividade> atividades = new ArrayList<Atividade>();
-	
-	//Uma fase tem muitas teorias
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
+
+	// Uma fase tem muitas teorias
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Teoria> teorias = new ArrayList<Teoria>();
 
 	public Fase() {}
-	
+
 	public Fase(Long id) {
 		setId(id);
 	}
-	
-	public Fase( String nome, Mundo mundo, Situacao status) { //throws NomeInvalidoException 
+
+	public Fase(String nome, Mundo mundo, Situacao status) { // throws NomeInvalidoException
 		setNome(nome);
 		setMundo(mundo);
 		setStatus(status);
 	}
-	
-	public Fase(Long id, String nome, Mundo mundo, Situacao status) { //throws NomeInvalidoException 
+
+	public Fase(Long id, String nome, Mundo mundo, Situacao status) { // throws NomeInvalidoException
 		setId(id);
 		setNome(nome);
 		setMundo(mundo);
@@ -107,7 +108,7 @@ public class Fase implements Serializable {
 	public void setStatus(Situacao status) {
 		this.status = status;
 	}
-	
+
 	public float getNota() {
 		return nota;
 	}
@@ -135,13 +136,12 @@ public class Fase implements Serializable {
 		teorias.remove(teoria);
 		teoria.setFase(null);
 	}
-	
-	public void desbloquearFase () {
+
+	public void desbloquearFase() {
 		setStatus(status.DESBLOQUEADO);
 	}
-	
-	public void concluirFase () {
+
+	public void concluirFase() {
 		setStatus(status.CONCLUIDO);
 	}
-
 }
