@@ -9,5 +9,6 @@
 <body>
 	<p> <a href="<%=request.getContextPath()%>/nova-escola" target="_self">Cadastro Escola</a></p>
 	<p> <a href="<%=request.getContextPath()%>/inicio-escola" target="_self">Tela inicial da Escola</a></p>
+	<p> <a href="<%=request.getContextPath()%>/listar-alunos" target="_self">Listar Alunos</a></p>
 </body>
 </html>
