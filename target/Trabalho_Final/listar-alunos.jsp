@@ -7,7 +7,7 @@
 	<header>
 		<nav>
 			<ul>
-				<li><a href="<%=request.getContextPath()%>/listar-alunos">Alunos</a>
+				<li><a href="<%=request.getContextPath()%>/index">Voltar</a>
 				</li>
 			</ul>
 		</nav>
@@ -25,7 +25,6 @@
 						<th>Cpf</th>
 						<th>Login</th>
 						<th>Senha</th>
-						<th>Turma</th>
 						<th>Ações</th>
 					</tr>
 				</thead>
@@ -33,11 +32,10 @@
 					<c:forEach var="aluno" items="${alunos}">
 						<tr>
 							<td><c:out value="${aluno.nome}" /></td>
+							<td><c:out value="${aluno.cpf}" /></td>
 							<td><c:out value="${aluno.login}" /></td>
 							<td><c:out value="${aluno.senha}"/></td>
-							<td><c:out value="${aluno.cpf}" /></td>
-							<td><c:out value="${aluno.turma}"/></td>
-							<td><a href="editar?id=<c:out value='${aluno.id}'/>">Editar</a>	<a href="deletar?id=<c:out value='${aluno.id}'/>">Deletar</a></td>
+							<td><a href="editar-aluno?id=<c:out value='${aluno.id}'/>">Editar</a>	<a href="deletar-aluno?id=<c:out value='${aluno.id}'/>">Deletar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

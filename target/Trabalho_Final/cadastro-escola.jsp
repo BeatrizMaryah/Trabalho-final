@@ -12,12 +12,7 @@
 </head>
 <body>
 	<form id="form" method="post" action="inserir-escola">
-		<ul id="progresso">
-
-			<li class="ativo">Informações Gerais</li>
-			<li>Contato</li>
-			<li>Endereço</li>
-		</ul>
+		<li class="ativo"><a href="<%=request.getContextPath()%>/index" target="_self">Voltar</a></li>
 		<fieldset>
 			<h2>Cadastrar Escola</h2>
 			<h4>Dados da Conta</h4>

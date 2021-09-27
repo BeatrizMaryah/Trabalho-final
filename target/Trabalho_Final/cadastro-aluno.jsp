@@ -11,8 +11,8 @@
 
 	<ul id="progresso">
 
-		<li class="ativo">Informações Gerais</li>
-		<li>Contato</li>
+		<li class="ativo"><a href="<%=request.getContextPath()%>/index" target="_self">Voltar</a></li>
+		
 	</ul>
 
 	<fieldset>

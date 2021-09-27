@@ -327,7 +327,7 @@ public class Servlet extends HttpServlet {
 		Usuario usuario = (Usuario) request.getAttribute("aluno");
 		contato.setUsuario(usuario);
 		daoContato.inserirContato(contato);
-		response.sendRedirect("index");
+		response.sendRedirect("inicio-escola");
 	}
 
 	private void inserirContatoProfessor(HttpServletRequest request, HttpServletResponse response)

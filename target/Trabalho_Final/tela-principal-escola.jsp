@@ -13,6 +13,9 @@
 	<p> <a href="<%=request.getContextPath()%>/novo-professor" target="_self">Cadastrar Professor</a></p>
 	<p> <a href="<%=request.getContextPath()%>/listar-professores" target="_self">Professores</a></p>
 	
+	<p> <a href="<%=request.getContextPath()%>/nova-disciplina" target="_self">Cadastrar Disciplina</a></p>
+	<p> <a href="<%=request.getContextPath()%>/listar-disciplinas" target="_self">Listar Disciplinas</a></p>
+	
 	<p> <a href="<%=request.getContextPath()%>/index" target="_self">Voltar</a></p>
 </body>
 </html>

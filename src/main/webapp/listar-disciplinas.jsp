@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Turmas</title>
+<title>Disciplinas</title>
 </head>
 <body>
 	<div>
-		<h3>Lista de Turmas</h3>
+		<h3>Lista de Disciplinas</h3>
 		<hr>
 		<br>
 		<table>
@@ -16,7 +16,7 @@
 				<tr>
 					<th>Nome</th>
 					<th>Ações</th>
-					<th>Alunos</th>
+					<th>Professor</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,7 +25,7 @@
 						<td><c:out value="${turma.nome}" /></td>
 						<td><a href="editar-turma?id=<c:out value='${turma.id}'/>">Editar</a>
 							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>
-						<td><a href="<%=request.getContextPath()%>/listar-alunos" target="_self">Alunos</a></td>
+							
 					</tr>
 					
 					

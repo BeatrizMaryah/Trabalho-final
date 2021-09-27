@@ -7,6 +7,27 @@
 <title>Turmas</title>
 </head>
 <body>
-
+	<div>
+		<h3>Lista de Turmas</h3>
+		<hr>
+		<br>
+		<table>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="turma" items="${turmas}">
+					<tr>
+						<td><c:out value="${turma.nome}" /></td>
+						<td><a href="editar-turma?id=<c:out value='${turma.id}'/>">Editar</a>
+							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

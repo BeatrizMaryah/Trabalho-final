@@ -7,10 +7,8 @@
 
 <form id="form" method="post" action="inserir-contato-aluno">
 
-    <ul id="progresso">
-        <li class="ativo">Informações Gerais</li>
-        <li class="ativo">Contato</li>
-	</ul>
+    <li class="ativo"><a href="<%=request.getContextPath()%>/novo-aluno" target="_self">Voltar</a></li>
+    
 	<fieldset>
 		<h2>Contato</h2>
 		<h4>Dados da Conta</h4>
