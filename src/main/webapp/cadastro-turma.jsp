@@ -10,7 +10,7 @@
 
 <form id="form" method="post" action="inserir-turma">
 
-	<li class="ativo"><a href="<%=request.getContextPath()%>/inicio-escola" target="_self">Voltar</a></li>
+	<a href="<%=request.getContextPath()%>/inicio-escola" target="_self">Voltar</a>
 	
 		<fieldset>
 			<h2>Cadastrar Turma</h2>
