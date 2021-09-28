@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><html>
 <head>
 <title>Listar Professores</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 </head>
 <body>
-	<div>
-		<div>
+	<div class="container">
 			<h3>Lista de Professores</h3>
 			<hr>
 			<br>
@@ -30,5 +30,4 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
 </body>

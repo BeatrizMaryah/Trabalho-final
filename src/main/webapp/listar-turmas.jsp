@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
 <html>
 <head>
 <title>Turmas</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 </head>
 <body>
-	<div>
+		
+		<div class="container">
 		<h3>Lista de Turmas</h3>
 		<hr>
-		<br>
 		<table>
 			<thead>
 				<tr>
@@ -28,10 +29,9 @@
 						<td><a href="<%=request.getContextPath()%>/listar-alunos" target="_self">Alunos</a></td>
 					</tr>
 					
-					
 				</c:forEach>
 			</tbody>
 		</table>
-	</div>
+		</div>
 </body>
 </html>

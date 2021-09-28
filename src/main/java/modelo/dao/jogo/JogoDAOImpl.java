@@ -190,5 +190,4 @@ public class JogoDAOImpl implements JogoDAO {
 
 		return jogo;
 	}
-	
 }

@@ -15,7 +15,7 @@
 		<fieldset>
 			<h2>Cadastrar Turma</h2>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
-				required="required" value="<c:out value='${turma.nome}'/>" />
+				required="required" autocomplete="off" value="<c:out value='${turma.nome}'/>" />
 				<input type="submit" value="Cadastrar"/>
 		</fieldset>
 	</form>

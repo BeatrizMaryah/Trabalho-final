@@ -4,12 +4,16 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Contato;
+import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Usuario;
+import modelo.entidades.jogo.Jogo;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class ContatoDAOImpl implements ContatoDAO {
@@ -189,5 +193,45 @@ public class ContatoDAOImpl implements ContatoDAO {
 		return contatos;
 	}
 	
+	public Contato recuperarContatoUsuario(Usuario usuario) {
 
+		Session sessao = null;
+		Contato contato = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Contato > criteria = construtor.createQuery(Contato .class);
+			Root<Contato > raizContato = criteria.from(Contato .class);
+
+			Join<Contato, Usuario> juncaoUsuario = raizContato .join("usuario");
+
+			ParameterExpression<Long> idUsuario = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoUsuario.get("id"), idUsuario));
+
+			contato = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
+		}
+
+		return contato;
+	}
 }

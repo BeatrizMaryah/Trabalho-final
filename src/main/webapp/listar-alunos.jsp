@@ -1,24 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
 <head>
 <title>Listar Aluno</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="<%=request.getContextPath()%>/index">Voltar</a>
-				</li>
-			</ul>
-		</nav>
-	</header>
-	<br>
-	<div>
-		<div>
+
+	<div class="container">
 			<h3>Lista De Alunos</h3>
 			<hr>
 			<br>
-			<table>
+			<table class="bordered striped centered">
 				<thead>
 					<tr>
 						<th>Nome</th>
@@ -40,7 +33,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
 	</div>
 </body>
 </html>

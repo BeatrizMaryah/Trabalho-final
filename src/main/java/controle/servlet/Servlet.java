@@ -611,7 +611,8 @@ public class Servlet extends HttpServlet {
 			throws SQLException, IOException {
 
 		String nome = request.getParameter("nome");
-		daoTurma.inserirTurma(new Turma(nome));
+		Turma turma = new Turma(nome);
+		daoTurma.inserirTurma(turma);
 		response.sendRedirect("inicio-escola");
 	}
 
