@@ -60,6 +60,15 @@ public class Endereco implements Serializable {
 		setCidade(cidade);
 		setCep(cep);
 	}
+	
+	public Endereco(String nome, String complemento, short numero, String cidade, int cep, Escola escola) { //throws NumeroInvalidoException, CidadeInvalidaException
+		setNome(nome);
+		setComplemento(complemento);
+		setNumero(numero);
+		setCidade(cidade);
+		setCep(cep);
+		setEscola(escola);
+	}
 
 	public Endereco(Long id, String nome, String complemento, short numero, String cidade, int cep) { //throws NumeroInvalidoException, CidadeInvalidaException
 		setId(id);
@@ -68,6 +77,16 @@ public class Endereco implements Serializable {
 		setNumero(numero);
 		setCidade(cidade);
 		setCep(cep);
+	}
+	
+	public Endereco(Long id, String nome, String complemento, short numero, String cidade, int cep, Escola escola) { //throws NumeroInvalidoException, CidadeInvalidaException
+		setId(id);
+		setNome(nome);
+		setComplemento(complemento);
+		setNumero(numero);
+		setCidade(cidade);
+		setCep(cep);
+		setEscola(escola);
 	}
 	
 	public Long getId() {

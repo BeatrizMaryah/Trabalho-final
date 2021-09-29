@@ -140,8 +140,7 @@ body {
     flex-direction: column;
     -webkit-flex-direction: column;
     height: 100%;
-    background: #3a7bd5;
-    background: linear-gradient(45deg, #c688ff 0%, #01abaa 100%);
+    background: #569CFA;
     font-family: 'Roboto', sans-serif;
     padding: 50px;
     overflow-x: hidden;

@@ -321,9 +321,8 @@ public class Servlet extends HttpServlet {
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
 		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		Contato contato = new Contato(email, celular, telefone);
-		Usuario usuario = (Usuario) request.getAttribute("aluno");
-		contato.setUsuario(usuario);
+		Usuario usuario = (Usuario) request.getSession().getAttribute("aluno");
+		Contato contato = new Contato(email, celular, telefone, usuario);
 		daoContato.inserirContato(contato);
 		response.sendRedirect("inicio-escola");
 	}
@@ -387,9 +386,8 @@ public class Servlet extends HttpServlet {
 		short numero = Short.parseShort((request.getParameter("numero")));
 		String cidade = request.getParameter("cidade");
 		int cep = Integer.parseInt((request.getParameter("cep")));
-		Endereco endereco = new Endereco(nome, complemento, numero, cidade, cep);
-		Escola escola = (Escola) request.getAttribute("escola");
-		endereco.setEscola(escola);
+		Escola escola = (Escola) request.getSession().getAttribute("escola");
+		Endereco endereco = new Endereco(nome, complemento, numero, cidade, cep, escola);
 		daoEndereco.inserirEndereco(endereco);
 		response.sendRedirect("inicio-escola");
 	}
@@ -452,7 +450,7 @@ public class Servlet extends HttpServlet {
 		Turma turma = (Turma) request.getAttribute("turma");
 		aluno.setTurma(turma);
 		daoAluno.inserirAluno(aluno);
-		request.setAttribute("aluno", aluno);
+		request.getSession().setAttribute("aluno", aluno);
 		response.sendRedirect("novo-contato-aluno");
 	}
 
@@ -505,8 +503,7 @@ public class Servlet extends HttpServlet {
 
 		daoEscola.inserirEscola(escola);
 
-		request.setAttribute("escola", escola);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("contato-escola.jsp");
+		request.getSession().setAttribute("escola", escola);
 		response.sendRedirect("novo-contato-escola");
 	}
 
