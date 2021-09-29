@@ -318,10 +318,12 @@ public class Servlet extends HttpServlet {
 	private void inserirContatoAluno(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 
+		long id = Long.parseLong(request.getParameter("id"));
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
 		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		Usuario usuario = (Usuario) request.getSession().getAttribute("aluno");
+		
+		Usuario usuario = (Usuario) request.getAttribute("");
 		Contato contato = new Contato(email, celular, telefone, usuario);
 		daoContato.inserirContato(contato);
 		response.sendRedirect("inicio-escola");
@@ -503,7 +505,7 @@ public class Servlet extends HttpServlet {
 
 		daoEscola.inserirEscola(escola);
 
-		request.getSession().setAttribute("escola", escola);
+		request.setAttribute("escola", escola);
 		response.sendRedirect("novo-contato-escola");
 	}
 

@@ -32,24 +32,24 @@ public class Aluno extends Usuario implements Serializable  {
 		super(id);
 	}
 	
-	public Aluno(String nome, String cpf, String login, String senha, Turma turma) { // throws CpfInvalidoException
+	public Aluno(String nome, String login, String senha, String cpf, Turma turma) { // throws CpfInvalidoException
 		super(nome, login, senha);
 		setCpf(cpf);
 		setTurma(turma);
 	}
 	
-	public Aluno(Long id, String nome, String cpf, String login, String senha, Contato contato, Turma turma) { // throws CpfInvalidoException
+	public Aluno(Long id, String nome, String login, String senha, String cpf, Contato contato, Turma turma) { // throws CpfInvalidoException
 		super(id, nome, login, senha, contato);
 		setCpf(cpf);
 		setTurma(turma);
 	}
 
-	public Aluno(Long id, String nome, String cpf, String login, String senha) { // throws CpfInvalidoException
+	public Aluno(Long id, String nome, String login, String senha, String cpf) { // throws CpfInvalidoException
 		super(id, nome, login, senha);
 		setCpf(cpf);
 	}
 	
-	public Aluno(String nome, String cpf, String login, String senha) { // throws CpfInvalidoException
+	public Aluno(String nome, String login, String senha, String cpf) { // throws CpfInvalidoException
 		super(nome, login, senha);
 		setCpf(cpf);
 	}

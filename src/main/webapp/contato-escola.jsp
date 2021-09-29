@@ -21,13 +21,15 @@
 			<li class="ativo">Contato</li>
 
 			<li>Endereço</li>
-
 		</ul>
 
 		<fieldset>
 			<h2>Contato da escola</h2>
 			<h4>Insira o contato da escola</h4>
-
+			
+			<input type="hidden" name="id"
+						value="<c:out value='${usario.id}' />" />
+						
 			<input id="telefone" type="number" name="telefone"
 				placeholder="Telefone" required="required" autocomplete="off"
 				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
