@@ -38,7 +38,7 @@
 							<td><c:out value="${aluno.cpf}" /></td>
 							<td><c:out value="${aluno.login}" /></td>
 							<td><c:out value="${aluno.senha}"/></td>
-							<td><a href="editar-aluno?id=<c:out value='${aluno.id}'/>">Editar</a>	<a href="deletar-aluno?id=<c:out value='${aluno.id}'/>">Deletar</a></td>
+							<td><a href="atualizar-aluno?id=<c:out value='${aluno.id}'/>">Editar</a>	<a href="deletar-aluno?id=<c:out value='${aluno.id}'/>">Deletar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

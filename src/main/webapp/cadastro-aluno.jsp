@@ -2,7 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Cadastrar Aluno</title>
+<title>
+		<c:if test="${aluno != null}">Editar aluno</c:if> 
+		<c:if test="${aluno == null}">Cadastrar aluno</c:if>
+</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css" />
 <style><%@include file="/resources/css/style.css"%></style>
 <script><%@include file="/resources/js/metodos.js"%></script>
@@ -11,9 +14,23 @@
 	rel="stylesheet">
 </head>
 <body>
-<form id="form" method="post" action="inserir-aluno">
+		<c:if test="${aluno != null}">
+			<form id="form" action="atualizar-aluno" method="post">
+		</c:if>
+		<c:if test="${aluno == null}">
+			<form id="form" action="inserir-aluno" method="post">
+		</c:if>
+		
 	<fieldset>
-		<h2>Cadastro do Aluno</h2>
+		<h2>
+			<c:if test="${aluno != null}">Editar Contato</c:if>
+			<c:if test="${aluno == null}">Inserir Contato</c:if>
+		</h2>
+		
+		<c:if test="${aluno != null}">
+			<input type="hidden" name="id" value="<c:out value="${aluno.id}"/>" />
+		</c:if>
+		
 		<h4>Insira os dados do aluno</h4>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off"
