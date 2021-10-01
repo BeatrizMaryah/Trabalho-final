@@ -143,10 +143,6 @@ public class Servlet extends HttpServlet {
 			case "/deletar-aluno":
 				deletarAluno(request, response);
 				break;
-
-			case "/editar-aluno":
-				mostrarFormularioAtualizarAluno(request, response);
-				break;
 				
 			case "/atualizar-aluno":
 				atualizarAluno(request, response);
@@ -243,7 +239,19 @@ public class Servlet extends HttpServlet {
 			case "/listar-disciplinas":
 				listarDisciplinas(request, response);
 				break;
-			
+				
+			// =========Teoria=============
+				
+			case "/teoria-system":
+				mostrarTelaTeoriaSystem(request, response);
+				break;
+				
+			// =========Quiz=============
+				
+			case "/quiz-system":
+				mostrarTelaQuizSystem(request, response);
+				break;
+				
 			// =========Padrão=============
 				
 			case "inicio":
@@ -253,16 +261,17 @@ public class Servlet extends HttpServlet {
 			case "/inicio-escola":
 				mostrarTelaPrincipalEscola(request, response);
 				break;
-
-			}
-			
-			
+				
+			case "/fases":
+				mostrarTelaFases(request, response);
+				break;
+		}	
 
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
 	}
-
+	
 	// ======================================Contato===============================================
 
 	private void voltarIndex(HttpServletRequest request, HttpServletResponse response)
@@ -271,6 +280,40 @@ public class Servlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	private void mostrarTelaFases(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("fases.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaPrincipalEscola(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("tela-principal-escola.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	// ======================================Teoria===============================================
+	
+	private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	// ======================================Quiz===============================================
+	
+	private void mostrarTelaQuizSystem(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-system.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	// ======================================Contato===============================================
 	
 	private void listarContatos(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
@@ -433,13 +476,6 @@ public class Servlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-aluno.jsp");
 		dispatcher.forward(request, response);
 	}
-	
-	private void mostrarFormularioAtualizarAluno(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("editar-aluno.jsp");
-		dispatcher.forward(request, response);
-	}
 
 	private void inserirAluno(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
@@ -528,14 +564,6 @@ public class Servlet extends HttpServlet {
 		daoEscola.deletarEscola(escola);
 		//response.sendRedirect("listar"); 
 	}
-	
-	private void mostrarTelaPrincipalEscola(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("tela-principal-escola.jsp");
-		dispatcher.forward(request, response);
-	}
-
 	// ======================================Professor===============================================
 
 	private void listarProfessores(HttpServletRequest request, HttpServletResponse response)

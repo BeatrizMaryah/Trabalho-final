@@ -48,9 +48,7 @@
 				name="voltar" value="Voltar" />
 			</a> <input type="submit" value="Cadastrar" />
 
-
 		</fieldset>
-
 
 	</form>
 </body>
