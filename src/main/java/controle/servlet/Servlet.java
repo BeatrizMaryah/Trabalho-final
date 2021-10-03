@@ -246,15 +246,87 @@ public class Servlet extends HttpServlet {
 				mostrarTelaTeoriaSystem(request, response);
 				break;
 				
+			case "/teoria-scanner":
+				mostrarTelaTeoriaScanner(request, response);
+				break;
+				
+			case "/teoria-variaveis":
+				mostrarTelaTeoriaVariaveis(request, response);
+				break;
+				
+			case "/teoria-boolean":
+				mostrarTelaTeoriaBoolean(request, response);
+				break;
+				
+			case "/teoria-for":
+				mostrarTelaTeoriaFor(request, response);
+				break;
+				
+			case "/teoria-relacionais":
+				mostrarTelaTeoriaRelacionais(request, response);
+				break;
+				
+			case "/teoria-logicos":
+				mostrarTelaTeoriaLogicos(request, response);
+				break;
+				
+			case "/teoria-switch-case":
+				mostrarTelaTeoriaSwitchCase(request, response);
+				break;
+				
+			case "/teoria-if":
+				mostrarTelaTeoriaIf(request, response);
+				break;
+				
+			case "/teoria-while":
+				mostrarTelaTeoriaWhile(request, response);
+				break;
+				
 			// =========Quiz=============
 				
 			case "/quiz-system":
 				mostrarTelaQuizSystem(request, response);
 				break;
 				
+			case "/quiz-scanner":
+				mostrarTelaQuizScanner(request, response);
+				break;
+			
+			case "/quiz-variaveis":
+				mostrarTelaQuizVariaveis(request, response);
+				break; 
+				
+			case "/quiz-boolean":
+				mostrarTelaQuizBoolean(request, response);
+				break; 
+				
+			case "/quiz-for":
+				mostrarTelaQuizFor(request, response);
+				break; 
+				
+			case "/quiz-relacionais":
+				mostrarTelaQuizRelacionais(request, response);
+				break; 
+				
+			case "/quiz-logicos":
+				mostrarTelaQuizLogicos(request, response);
+				break; 
+				
+			case "/quiz-switch-case":
+				mostrarTelaQuizSwitchCase(request, response);
+				break; 
+				
+			case "/quiz-if":
+				mostrarTelaQuizIf(request, response);
+				break; 
+				
+			case "/quiz-while":
+				mostrarTelaQuizWhile(request, response);
+				break; 
+				
 			// =========Padrão=============
 				
-			case "inicio":
+			case "/inicio":
 				voltarIndex(request, response);
 				break;
 				
@@ -272,7 +344,7 @@ public class Servlet extends HttpServlet {
 		}
 	}
 	
-	// ======================================Contato===============================================
+	// ======================================Padrao===============================================
 
 	private void voltarIndex(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -304,12 +376,137 @@ public class Servlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
+	private void mostrarTelaTeoriaScanner(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-scanner.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaVariaveis(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-variaveis.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaBoolean(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-boolean.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaFor(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-for.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaRelacionais(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-relacionais.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaLogicos(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-logicos.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaSwitchCase(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-switch-case.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaIf(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-if.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaTeoriaWhile(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-while.jsp");
+		dispatcher.forward(request, response);
+	}
 	// ======================================Quiz===============================================
 	
 	private void mostrarTelaQuizSystem(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-system.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizScanner(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-scanner.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizVariaveis(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-variaveis.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizBoolean(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-boolean.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizFor(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-for.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizRelacionais(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-relacionais.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizLogicos(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-logicos.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizSwitchCase(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-switch-case.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizIf(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-if.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaQuizWhile(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-while.jsp");
 		dispatcher.forward(request, response);
 	}
 	

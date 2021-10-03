@@ -3,7 +3,6 @@ modelo\factory\conexao\ConexaoFactory.class
 modelo\entidades\jogo\Jogo_.class
 controle\servlet\Servlet.class
 modelo\entidades\jogo\Atividade.class
-modelo\entidades\jogo\Situacao.class
 modelo\entidades\jogo\Mundo.class
 modelo\dao\atividade\AtividadeDAO.class
 modelo\entidade\estudantil\Turma_.class

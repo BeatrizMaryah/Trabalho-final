@@ -9,7 +9,8 @@
 </head>
 <body>
  <div class="fases1">
-        <a href="<%=request.getContextPath()%>/teoria-system" target="_self">FASE</a>
+        <a href="<%=request.getContextPath()%>/teoria-system" target="_self">Fase System</a>
+        <a href="<%=request.getContextPath()%>/teoria-scanner" target="_self">Fase Scanner</a>
     </div>
 </body>
 </html>
