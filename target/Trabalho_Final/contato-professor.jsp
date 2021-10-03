@@ -18,7 +18,7 @@
 		<h4>Dados da Conta</h4>
 
 		<input id="telefone" type="number" name="telefone"
-			placeholder="Telefone Responsável" required="required"
+			placeholder="Telefone" required="required"
 			value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
 			type="number" name="celular" placeholder="Celular"
 			required="required" value="<c:out value='${contato.celular}'/>" /> <input

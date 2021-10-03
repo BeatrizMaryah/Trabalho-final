@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,11 +42,24 @@ public class Disciplina implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "disciplina_turma", joinColumns = @JoinColumn(name = "id_disciplina"), inverseJoinColumns = @JoinColumn(name = "id_turma"))
 	private List<Turma> turmas = new ArrayList<Turma>();
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_escola")
+	private Escola escola;
 
 	public Disciplina() {}
 	
 	public Disciplina(Long id) {
 		setId(id);
+	}
+	
+	public Disciplina(Long id, String nome) {
+		setId(id);
+		setNome(nome);
+	}
+	
+	public Disciplina(String nome) {
+		setNome(nome);
 	}
 	
 	public Disciplina(String nome, Turma turma)  {
@@ -103,5 +117,12 @@ public class Disciplina implements Serializable {
 	public void removerDisciplinaNaTurma(Turma turma) {
 		turma.removerDisciplina(this);
 	}
-
+	
+	public Escola getEscola() {
+		return escola;
+	}
+	
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
 }

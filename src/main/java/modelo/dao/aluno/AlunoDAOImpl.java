@@ -191,7 +191,7 @@ public class AlunoDAOImpl implements AlunoDAO {
 		return alunos;
 	}
 
-	public List<Aluno> recuperarAlunoDisciplinas (Disciplina disciplina) {
+	public List<Aluno> recuperarAlunoDisciplina (Disciplina disciplina) {
 
 		Session sessao = null;
 		List<Aluno> alunos = null;

@@ -1,6 +1,6 @@
 package modelo.entidade.estudantil;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -8,8 +8,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Escola.class)
 public abstract class Escola_ extends modelo.entidade.estudantil.Usuario_ {
 
+	public static volatile ListAttribute<Escola, Disciplina> disciplinas;
 	public static volatile ListAttribute<Escola, Turma> turmas;
 
+	public static final String DISCIPLINAS = "disciplinas";
 	public static final String TURMAS = "turmas";
 
 }

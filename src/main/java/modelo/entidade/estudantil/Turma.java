@@ -47,8 +47,7 @@ public class Turma implements Serializable {
 	@ManyToMany(mappedBy = "turmas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
-	public Turma() {
-	}
+	public Turma() {}
 	
 	public Turma(Long id) {
 		setId(id);

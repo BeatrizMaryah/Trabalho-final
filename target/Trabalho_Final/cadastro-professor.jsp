@@ -8,10 +8,9 @@
 </head>
 <body>
 	<form id="form" method="post" action="inserir-professor">
-		<ul id="progresso">
-			<li class="ativo">Informações Gerais</li>
-			<li class="ativo">Contato</li>
-		</ul>
+		
+		<li class="ativo"><a href="<%=request.getContextPath()%>/index" target="_self">Voltar</a></li>
+		
 		<fieldset>
 			<h2>Cadastrar Professor</h2>
 			<h4>Dados da Conta</h4>

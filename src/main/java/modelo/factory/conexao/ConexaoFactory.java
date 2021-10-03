@@ -25,7 +25,7 @@ public class ConexaoFactory {
 		configuracao.addAnnotatedClass(modelo.entidades.jogo.Teoria.class);
 		configuracao.addAnnotatedClass(modelo.entidades.jogo.Atividade.class);
 		configuracao.addAnnotatedClass(modelo.entidades.jogo.Opcao.class);
-		configuracao.addAnnotatedClass(modelo.entidades.jogo.Situacao.class);
+		configuracao.addAnnotatedClass(modelo.enumeracao.Situacao.class);
 				
 		configuracao.configure("hibernate.cfg.xml");
 

@@ -1,9 +1,7 @@
 package modelo.entidades.jogo;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import modelo.enumeracao.Situacao;
 
 @Entity
 @Table(name = "mundo")
@@ -133,5 +132,4 @@ public class Mundo  implements Serializable {
 	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
 	}
-
 }
