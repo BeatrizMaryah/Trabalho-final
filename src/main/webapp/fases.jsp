@@ -11,6 +11,14 @@
  <div class="fases1">
         <a href="<%=request.getContextPath()%>/teoria-system" target="_self">Fase System</a>
         <a href="<%=request.getContextPath()%>/teoria-scanner" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-variaveis" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-boolean" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-for" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-relacionais" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-logicos" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-switch-case" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-if" target="_self">Fase Scanner</a>
+        <a href="<%=request.getContextPath()%>/teoria-while" target="_self">Fase Scanner</a>
     </div>
 </body>
 </html>
