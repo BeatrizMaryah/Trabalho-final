@@ -9,6 +9,7 @@
                 <li><a href="<%=request.getContextPath()%>/inicio-escola" target="_self">Página inicial escola</a></li>
                 <li><a href="<%=request.getContextPath()%>/nova-escola" target="_self">Cadatrar Escola</a></li>
                 <li><a href="<%=request.getContextPath()%>/fases" target="_self">Jogo</a></li>
+                 <li><a href="<%=request.getContextPath()%>/nova-escola-teste" target="_self">Cadastrar Escola(Tudo)</a></li>
             </ul>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
 <style><%@include file="/resources/css/game.css"%></style>	
-<script><%@include file="/resources/js/system.js"%></script>	
+<script type="text/javascript"><%@include file="/resources/js/system.js"%></script>	
 </head>
 <body>
         <%@ include file="base-quiz.jsp" %>
