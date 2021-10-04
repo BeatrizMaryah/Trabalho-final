@@ -745,15 +745,18 @@ public class Servlet extends HttpServlet {
 		String cidade = request.getParameter("cidade");
 		int cep = Integer.parseInt((request.getParameter("cep")));
 		
-	
-		
 		Escola escola = new Escola(nome, login, senha);
-		Contato contato = new Contato(email, celular, telefone, escola);
-		Endereco endereco = new Endereco(nomeEndereco, complemento, numero, cidade, cep, escola);
-		
 		daoEscola.inserirEscola(escola);
+		
+		Contato contato = new Contato(email, celular, telefone);
 		daoContato.inserirContato(contato);
+		
+		contato.setUsuario((Usuario) escola);
+		daoContato.atualizarContato(contato);
+		
+		Endereco endereco = new Endereco(nomeEndereco, complemento, numero, cidade, cep, escola);
 		daoEndereco.inserirEndereco(endereco);
+		
 		daoEscola.atualizarEscola(escola);
 		
 		response.sendRedirect("inicio-escola");
