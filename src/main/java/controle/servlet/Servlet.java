@@ -158,17 +158,9 @@ public class Servlet extends HttpServlet {
 			case "/nova-escola":
 				mostrarFormularioNovaEscola(request, response);
 				break;
-				
-			case "/nova-escola-teste":
-				mostrarFormularioNovaEscolaTeste(request, response);
-				break;
 
 			case "/inserir-escola":
 				inserirEscola(request, response);
-				break;
-				
-			case "/inserir-escola-teste":
-				inserirEscolaTeste(request, response);
 				break;
 
 			case "/deletar-escola":
@@ -567,7 +559,6 @@ public class Servlet extends HttpServlet {
 	private void inserirContatoAluno(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 
-		long id = Long.parseLong(request.getParameter("id"));
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
 		int telefone = Integer.parseInt(request.getParameter("telefone"));
@@ -736,13 +727,6 @@ public class Servlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-escola.jsp");
 		dispatcher.forward(request, response);
 	}
-
-	private void mostrarFormularioNovaEscolaTeste(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-escola2.jsp");
-		dispatcher.forward(request, response);
-	}
 	
 	private void inserirEscola(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
@@ -757,39 +741,6 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("escola", escola);
 		response.sendRedirect("novo-contato-escola");
 	}
-	
-	private void inserirEscolaTeste(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
-
-		String nome = request.getParameter("nome");
-		String login = request.getParameter("login");
-		String senha = request.getParameter("senha");
-
-		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		
-		String nomeEndereco = request.getParameter("nome");
-		String complemento = request.getParameter("complemento");
-		short numero = Short.parseShort((request.getParameter("numero")));
-		String cidade = request.getParameter("cidade");
-		int cep = Integer.parseInt((request.getParameter("cep")));
-		
-		Escola escola = new Escola(nome, login, senha);
-		Contato contato = new Contato(email, celular, telefone, escola);
-		Endereco endereco = new Endereco(nomeEndereco, complemento, numero, cidade, cep, escola);
-		
-		daoEscola.inserirEscola(escola);
-		daoContato.inserirContato(contato);
-		daoEndereco.inserirEndereco(endereco);
-		daoEscola.atualizarEscola(escola);
-		response.sendRedirect("inicio-escola");
-		
-		
-
-		response.sendRedirect("novo-contato-escola");
-	}
-	
 
 	private void atualizarEscola(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
