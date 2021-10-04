@@ -13,14 +13,6 @@
 <body>
 	<form id="form" method="post" action="inserir-escola">
 		
-		<ul id="progresso">
-
-			<li class="ativo">Informações Gerais</li>
-			<li>Contato</li>
-			<li>Endereço</li>
-
-		</ul>
-		
 		<fieldset>
 			<h2>Cadastrar Escola</h2>
 			<h4>Insira os dados da escola</h4>
@@ -29,8 +21,30 @@
 				id="login" type="text" name="login" placeholder="Login"
 				required="required" autocomplete="off" value="<c:out value='${escola.login}'/>" /> <input
 				id="senha" type="password" name="senha" placeholder="Senha"
-				required="required" autocomplete="off" value="<c:out value='${escola.senha}'/>" /> <input
-				type="submit" value="Próximo"/>
+				required="required" autocomplete="off" value="<c:out value='${escola.senha}'/>" />
+				
+				    <input id="telefone" type="number" name="telefone"
+                placeholder="Telefone" required="required" autocomplete="off"
+                value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
+                type="number" name="celular" placeholder="Celular"
+                required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" />
+            <input id="email" type="email" name="email" placeholder="E-mail"
+                required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" /> 
+ 
+            <input id="rua" type="text" name="rua" placeholder="Rua"
+                required="required" autocomplete="off" value="<c:out value='${endereco.nome}'/>" /> <input
+                id="cidade" type="text" name="cidade" placeholder="Cidade"
+                required="required" autocomplete="off" value="<c:out value='${endereco.cidade}'/>" />
+            <input id="numero" type="number" name="numero" placeholder="Número"
+                required="required" autocomplete="off" value="<c:out value='${endereco.numero}'/>" />
+            <input id="complemento" type="text" name="complemento"
+                placeholder="Complemento(opcional)" autocomplete="off"
+                value="<c:out value='${endereco.complemento}'/>" /> <input id="cep"
+                type="number" name="cep" placeholder="CEP" required="required" autocomplete="off"
+                value="<c:out value='${endereco.cep}'/>" /> 
+				
+				<input type="submit" value="Próximo"/>
+				
 		</fieldset>
 	</form>
 </body>

@@ -16,11 +16,11 @@
 			<h2>Cadastrar Professor</h2>
 			<h4>Dados da Conta</h4>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
-				required="required" autocomplete="off" value="<c:out value='${professor.nome}'/>" /> <input
+				required="required" autocomplete="off" value="<c:out value='${usuario.nome}'/>" /> <input
 				id="login" type="text" name="login" placeholder="Login"
-				required="required" autocomplete="off" value="<c:out value='${professor.login}'/>" /> <input
+				required="required" autocomplete="off" value="<c:out value='${usuario.login}'/>" /> <input
 				id="senha" type="password" name="senha" placeholder="Senha"
-				required="required" autocomplete="off" value="<c:out value='${professor.senha}'/>" /> <input
+				required="required" autocomplete="off" value="<c:out value='${usuario.senha}'/>" /> <input
 				type="submit" value="Próximo" />
 		</fieldset>
 	</form>

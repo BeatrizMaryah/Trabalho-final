@@ -19,6 +19,7 @@ modelo\entidade\estudantil\Aluno.class
 modelo\entidades\jogo\Teoria.class
 modelo\entidades\jogo\Opcao_.class
 modelo\dao\disciplina\DisciplinaDAO.class
+modelo\enumeracao\Situacao.class
 modelo\dao\endereco\EnderecoDAO.class
 modelo\dao\aluno\AlunoDAOImpl.class
 modelo\dao\opcao\OpcaoDAOImpl.class

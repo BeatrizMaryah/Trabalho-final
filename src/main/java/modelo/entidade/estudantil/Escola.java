@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "escola")
 public class Escola extends Usuario implements Serializable {
@@ -70,6 +69,4 @@ public class Escola extends Usuario implements Serializable {
 		disciplinas.remove(disciplina);
 		disciplina.setEscola(null);
 	}
-
-
 }

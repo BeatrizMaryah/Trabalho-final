@@ -734,12 +734,32 @@ public class Servlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		
+		String email = request.getParameter("email");
+		int celular = Integer.parseInt(request.getParameter("celular"));
+		int telefone = Integer.parseInt(request.getParameter("telefone"));
+
+		String nomeEndereco = request.getParameter("nome");
+		String complemento = request.getParameter("complemento");
+		short numero = Short.parseShort((request.getParameter("numero")));
+		String cidade = request.getParameter("cidade");
+		int cep = Integer.parseInt((request.getParameter("cep")));
+		
 		Escola escola = new Escola(nome, login, senha);
-
 		daoEscola.inserirEscola(escola);
-
-		request.setAttribute("escola", escola);
-		response.sendRedirect("novo-contato-escola");
+		
+		Contato contato = new Contato(email, celular, telefone);
+		daoContato.inserirContato(contato);
+		
+		contato.setUsuario((Usuario) escola);
+		daoContato.atualizarContato(contato);
+		
+		Endereco endereco = new Endereco(nomeEndereco, complemento, numero, cidade, cep, escola);
+		daoEndereco.inserirEndereco(endereco);
+		
+		daoEscola.atualizarEscola(escola);
+		
+		response.sendRedirect("inicio-escola");
 	}
 
 	private void atualizarEscola(HttpServletRequest request, HttpServletResponse response)
