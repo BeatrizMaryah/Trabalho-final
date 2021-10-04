@@ -5,8 +5,12 @@
 <html>
 <head>
 <title>Disciplinas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 </head>
 <body>
+
+	<%@ include file="menu.jsp" %>
+
 	<div>
 		<h3>Lista de Disciplinas</h3>
 		<hr>

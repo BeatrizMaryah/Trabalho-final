@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Teoria Scanner</title>
+<title>Teoria Variaveis</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css" />
 <style><%@include file="/resources/css/game.css"%></style>
 </head>
 <body>
 	<%@ include file="base-teoria.jsp" %>
 	
-	<form  method="post" action="quiz-scanner">
+	<form  method="post" action="quiz-variaveis">
         <button class="botao-teoria">Jogar</button>
     </form>
 </body>

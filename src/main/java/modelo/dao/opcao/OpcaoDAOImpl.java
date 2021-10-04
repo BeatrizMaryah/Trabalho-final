@@ -151,7 +151,7 @@ public class OpcaoDAOImpl implements OpcaoDAO {
 		return opcoes;
 	}
 	
-	public List<Opcao> recuperarOpcoesAtividade(Atividade atividade) {
+	public List<Opcao> recuperarOpcoesAtividades(Atividade atividade) {
 
 		Session sessao = null;
 		List<Opcao> opcoes = null;
