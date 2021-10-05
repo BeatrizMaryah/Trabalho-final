@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>Listar Aluno</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css"/>
+<style><%@include file="/resources/css/style.css"%></style>	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 </head>
 <body>
