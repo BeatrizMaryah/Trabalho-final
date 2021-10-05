@@ -20,8 +20,17 @@
 				id="login" type="text" name="login" placeholder="Login"
 				required="required" autocomplete="off" value="<c:out value='${usuario.login}'/>" /> <input
 				id="senha" type="password" name="senha" placeholder="Senha"
-				required="required" autocomplete="off" value="<c:out value='${usuario.senha}'/>" /> <input
-				type="submit" value="Próximo" />
+				required="required" autocomplete="off" value="<c:out value='${usuario.senha}'/>" /> 
+				
+			<input id="telefone" type="number" name="telefone"
+				placeholder="Telefone(opcional)" autocomplete="off"
+				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
+				type="number" name="celular" placeholder="Celular"
+				required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" /> <input
+				id="email" type="email" name="email" placeholder="E-mail"
+				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" /> 
+				
+				<input type="submit" value="Cadastrar" />
 		</fieldset>
 	</form>
 </body>
