@@ -41,8 +41,17 @@
 				required="required" autocomplete="off"
 				value="<c:out value='${aluno.senha}'/>" /> <input id="cpf"
 				type="number" name="cpf" placeholder="CPF" required="required"
-				autocomplete="off" value="<c:out value='${aluno.cpf}'/>" /> <input
-				type="submit" value="Próximo" />
+				autocomplete="off" value="<c:out value='${aluno.cpf}'/>" /> 
+				
+				<input id="telefone" type="number" name="telefone"
+				placeholder="Telefone Responsável(opcional)" autocomplete="off"
+				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
+				type="number" name="celular" placeholder="Celular(opcional)"
+				autocomplete="off" value="<c:out value='${contato.celular}'/>" />
+				<input id="email" type="email" name="email" placeholder="E-mail"
+				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" />	
+				
+				<input type="submit" value="Cadastrar" />
 		
 	</fieldset>
 </form>

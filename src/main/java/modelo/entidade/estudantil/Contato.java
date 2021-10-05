@@ -48,6 +48,21 @@ public class Contato implements Serializable {
 		setEmail(email);
 		setCelular(celular);
 		setTelefone(telefone);
+		setUsuario(usuario);
+	}
+	
+	public Contato(Long id, String email, int celular, int telefone, Usuario usuario) {
+		setId(id);
+		setEmail(email);
+		setCelular(celular);
+		setTelefone(telefone);
+		setUsuario(usuario);
+	}
+	
+	public Contato(String email, int celular, int telefone) {
+		setEmail(email);
+		setCelular(celular);
+		setTelefone(telefone);
 	}
 	
 	public Contato(Long id, String email, int celular, int telefone) {
@@ -56,13 +71,6 @@ public class Contato implements Serializable {
 		setCelular(celular);
 		setTelefone(telefone);
 	}
-	
-	public Contato( String email, int celular, int telefone) {
-		setEmail(email);
-		setCelular(celular);
-		setTelefone(telefone);
-	}
-
 
 	public Contato(String email, int celular) {
 		setEmail(email);

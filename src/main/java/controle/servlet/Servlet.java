@@ -681,12 +681,18 @@ public class Servlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		String cpf = request.getParameter("cpf");
+		
+		String email = request.getParameter("email");
+		int celular = Integer.parseInt(request.getParameter("celular"));
+		int telefone = Integer.parseInt(request.getParameter("telefone"));
+		
 		Aluno aluno = new Aluno(nome, login, senha, cpf);
-		Turma turma = (Turma) request.getAttribute("turma");
-		aluno.setTurma(turma);
 		daoAluno.inserirAluno(aluno);
-		request.getSession().setAttribute("aluno", aluno);
-		response.sendRedirect("novo-contato-aluno");
+		
+		Contato contato = new Contato(email, celular, telefone, aluno);
+		daoContato.inserirContato(contato);
+		
+		response.sendRedirect("inicio-escola");
 	}
 
 	private void atualizarAluno(HttpServletRequest request, HttpServletResponse response)
@@ -748,11 +754,9 @@ public class Servlet extends HttpServlet {
 		Escola escola = new Escola(nome, login, senha);
 		daoEscola.inserirEscola(escola);
 		
-		Contato contato = new Contato(email, celular, telefone);
+		Contato contato = new Contato(email, celular, telefone, escola);
 		daoContato.inserirContato(contato);
 		
-		contato.setUsuario((Usuario) escola);
-		daoContato.atualizarContato(contato);
 		
 		Endereco endereco = new Endereco(nomeEndereco, complemento, numero, cidade, cep, escola);
 		daoEndereco.inserirEndereco(endereco);
@@ -805,12 +809,20 @@ public class Servlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
+		
+		String email = request.getParameter("email");
+		int celular = Integer.parseInt(request.getParameter("celular"));
+		int telefone = Integer.parseInt(request.getParameter("telefone"));
+
 		Professor professor = new Professor(nome, login, senha);
-		Disciplina disciplina = (Disciplina) request.getAttribute("disciplina");
-		professor.setDisciplina(disciplina);
 		daoProfessor.inserirProfessor(professor);
-		request.setAttribute("professor", professor);
-		response.sendRedirect("novo-contato-professor");
+		
+		Contato contato = new Contato(email, celular, telefone, professor);
+		daoContato.inserirContato(contato);
+		
+		daoContato.atualizarContato(contato);
+		
+		response.sendRedirect("inicio-escola");
 	}
 
 	private void atualizarProfessor(HttpServletRequest request, HttpServletResponse response)
