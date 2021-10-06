@@ -4,22 +4,18 @@
 <head>
 <title>Cadastrar Escola</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css"/>
-<style><%@include file="/resources/css/teste.css"%></style>	
+<style><%@include file="/resources/css/style.css"%></style>	
 <script><%@include file="/resources/js/metodos.js"%></script>	
+<link
+	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
+	rel="stylesheet">
 </head>
 <body>
-	<form id="msform" method="post" action="inserir-escola">
+	<form id="form" method="post" action="inserir-escola">
 		
-		<ul id="progressbar">
-		   <li class="active">Informações Gerais</li>
-		   <li>	Contato</li>
-		   <li>Endereço</li>
-		   </ul>
-				
 		<fieldset>
-			<h2 class="fs-title">Cadastrar Escola</h2>
-			<h4 class="fs-subtitle">Insira os dados da escola</h4>
-			
+			<h2>Cadastrar Escola</h2>
+			<h4>Insira os dados da escola</h4>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off" value="<c:out value='${escola.nome}'/>" /> <input
 				id="login" type="text" name="login" placeholder="Login"
@@ -27,10 +23,6 @@
 				id="senha" type="password" name="senha" placeholder="Senha"
 				required="required" autocomplete="off" value="<c:out value='${escola.senha}'/>" />
 				
-			<input type="button" name="next" class="next action-button" value="Próximo" />
-			</fieldset>
-			
-			<fieldset>
 				    <input id="telefone" type="number" name="telefone"
                 placeholder="Telefone" required="required" autocomplete="off"
                 value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
@@ -38,12 +30,7 @@
                 required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" />
             <input id="email" type="email" name="email" placeholder="E-mail"
                 required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" /> 
- 				
- 			<input type="button" name="previous" class="previous action-button" value="Anterior" />
-			<input type="button" name="next" class="next action-button" value="Próximo" />
- 			</fieldset>
- 			
- 			<fieldset>
+ 
             <input id="rua" type="text" name="rua" placeholder="Rua"
                 required="required" autocomplete="off" value="<c:out value='${endereco.nome}'/>" /> <input
                 id="cidade" type="text" name="cidade" placeholder="Cidade"
@@ -55,13 +42,10 @@
                 value="<c:out value='${endereco.complemento}'/>" /> <input id="cep"
                 type="number" name="cep" placeholder="CEP" required="required" autocomplete="off"
                 value="<c:out value='${endereco.cep}'/>" /> 
-                
-			<input type="submit" name="submit" class="submit action-button" value="Cadastrar" />
+				
+				<input type="submit" value="Próximo"/>
+				
 		</fieldset>
 	</form>
-	
-	<script src="http://thecodeplayer.com/uploads/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<!-- jQuery easing plugin -->
-<script src="http://thecodeplayer.com/uploads/js/jquery.easing.min.js" type="text/javascript"></script>
 </body>
 </html>
