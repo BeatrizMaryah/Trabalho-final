@@ -487,6 +487,15 @@ public class Servlet extends HttpServlet {
 		Contato contato = new Contato(email, celular, telefone, aluno);
 		daoContato.inserirContato(contato);
 		
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
+		
+		aluno.setTurma(turma);
+		turma.adicionarAluno(aluno);
+		
+		daoAluno.atualizarAluno(aluno);
+		daoTurma.atualizarTurma(turma);
+		
 		response.sendRedirect("inicio-escola");
 	}
 
@@ -497,9 +506,11 @@ public class Servlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		String cpf = request.getParameter("cpf");
-		daoAluno.atualizarAluno(new Aluno(id, nome, login, senha, cpf));
-		response.sendRedirect("inicio-escola"); // Terá botão na lista de alunos para excluir.
+		String cpf = request.getParameter("cpf");	
+		Aluno aluno = new Aluno(id, nome, login, senha, cpf);
+		daoAluno.atualizarAluno(aluno);
+		request.setAttribute("aluno", aluno);
+		response.sendRedirect("novo-aluno"); 
 	}
 
 	private void deletarAluno(HttpServletRequest request, HttpServletResponse response)
@@ -653,6 +664,9 @@ public class Servlet extends HttpServlet {
 
 	private void mostrarFormularioNovaTurma(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-turma.jsp");
 		dispatcher.forward(request, response);
@@ -662,8 +676,15 @@ public class Servlet extends HttpServlet {
 			throws SQLException, IOException {
 
 		String nome = request.getParameter("nome");
-		Turma turma = new Turma(nome);
+		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
+		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		Turma turma = new Turma(nome, escola);
+		
+		escola.adicionarTurma(turma);
+		
 		daoTurma.inserirTurma(turma);
+		daoEscola.atualizarEscola(escola);
 		response.sendRedirect("inicio-escola");
 	}
 

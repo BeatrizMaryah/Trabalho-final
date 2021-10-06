@@ -50,7 +50,16 @@
 				autocomplete="off" value="<c:out value='${contato.celular}'/>" />
 				<input id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" />	
-				
+			
+			<label>Turma:</label>
+			<select class="form-control" id="id-turma" name="id-turma">
+				<c:forEach var="escola" items="${turmas}">
+					<option value="${turma.id}">
+						<c:out value="${turma.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+			
 				<input type="submit" value="Cadastrar" />
 		
 	</fieldset>

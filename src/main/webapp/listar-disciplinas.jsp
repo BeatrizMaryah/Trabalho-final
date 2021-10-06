@@ -28,10 +28,8 @@
 					<tr>
 						<td><c:out value="${turma.nome}" /></td>
 						<td><a href="editar-turma?id=<c:out value='${turma.id}'/>">Editar</a>
-							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>
-							
+							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>	
 					</tr>
-					
 					
 				</c:forEach>
 			</tbody>
