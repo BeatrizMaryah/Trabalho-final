@@ -23,15 +23,15 @@
 		
 	<fieldset>
 		<h2>
-			<c:if test="${aluno != null}">Editar Contato</c:if>
-			<c:if test="${aluno == null}">Inserir Contato</c:if>
+			<c:if test="${aluno != null}">Editar aluno</c:if>
+			<c:if test="${aluno == null}">Cadastrar aluno</c:if>
 		</h2>
+		<h4>Insira os dados do aluno</h4>
 		
 		<c:if test="${aluno != null}">
 			<input type="hidden" name="id" value="<c:out value="${aluno.id}"/>" />
 		</c:if>
-		
-		<h4>Insira os dados do aluno</h4>
+
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off"
 				value="<c:out value='${aluno.nome}'/>" /> <input id="login"
@@ -61,7 +61,7 @@
 			</select>
 			
 				<input type="submit" value="Cadastrar" />
-		
+				
 	</fieldset>
 </form>
 </body>

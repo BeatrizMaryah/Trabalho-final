@@ -506,11 +506,9 @@ public class Servlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		String cpf = request.getParameter("cpf");	
-		Aluno aluno = new Aluno(id, nome, login, senha, cpf);
-		daoAluno.atualizarAluno(aluno);
-		request.setAttribute("aluno", aluno);
-		response.sendRedirect("novo-aluno"); 
+		String cpf = request.getParameter("cpf");
+		daoAluno.atualizarAluno(new Aluno(id, nome, login, senha, cpf));
+		response.sendRedirect("listar-alunos"); // Terá botão na lista de alunos para excluir.
 	}
 
 	private void deletarAluno(HttpServletRequest request, HttpServletResponse response)
