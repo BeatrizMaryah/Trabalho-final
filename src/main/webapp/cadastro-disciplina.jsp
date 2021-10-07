@@ -5,6 +5,9 @@
 <html>
 <head>
 <title>Cadastrar Disciplina</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css"/>
+<style><%@include file="/resources/css/cadastros.css"%></style>	
+<script><%@include file="/resources/js/metodos.js"%></script>	
 </head>
 <body>
 	<form id="form" method="post" action="inserir-disciplina">

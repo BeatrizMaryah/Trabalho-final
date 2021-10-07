@@ -4,13 +4,11 @@
 <html>
 <head>
 <title>Tela Principal</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css"/>
-<style><%@include file="/resources/css/style.css"%></style>	
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/inicio-escola.css"/>
+<style><%@include file="/resources/css/inicio-escola.css"%></style>	
 <script><%@include file="/resources/js/metodos.js"%></script>	
 </head>
 <body>
-
 	<%@ include file="menu.jsp" %>
-
 </body>
 </html>

@@ -2,6 +2,7 @@
 package controle.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -33,7 +34,6 @@ import modelo.entidade.estudantil.Endereco;
 import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
-import modelo.entidade.estudantil.Usuario;
 
 @WebServlet("/")
 public class Servlet extends HttpServlet {
@@ -678,8 +678,6 @@ public class Servlet extends HttpServlet {
 		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
 		
 		Turma turma = new Turma(nome, escola);
-		
-		escola.adicionarTurma(turma);
 		
 		daoTurma.inserirTurma(turma);
 		daoEscola.atualizarEscola(escola);

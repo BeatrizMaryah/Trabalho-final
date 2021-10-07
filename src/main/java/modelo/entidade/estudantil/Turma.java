@@ -35,7 +35,7 @@ public class Turma implements Serializable {
 	private String nome;
 	
 	//Uma escola tem muitas turmas.
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_escola")
 	private Escola escola;
 	

@@ -4,11 +4,13 @@
 <head>
 <title>Listar Aluno</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/inicio-escola.css"/>
+<style><%@include file="/resources/css/inicio-escola.css"%></style>	
+<script><%@include file="/resources/js/metodos.js"%></script>	
 </head>
 <body>
-
 	<%@ include file="menu.jsp" %>
-
+	
 	<div class="container">
 			<h3>Lista De Alunos</h3>
 			<hr>

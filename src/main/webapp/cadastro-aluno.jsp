@@ -6,8 +6,8 @@
 		<c:if test="${aluno != null}">Editar aluno</c:if> 
 		<c:if test="${aluno == null}">Cadastrar aluno</c:if>
 </title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css" />
-<style><%@include file="/resources/css/style.css"%></style>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css" />
+<style><%@include file="/resources/css/cadastros.css"%></style>
 <script><%@include file="/resources/js/metodos.js"%></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
