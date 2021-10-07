@@ -45,7 +45,20 @@
 				required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" /> <input
 				id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" /> 
+			
+					<br>
 				
+		<label>Disciplina:</label>
+			<select class="form-control" id="id-disciplina" name="id-disciplina">
+				<c:forEach var="disciplina" items="${disciplinas}">
+					<option value="${disciplina.id}">
+						<c:out value="${disciplina.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+			
+			<br>
+			
 				<input type="submit" value="Cadastrar" />
 		</fieldset>
 	</form>

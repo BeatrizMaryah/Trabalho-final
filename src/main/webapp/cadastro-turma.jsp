@@ -14,8 +14,7 @@
 			<h2>Cadastrar Turma</h2>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off" value="<c:out value='${turma.nome}'/>" />
-				<input type="submit" value="Cadastrar"/>
-				
+			
 				<br>
 				
 		<label>Escola:</label>
@@ -29,6 +28,7 @@
 			
 			<br>
 			
+			<input type="submit" value="Cadastrar"/>
 		</fieldset>
 	</form>
 </body>

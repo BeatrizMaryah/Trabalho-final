@@ -4,6 +4,7 @@
             <div class="logo_name">Escola</div>
             <i class="fi fi-rr-align-right" id="btn"></i>
         </div>
+        
         <ul class="nav-list">
             <li>
                 <a href="<%=request.getContextPath()%>/nova-turma" target="_self"><i class="fi fi-rr-edit"></i>

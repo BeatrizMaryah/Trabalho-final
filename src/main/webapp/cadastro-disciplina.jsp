@@ -15,8 +15,8 @@
 		<fieldset>
 			<h2>Cadastrar Disciplina</h2>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
-				required="required" value="<c:out value='${disciplina.nome}'/>" /> <input
-				type="submit" value="Cadastrar" />
+				required="required" value="<c:out value='${disciplina.nome}'/>" /> 
+				<input type="submit" value="Cadastrar" />
 		</fieldset>
 	</form>
 </body>
