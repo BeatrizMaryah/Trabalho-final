@@ -1,36 +1,47 @@
-/* ----- MENU ----- */
-
-.sidenav {
-  height: 100%;
-  width: 300px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
+:root {
+    --gray: #d9d9d9;
+    --darkgray: #d8d8d8;
 }
-
-.sidenav a {
-  padding: 6px 6px 6px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+a {
+    font-weight: bold;
+    color: var(--gray);
+    text-decoration: none;
+    padding: .25em;
+    border-radius: .25em;
+    background: #000;
 }
-
-.sidenav a:hover {
-  color: #f1f1f1;
+select {
+    appearance: none;
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+    flex: 1;
+    padding: 0 1em;
+    color: #000;
+    background-color: var(--darkgray);
+    background-image: none;
+    cursor: pointer;
 }
-
-.main {
-  margin-left: 200px; /* Same as the width of the sidenav */
+select::-ms-expand {
+    display: none;
 }
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+.select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    border-radius: .25em;
+    overflow: hidden;
+}
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #acacac;
+    transition: .25s all ease;
+    pointer-events: none;
 }
 
 /* CADASTRO ESCOLA*/

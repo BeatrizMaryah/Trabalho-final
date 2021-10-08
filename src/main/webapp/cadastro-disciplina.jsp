@@ -20,7 +20,7 @@
 		<br>
 				
 		<label>Escola:</label>
-			<select class="form-control" id="id-escola" name="id-escola">
+			<select class="select" id="id-escola" name="id-escola">
 				<c:forEach var="escola" items="${escolas}">
 					<option value="${escola.id}">
 						<c:out value="${escola.nome}"/>

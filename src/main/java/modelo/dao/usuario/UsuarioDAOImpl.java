@@ -108,46 +108,46 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 	
 	public Usuario recuperarUsuario(Usuario usuario) {
+		
+        Session sessao = null;
+        Usuario usuarioRecuperado = null;
+        
+        try {
+        	
+        	sessao = fabrica.getConexao().openSession();
+            sessao.beginTransaction();
+            
+            CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+            CriteriaQuery<Usuario> criteria = construtor.createQuery(Usuario.class);
+            
+            Root<Usuario> raizUsuario = criteria.from(Usuario.class);
+            criteria.select(raizUsuario);
 
-		Session sessao = null;
-		Usuario usuarioRecuperado = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-			CriteriaQuery<Usuario> criteria = construtor.createQuery(Usuario.class);
-			Root<Usuario> raizUsuario = criteria.from(Usuario.class);
-
-			criteria.select(raizUsuario);
-			
-			ParameterExpression<Long> idUsuario= construtor.parameter(Long.class);
-			criteria.where(construtor.equal(raizUsuario.get("id"), idUsuario));
-
-			usuarioRecuperado = sessao.createQuery(criteria).setParameter(idUsuario, usuario.getId()).getSingleResult();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-				sessao.getTransaction().rollback();
-			}
-
-		} finally {
-
-			if (sessao != null) {
-				sessao.close();
-			}
-		}
-
-		return usuarioRecuperado;
-	}
+            ParameterExpression<String> loginUsuario = construtor.parameter(String.class);
+            criteria.where(construtor.equal(raizUsuario.get("login"), loginUsuario));
+            
+            usuarioRecuperado = sessao.createQuery(criteria).setParameter(loginUsuario, usuario.getLogin()).getSingleResult();
+            
+            sessao.getTransaction().commit();
+            
+        } catch (Exception sqlException) {
+        	
+            sqlException.printStackTrace();
+            
+            if (sessao.getTransaction() != null) {
+                sessao.getTransaction().rollback();
+            }
+            
+        } finally {
+        	
+            if (sessao != null) {
+                sessao.close();
+            }
+            
+        }
+        
+        return usuarioRecuperado;
+    }
 	
 	public List<Usuario> recuperarUsuarios() {
 

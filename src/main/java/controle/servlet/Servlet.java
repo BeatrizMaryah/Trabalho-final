@@ -677,6 +677,9 @@ public class Servlet extends HttpServlet {
 		List<Escola> escolas = daoEscola.recuperarEscolas();
 		request.setAttribute("escolas", escolas);
 
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
+		request.setAttribute("disciplinas", disciplinas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-turma.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -687,6 +690,10 @@ public class Servlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
 		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		Long idDisciplina1 = Long.parseLong(request.getParameter("id-discilina1"));
+		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina1));
+		
 		
 		Turma turma = new Turma(nome, escola);
 		

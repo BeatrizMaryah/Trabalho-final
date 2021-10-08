@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
+<script type="text/javascript" ><%@include file="/resources/js/system.js"%></script>	
 <style><%@include file="/resources/css/game.css"%></style>	
-<script type="text/javascript"><%@include file="/resources/js/system.js"%></script>	
 </head>
 <body>
-        <%@ include file="base-quiz.jsp" %>
+        <%@ include file="base-quiz.jsp" %>	
 </body>
 </html>
