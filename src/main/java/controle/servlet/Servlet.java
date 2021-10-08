@@ -727,6 +727,9 @@ public class Servlet extends HttpServlet {
 	private void mostrarFormularioNovaDisciplina(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-disciplina.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -735,9 +738,10 @@ public class Servlet extends HttpServlet {
 			throws SQLException, IOException {
 
 		String nome = request.getParameter("nome");
-		Disciplina disciplina = new Disciplina(nome);
-		Escola escola = (Escola)request.getAttribute("escola");
-		disciplina.setEscola(escola);
+		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
+		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		Disciplina disciplina = new Disciplina(nome, escola);
 		daoDisciplina.inserirDisciplina(disciplina);
 		response.sendRedirect("inicio-escola");
 	}

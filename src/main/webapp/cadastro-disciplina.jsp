@@ -16,6 +16,20 @@
 			<h2>Cadastrar Disciplina</h2>
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" value="<c:out value='${disciplina.nome}'/>" /> 
+				
+		<br>
+				
+		<label>Escola:</label>
+			<select class="form-control" id="id-escola" name="id-escola">
+				<c:forEach var="escola" items="${escolas}">
+					<option value="${escola.id}">
+						<c:out value="${escola.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+			
+			<br>
+			
 				<input type="submit" value="Cadastrar" />
 		</fieldset>
 	</form>

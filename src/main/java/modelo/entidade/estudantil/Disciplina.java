@@ -62,14 +62,16 @@ public class Disciplina implements Serializable {
 		setNome(nome);
 	}
 	
-	public Disciplina(String nome, Turma turma)  {
+	public Disciplina(String nome, Escola escola)  {
 		setNome(nome);
+		setEscola(escola);
 		
 	}
 	
-	public Disciplina(Long id, String nome, Turma turma)  {
+	public Disciplina(Long id, String nome, Escola escola)  {
 		setId(id);
 		setNome(nome);
+		setEscola(escola);
 	}
 	
 	public Long getId() {
