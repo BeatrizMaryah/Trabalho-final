@@ -64,16 +64,12 @@ public class Disciplina implements Serializable {
 	
 	public Disciplina(String nome, Turma turma)  {
 		setNome(nome);
-		adicionarTurma(turma);
-		adicionarDisciplinaNaTurma(turma);
 		
 	}
 	
 	public Disciplina(Long id, String nome, Turma turma)  {
 		setId(id);
 		setNome(nome);
-		adicionarTurma(turma);
-		adicionarDisciplinaNaTurma(turma);
 	}
 	
 	public Long getId() {
@@ -100,22 +96,6 @@ public class Disciplina implements Serializable {
 	
 	public List<Professor> getProfessor () {
 		return professores;
-	}
-
-	public void adicionarTurma(Turma turma) {
-		turmas.add(turma);
-	}
-
-	public void adicionarDisciplinaNaTurma(Turma turma) {
-		turma.adicionarDisciplina(this);
-	}
-
-	public void removerTurma(Turma turma) {
-		turmas.remove(turma);
-	}
-
-	public void removerDisciplinaNaTurma(Turma turma) {
-		turma.removerDisciplina(this);
 	}
 	
 	public Escola getEscola() {

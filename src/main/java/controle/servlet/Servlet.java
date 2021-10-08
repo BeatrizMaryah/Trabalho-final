@@ -464,7 +464,10 @@ public class Servlet extends HttpServlet {
 
 	private void mostrarFormularioNovoAluno(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		List<Turma> turmas = daoTurma.recuperarTurmas();
+		request.setAttribute("turmas", turmas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-aluno.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -491,7 +494,6 @@ public class Servlet extends HttpServlet {
 		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
 		
 		aluno.setTurma(turma);
-		turma.adicionarAluno(aluno);
 		
 		daoAluno.atualizarAluno(aluno);
 		daoTurma.atualizarTurma(turma);
@@ -603,6 +605,9 @@ public class Servlet extends HttpServlet {
 	private void mostrarFormularioNovoProfessor(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
+		request.setAttribute("disciplinas", disciplinas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-professor.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -624,6 +629,12 @@ public class Servlet extends HttpServlet {
 		Contato contato = new Contato(email, celular, telefone, professor);
 		daoContato.inserirContato(contato);
 		
+		Long idDisciplina = Long.parseLong(request.getParameter("id-disciplina"));
+		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina));
+		
+		professor.setDisciplina(disciplina);
+		
+		daoProfessor.atualizarProfessor(professor);
 		daoContato.atualizarContato(contato);
 		
 		response.sendRedirect("inicio-escola");

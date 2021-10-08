@@ -112,32 +112,4 @@ public class Turma implements Serializable {
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-
-	public void adicionarAluno(Aluno aluno) {
-		alunos.add(aluno);
-		aluno.setTurma(this);
-	}
-
-	public void removerAluno(Aluno aluno) {
-		alunos.remove(aluno);
-		aluno.setTurma(null);
-
-	}
-
-	public void adicionarDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
-	}
-
-	public void adicionarTurmaDaDisciplina(Disciplina disciplina) {
-		disciplina.adicionarTurma(this);
-	}
-
-	public void removerDisciplina(Disciplina disciplina) {
-		disciplinas.remove(disciplina);
-	}
-
-	public void removerTurmaDaDisciplina(Disciplina disciplina) {
-		disciplina.removerTurma(this);
-	}
-
 }

@@ -53,7 +53,7 @@
 			
 			<label>Turma:</label>
 			<select class="form-control" id="id-turma" name="id-turma">
-				<c:forEach var="escola" items="${turmas}">
+				<c:forEach var="turma" items="${turmas}">
 					<option value="${turma.id}">
 						<c:out value="${turma.nome}"/>
 					</option>
