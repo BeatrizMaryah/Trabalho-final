@@ -8,10 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css" />
 <style><%@include file="/resources/css/game.css"%></style>
 </head>
-<body>
-
-	<%@ include file="base-teoria.jsp" %>
-	
+<body>	
     <form method="post" action="quiz-switch-case">
         <button class="botao">Jogar</button>
     </form>
