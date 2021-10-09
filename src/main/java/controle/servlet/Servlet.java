@@ -2,7 +2,6 @@
 package controle.servlet;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -279,6 +278,10 @@ public class Servlet extends HttpServlet {
 			case "/fases":
 				mostrarTelaFases(request, response);
 				break;
+				
+			case "/escolher-turma-alunos":
+				listarAlunosDaTurma(request, response);
+				break;
 		}	
 
 		} catch (SQLException ex) {
@@ -306,6 +309,19 @@ public class Servlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("tela-principal-escola.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void listarAlunosDaTurma(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
+		
+		List<Aluno> alunos = daoAluno.recuperarAlunosTurma(turma);
+		request.setAttribute("alunos", alunos);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -456,8 +472,9 @@ public class Servlet extends HttpServlet {
 	private void listarAlunos(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 
-		List<Aluno> alunos = daoAluno.recuperarAlunos();
-		request.setAttribute("alunos", alunos);
+		List<Turma> turmas = daoTurma.recuperarTurmas();
+		request.setAttribute("turmas", turmas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
 		dispatcher.forward(request, response);
 	}

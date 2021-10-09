@@ -2,6 +2,7 @@ package modelo.dao.aluno;
 
 import java.util.List;
 
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -11,7 +12,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Aluno;
-import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Turma;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class AlunoDAOImpl implements AlunoDAO {
@@ -191,7 +192,7 @@ public class AlunoDAOImpl implements AlunoDAO {
 		return alunos;
 	}
 
-	public List<Aluno> recuperarAlunoDisciplina (Disciplina disciplina) {
+	public List<Aluno> recuperarAlunosTurma (Turma turma) {
 
 		Session sessao = null;
 		List<Aluno> alunos = null;
@@ -206,12 +207,12 @@ public class AlunoDAOImpl implements AlunoDAO {
 			CriteriaQuery<Aluno> criteria = construtor.createQuery(Aluno.class);
 			Root<Aluno> raizAluno = criteria.from(Aluno.class);
 
-			Join<Aluno, Disciplina> juncaoDisciplina = raizAluno.join("disciplina");
+			Join<Aluno, Turma> juncaoTurma = raizAluno.join("turma");
 
 			ParameterExpression<Long> idAluno = construtor.parameter(Long.class);
-			criteria.where(construtor.equal(juncaoDisciplina.get("id"), idAluno));
+			criteria.where(construtor.equal(juncaoTurma.get("id"), idAluno));
 
-			alunos = sessao.createQuery(criteria).setParameter(idAluno, disciplina.getId()).getResultList();
+			alunos = sessao.createQuery(criteria).setParameter(idAluno, turma.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 

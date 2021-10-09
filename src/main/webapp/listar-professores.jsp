@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/inicio-escola.css"/>
 <style><%@include file="/resources/css/inicio-escola.css"%></style>	
 <script><%@include file="/resources/js/metodos.js"%></script>	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	
 </head>
 <body>
 	
@@ -15,8 +16,8 @@
 			<h3>Lista de Professores</h3>
 			<hr>
 			<br>
-			<table>
-				<thead>
+			<table class="table">
+				<thead class="thead-light">
 					<tr>
 						<th>Nome</th>
 						<th>Login</th>
