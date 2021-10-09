@@ -1,11 +1,26 @@
-<div class="sidebar open">
-        <div class="logo-details">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
 
-            <div class="logo_name">Escola</div>
-        </div>
-        <ul class="nav-list">
+<div class="header"></div>
+        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+        <label for="openSidebarMenu" class="sidebarIconToggle">
+            <div class="spinner diagonal part-1"></div>
+            <div class="spinner horizontal"></div>
+            <div class="spinner diagonal part-2"></div>
+        </label>
+
+    <div id ="sidebarMenu">
+        <ul class="sidebarMenuInner">
             <li>
-                <a href="<%=request.getContextPath()%>/nova-turma" target="_self"><i class="fi fi-rr-edit"></i>
+                <a href="<%=request.getContextPath()%>/nova-turma" target="_self">
+                <i class="fi fi-rr-edit"></i>
                     <span class="links_name">Cadastrar Turma</span>
                 </a>
 
@@ -41,7 +56,7 @@
             <li>
                 <a href="<%=request.getContextPath()%>/listar-disciplinas" target="_self">
                     <i class="fi fi-rr-folder"></i>
-                    <span class="links_name">Disciplina</span>
+                    <span class="links_name">Listar Disciplina</span>
                 </a>
 
             </li>
@@ -55,15 +70,12 @@
             <li>
                 <a href="<%=request.getContextPath()%>/listar-alunos" target="_self">
                     <i class="fi fi-rr-graduation-cap"></i>
-                    <span class="links_name">Alunos</span>
+                    <span class="links_name">Listar alunos</span>
                 </a>
 
             </li>
-            
-            <br>
-            
             <li>
-                <a href="<%=request.getContextPath()%>/inicio" target="_self">
+               	<a href="<%=request.getContextPath()%>/inicio" target="_self">
                     <i class="fi fi-rr-sign-in"></i>
                     <span class="links_name">Sair</span>
                 </a>
@@ -71,3 +83,6 @@
             </li>
         </ul>
     </div>
+</div>
+</body>
+</html>

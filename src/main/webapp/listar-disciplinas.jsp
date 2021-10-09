@@ -5,7 +5,6 @@
 <html>
 <head>
 <title>Disciplinas</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/inicio-escola.css"/>
 <style><%@include file="/resources/css/inicio-escola.css"%></style>	
 <script><%@include file="/resources/js/metodos.js"%></script>	
@@ -13,8 +12,9 @@
 <body>
 
 	<%@ include file="menu.jsp" %>
-
-	<div>
+	<div id='center' class="main center">
+    <div class="mainInner">
+	<div class="container">
 		<h3>Lista de Disciplinas</h3>
 		<hr>
 		<br>
@@ -38,5 +38,7 @@
 			</tbody>
 		</table>
 	</div>
+	</div>
+    </div>
 </body>
 </html>
