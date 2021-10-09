@@ -51,15 +51,18 @@
 				<input id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" />	
 			
-			<label>Turma:</label>
-			<select class="form-control" id="id-turma" name="id-turma">
+		<label for="standard-select">Turma:</label>
+			<div class="select">
+			<select id="standard-select" name="id-turma">
 				<c:forEach var="turma" items="${turmas}">
 					<option value="${turma.id}">
 						<c:out value="${turma.nome}"/>
 					</option>
 				</c:forEach>
 			</select>
-			
+		<span class="focus"></span>
+		</div>
+		<br>
 				<input type="submit" value="Cadastrar" />
 				
 	</fieldset>
