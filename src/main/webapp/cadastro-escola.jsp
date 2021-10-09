@@ -2,20 +2,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Cadastrar Escola</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css"/>
-<style><%@include file="/resources/css/style.css"%></style>	
+<title>
+		<c:if test="${escola != null}">Editar escola</c:if> 
+		<c:if test="${escola == null}">Cadastrar escola</c:if>
+</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css"/>
+<style><%@include file="/resources/css/cadastros.css"%></style>	
 <script><%@include file="/resources/js/metodos.js"%></script>	
 <link
 	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
 	rel="stylesheet">
 </head>
 <body>
-	<form id="form" method="post" action="inserir-escola">
+		<c:if test="${escola != null}">
+			<form id="form" action="atualizar-escola" method="post">
+		</c:if>
+		<c:if test="${escola == null}">
+			<form id="form" action="inserir-escola" method="post">
+		</c:if>
 		
 		<fieldset>
-			<h2>Cadastrar Escola</h2>
+			<h2>
+				<c:if test="${escola != null}">Editar Escola</c:if>
+				<c:if test="${escola == null}">Cadastrar Escola</c:if>
+			</h2>
 			<h4>Insira os dados da escola</h4>
+			
+			<c:if test="${escola != null}">
+			<input type="hidden" name="id" value="<c:out value="${escola.id}"/>" />
+			</c:if>
+			
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off" value="<c:out value='${escola.nome}'/>" /> <input
 				id="login" type="text" name="login" placeholder="Login"
@@ -43,7 +59,7 @@
                 type="number" name="cep" placeholder="CEP" required="required" autocomplete="off"
                 value="<c:out value='${endereco.cep}'/>" /> 
 				
-				<input type="submit" value="Próximo"/>
+				<input type="submit" value="Cadastrar"/>
 				
 		</fieldset>
 	</form>

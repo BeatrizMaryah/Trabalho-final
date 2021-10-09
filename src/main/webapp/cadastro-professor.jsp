@@ -3,18 +3,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Cadastrar Professor</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css"/>
-<style><%@include file="/resources/css/style.css"%></style>	
+<title>
+		<c:if test="${professor != null}">Editar professor</c:if> 
+		<c:if test="${professor == null}">Cadastrar professor</c:if>
+</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css"/>
+<style><%@include file="/resources/css/cadastros.css"%></style>	
 <script><%@include file="/resources/js/metodos.js"%></script>
 <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form id="form" method="post" action="inserir-professor">
+	<c:if test="${professor != null}">
+			<form id="form" action="atualizar-professor" method="post">
+	</c:if>
+	<c:if test="${professor == null}">
+			<form id="form" action="inserir-professor" method="post">
+	</c:if>
 	
 		<fieldset>
-			<h2>Cadastrar Professor</h2>
+			<h2>
+				<c:if test="${aluno != null}">Editar Professor</c:if>
+				<c:if test="${aluno == null}">Cadastrar Professor</c:if>
+			</h2>
 			<h4>Dados da Conta</h4>
+			
+			<c:if test="${professor != null}">
+			<input type="hidden" name="id" value="<c:out value="${professor.id}"/>" />
+			</c:if>
+			
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off" value="<c:out value='${usuario.nome}'/>" /> <input
 				id="login" type="text" name="login" placeholder="Login"
@@ -29,7 +45,22 @@
 				required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" /> <input
 				id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" /> 
+			
+		<br>
 				
+		<label for="standard-select">Disciplina:</label>
+		<div class="select">
+			<select id="standard-select" name="id-disciplina">
+				<c:forEach var="disciplina" items="${disciplinas}">
+					<option value="${disciplina.id}">
+						<c:out value="${disciplina.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+			 <span class="focus"></span>
+		</div>			
+			<br>
+			
 				<input type="submit" value="Cadastrar" />
 		</fieldset>
 	</form>

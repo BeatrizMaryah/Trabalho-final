@@ -2,6 +2,7 @@
 package controle.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -33,7 +34,6 @@ import modelo.entidade.estudantil.Endereco;
 import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
-import modelo.entidade.estudantil.Usuario;
 
 @WebServlet("/")
 public class Servlet extends HttpServlet {
@@ -71,65 +71,6 @@ public class Servlet extends HttpServlet {
 		try {
 
 			switch (action) {
-
-			// =========Contato=============
-
-			case "/novo-contato-escola":
-				mostrarFormularioNovoContatoEscola(request, response);
-				break;
-				
-			case "/novo-contato-aluno":
-				mostrarFormularioNovoContatoAluno(request, response);
-				break;
-			case "/novo-contato-professor":
-				mostrarFormularioNovoContatoProfessor(request, response);
-				break;
-
-			case "/inserir-contato-escola":
-				inserirContatoEscola(request, response);
-				break;
-
-			case "/inserir-contato-aluno":
-				inserirContatoAluno(request, response);
-				break;
-
-			case "/inserir-contato-professor":
-				inserirContatoProfessor(request, response);
-				break;
-
-			case "/deletar-contato":
-				deletarContato(request, response);
-				break;
-
-			case "/atualizar-contato":
-				atualizarContato(request, response);
-				break;
-
-			case "/listar-contatos":
-				listarContatos(request, response);
-				break;
-
-			// =========Endereço=============
-
-			case "/novo-endereco":
-				mostrarFormularioNovoEndereco(request, response);
-				break;
-
-			case "/inserir-endereco":
-				inserirEndereco(request, response);
-				break;
-
-			case "/deletar-endereco":
-				deletarEndereco(request, response);
-				break;
-
-			case "/atualizar-endereco":
-				atualizarEndereco(request, response);
-				break;
-
-			case "/listar-enderecos":
-				listarEnderecos(request, response);
-				break;
 
 			// =========Aluno=============
 
@@ -510,152 +451,6 @@ public class Servlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-while.jsp");
 		dispatcher.forward(request, response);
 	}
-	
-	// ======================================Contato===============================================
-	
-	private void listarContatos(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
-
-		List<Contato> contatos = daoContato.recuperarContatos();
-		request.setAttribute("contatos", contatos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-contato.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void mostrarFormularioNovoContatoEscola(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("contato-escola.jsp");
-		dispatcher.forward(request, response);
-
-	}
-
-	private void mostrarFormularioNovoContatoAluno(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("contato-aluno.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void mostrarFormularioNovoContatoProfessor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("contato-professor.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void inserirContatoEscola(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		Usuario usuario = (Usuario) request.getSession().getAttribute("escola");
-		Contato contato = new Contato(email, celular, telefone, usuario);
-		daoContato.inserirContato(contato);
-		response.sendRedirect("novo-endereco");
-	}
-
-	private void inserirContatoAluno(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		
-		Usuario usuario = (Usuario) request.getAttribute("");
-		Contato contato = new Contato(email, celular, telefone, usuario);
-		daoContato.inserirContato(contato);
-		response.sendRedirect("inicio-escola");
-	}
-
-	private void inserirContatoProfessor(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		Contato contato = new Contato(email, celular, telefone);
-		Usuario usuario = (Usuario) request.getAttribute("professor");
-		contato.setUsuario(usuario);
-		daoContato.inserirContato(contato);
-		response.sendRedirect("inicio-escola");
-	}
-
-	private void atualizarContato(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
-		daoContato.atualizarContato(new Contato(id, email, celular, telefone));
-		response.sendRedirect("listar");
-	}
-
-	private void deletarContato(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		Contato contato = daoContato.recuperarContato(new Contato(id));
-		daoContato.deletarContato(contato);
-		response.sendRedirect("listar");
-	}
-
-	// ======================================Endereço===============================================
-
-	private void listarEnderecos(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
-
-		List<Endereco> enderecos = daoEndereco.recuperarEnderecos();
-		request.setAttribute("enderecos", enderecos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-enderecos.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void mostrarFormularioNovoEndereco(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("endereco-escola.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void inserirEndereco(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		String nome = request.getParameter("nome");
-		String complemento = request.getParameter("complemento");
-		short numero = Short.parseShort((request.getParameter("numero")));
-		String cidade = request.getParameter("cidade");
-		int cep = Integer.parseInt((request.getParameter("cep")));
-		Escola escola = (Escola) request.getSession().getAttribute("escola");
-		Endereco endereco = new Endereco(nome, complemento, numero, cidade, cep, escola);
-		daoEndereco.inserirEndereco(endereco);
-		response.sendRedirect("inicio-escola");
-	}
-
-	private void atualizarEndereco(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		String nome = request.getParameter("nome");
-		String complemento = request.getParameter("complemento");
-		short numero = Short.parseShort((request.getParameter("numero")));
-		String cidade = request.getParameter("cidade");
-		int cep = Integer.parseInt((request.getParameter("cep")));
-		daoEndereco.atualizarEndereco(new Endereco(id, nome, complemento, numero, cidade, cep));
-		response.sendRedirect("listar"); // Volta pra tela de cadastro do endereco para editar
-	}
-
-	private void deletarEndereco(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		Endereco endereco = daoEndereco.recuperarEndereco(new Endereco(id));
-		daoEndereco.deletarEndereco(endereco);
-		response.sendRedirect("listar"); // deleta quando a escola é deletada
-	}
-
 	//======================================Aluno===============================================
 
 	private void listarAlunos(HttpServletRequest request, HttpServletResponse response)
@@ -669,7 +464,10 @@ public class Servlet extends HttpServlet {
 
 	private void mostrarFormularioNovoAluno(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		List<Turma> turmas = daoTurma.recuperarTurmas();
+		request.setAttribute("turmas", turmas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-aluno.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -692,6 +490,14 @@ public class Servlet extends HttpServlet {
 		Contato contato = new Contato(email, celular, telefone, aluno);
 		daoContato.inserirContato(contato);
 		
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
+		
+		aluno.setTurma(turma);
+		
+		daoAluno.atualizarAluno(aluno);
+		daoTurma.atualizarTurma(turma);
+		
 		response.sendRedirect("inicio-escola");
 	}
 
@@ -704,7 +510,7 @@ public class Servlet extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String cpf = request.getParameter("cpf");
 		daoAluno.atualizarAluno(new Aluno(id, nome, login, senha, cpf));
-		response.sendRedirect("inicio-escola"); // Terá botão na lista de alunos para excluir.
+		response.sendRedirect("listar-alunos"); // Terá botão na lista de alunos para excluir.
 	}
 
 	private void deletarAluno(HttpServletRequest request, HttpServletResponse response)
@@ -799,6 +605,9 @@ public class Servlet extends HttpServlet {
 	private void mostrarFormularioNovoProfessor(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
+		request.setAttribute("disciplinas", disciplinas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-professor.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -820,6 +629,12 @@ public class Servlet extends HttpServlet {
 		Contato contato = new Contato(email, celular, telefone, professor);
 		daoContato.inserirContato(contato);
 		
+		Long idDisciplina = Long.parseLong(request.getParameter("id-disciplina"));
+		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina));
+		
+		professor.setDisciplina(disciplina);
+		
+		daoProfessor.atualizarProfessor(professor);
 		daoContato.atualizarContato(contato);
 		
 		response.sendRedirect("inicio-escola");
@@ -858,7 +673,13 @@ public class Servlet extends HttpServlet {
 
 	private void mostrarFormularioNovaTurma(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
 
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
+		request.setAttribute("disciplinas", disciplinas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-turma.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -867,8 +688,17 @@ public class Servlet extends HttpServlet {
 			throws SQLException, IOException {
 
 		String nome = request.getParameter("nome");
-		Turma turma = new Turma(nome);
+		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
+		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		Long idDisciplina1 = Long.parseLong(request.getParameter("id-discilina1"));
+		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina1));
+		
+		
+		Turma turma = new Turma(nome, escola);
+		
 		daoTurma.inserirTurma(turma);
+		daoEscola.atualizarEscola(escola);
 		response.sendRedirect("inicio-escola");
 	}
 
@@ -904,6 +734,9 @@ public class Servlet extends HttpServlet {
 	private void mostrarFormularioNovaDisciplina(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-disciplina.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -912,9 +745,10 @@ public class Servlet extends HttpServlet {
 			throws SQLException, IOException {
 
 		String nome = request.getParameter("nome");
-		Disciplina disciplina = new Disciplina(nome);
-		Escola escola = (Escola)request.getAttribute("escola");
-		disciplina.setEscola(escola);
+		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
+		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		Disciplina disciplina = new Disciplina(nome, escola);
 		daoDisciplina.inserirDisciplina(disciplina);
 		response.sendRedirect("inicio-escola");
 	}

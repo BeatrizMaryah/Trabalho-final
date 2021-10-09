@@ -6,8 +6,8 @@
 		<c:if test="${aluno != null}">Editar aluno</c:if> 
 		<c:if test="${aluno == null}">Cadastrar aluno</c:if>
 </title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/style.css" />
-<style><%@include file="/resources/css/style.css"%></style>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css" />
+<style><%@include file="/resources/css/cadastros.css"%></style>
 <script><%@include file="/resources/js/metodos.js"%></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
@@ -23,15 +23,15 @@
 		
 	<fieldset>
 		<h2>
-			<c:if test="${aluno != null}">Editar Contato</c:if>
-			<c:if test="${aluno == null}">Inserir Contato</c:if>
+			<c:if test="${aluno != null}">Editar aluno</c:if>
+			<c:if test="${aluno == null}">Cadastrar aluno</c:if>
 		</h2>
+		<h4>Insira os dados do aluno</h4>
 		
 		<c:if test="${aluno != null}">
 			<input type="hidden" name="id" value="<c:out value="${aluno.id}"/>" />
 		</c:if>
-		
-		<h4>Insira os dados do aluno</h4>
+
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off"
 				value="<c:out value='${aluno.nome}'/>" /> <input id="login"
@@ -50,9 +50,21 @@
 				autocomplete="off" value="<c:out value='${contato.celular}'/>" />
 				<input id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" />	
-				
+			
+		<label for="standard-select">Turma:</label>
+			<div class="select">
+			<select id="standard-select" name="id-turma">
+				<c:forEach var="turma" items="${turmas}">
+					<option value="${turma.id}">
+						<c:out value="${turma.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+		<span class="focus"></span>
+		</div>
+		<br>
 				<input type="submit" value="Cadastrar" />
-		
+				
 	</fieldset>
 </form>
 </body>
