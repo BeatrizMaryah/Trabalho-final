@@ -23,28 +23,24 @@
                 <i class="fi fi-rr-edit"></i>
                     <span class="links_name">Cadastrar Turma</span>
                 </a>
-
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/listar-turmas" target="_self">
                     <i class="fi-rr-scale"></i>
                     <span class="links_name">Turmas</span>
                 </a>
-
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/novo-professor" target="_self">
-                    <i class="fi-rr-user-add"></i>
-                    <span class="links_name">Cadastrar Professor</span>
+                <a href="<%=request.getContextPath()%>/novo-aluno" target="_self">
+                    <i class="fi fi-rr-user-add"></i>
+                    <span class="links_name">Cadastrar Aluno</span>
                 </a>
-
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/listar-professores" target="_self">
-                    <i class="fi-rr-user"></i>
-                    <span class="links_name">Professores</span>
+                <a href="<%=request.getContextPath()%>/listar-alunos" target="_self">
+                    <i class="fi fi-rr-graduation-cap"></i>
+                    <span class="links_name">Alunos</span>
                 </a>
-
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/nova-disciplina" target="_self">
@@ -56,23 +52,20 @@
             <li>
                 <a href="<%=request.getContextPath()%>/listar-disciplinas" target="_self">
                     <i class="fi fi-rr-folder"></i>
-                    <span class="links_name">Listar Disciplina</span>
+                    <span class="links_name">Disciplinas</span>
                 </a>
-
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/novo-aluno" target="_self">
-                    <i class="fi fi-rr-user-add"></i>
-                    <span class="links_name">Cadastrar Aluno</span>
+                <a href="<%=request.getContextPath()%>/novo-professor" target="_self">
+                    <i class="fi-rr-user-add"></i>
+                    <span class="links_name">Cadastrar Professor</span>
                 </a>
-
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/listar-alunos" target="_self">
-                    <i class="fi fi-rr-graduation-cap"></i>
-                    <span class="links_name">Listar alunos</span>
+                <a href="<%=request.getContextPath()%>/listar-professores" target="_self">
+                    <i class="fi-rr-user"></i>
+                    <span class="links_name">Professores</span>
                 </a>
-
             </li>
             <li>
                	<a href="<%=request.getContextPath()%>/inicio" target="_self">
@@ -83,6 +76,5 @@
             </li>
         </ul>
     </div>
-</div>
 </body>
 </html>
