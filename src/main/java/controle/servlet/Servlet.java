@@ -282,6 +282,10 @@ public class Servlet extends HttpServlet {
 			case "/escolher-turma-alunos":
 				listarAlunosDaTurma(request, response);
 				break;
+				
+			case "/login":
+				mostrarTelaLogin(request, response);
+				break;
 		}	
 
 		} catch (SQLException ex) {
@@ -322,6 +326,13 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("alunos", alunos);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void mostrarTelaLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
 	
