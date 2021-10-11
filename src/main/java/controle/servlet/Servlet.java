@@ -264,6 +264,16 @@ public class Servlet extends HttpServlet {
 			case "/quiz-while":
 				mostrarTelaQuizWhile(request, response);
 				break; 
+			
+			// =========Escolha nas listas=============
+				
+			case "/escolher-turma-alunos":
+				listarAlunosDaTurma(request, response);
+				break;
+				
+			case "/escolher-escola-turmas":
+				listarTurmasDaEscola(request, response);
+				break;
 				
 			// =========Padrão=============
 				
@@ -278,11 +288,7 @@ public class Servlet extends HttpServlet {
 			case "/fases":
 				mostrarTelaFases(request, response);
 				break;
-				
-			case "/escolher-turma-alunos":
-				listarAlunosDaTurma(request, response);
-				break;
-				
+
 			case "/login":
 				mostrarTelaLogin(request, response);
 				break;
@@ -315,6 +321,14 @@ public class Servlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("tela-principal-escola.jsp");
 		dispatcher.forward(request, response);
 	}
+
+	private void mostrarTelaLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+	}
+	// ======================================Escolhas nas listas============================================
 	
 	private void listarAlunosDaTurma(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -329,12 +343,19 @@ public class Servlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private void mostrarTelaLogin(HttpServletRequest request, HttpServletResponse response)
+	private void listarTurmasDaEscola(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		
+		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
+		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp");
 		dispatcher.forward(request, response);
 	}
+	
 	
 	// ======================================Teoria===============================================
 	
@@ -693,8 +714,9 @@ public class Servlet extends HttpServlet {
 	private void listarTurmas(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 
-		List<Turma> turmas = daoTurma.recuperarTurmas();
-		request.setAttribute("turmas", turmas);
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp");
 		dispatcher.forward(request, response);
 	}

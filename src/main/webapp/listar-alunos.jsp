@@ -32,7 +32,7 @@
 	</form>
 		<hr>
 		<br>
-			<br>
+			<h3>Lista de Alunos</h3>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>

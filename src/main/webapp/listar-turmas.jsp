@@ -15,7 +15,23 @@
 	
 	<div id='center' class="main center">
     <div class="mainInner">
-		<div class="container">
+	<div class="container">
+		
+		<h4>Escolha uma Escola: </h4>
+		<form method="post" action="escolher-escola-turmas">
+		<div class="select">
+			<select id="standard-select" name="id-escola">
+				<c:forEach var="escola" items="${escolas}">
+					<option value="${escola.id}">
+						<c:out value="${escola.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+			<span class="focus"></span>
+		</div>
+	<input type="submit" value="Escolher"/>
+	</form>
+		
 		<h3>Lista de Turmas</h3>
 		<hr>
 		<table class="table">
@@ -34,7 +50,6 @@
 							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>
 						<td><a href="<%=request.getContextPath()%>/listar-alunos" target="_self">Alunos</a></td>
 					</tr>
-					
 				</c:forEach>
 			</tbody>
 		</table>
