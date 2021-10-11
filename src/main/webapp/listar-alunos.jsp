@@ -11,8 +11,6 @@
 <body>
 	<%@ include file="menu.jsp" %>
 	
-	<div id='center' class="main center">
-    <div class="mainInner">
 	<div class="container">
 	
 	<h4>Escolha uma Turma: </h4>
@@ -56,7 +54,5 @@
 				</tbody>
 			</table>
 	</div>
-	</div>
-    </div>
 </body>
 </html>

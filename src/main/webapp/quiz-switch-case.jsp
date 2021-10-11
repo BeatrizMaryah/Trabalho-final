@@ -95,7 +95,7 @@
             } else {
                 quiz.innerHTML = `
               <h2>Você acertou ${score}/${quizData.length} questões. </h2>
-              <form action="../mundo.html">
+              <form action="fases">
               <button onclick="location.reload()">Próximo</button>
               </form>`;
             }

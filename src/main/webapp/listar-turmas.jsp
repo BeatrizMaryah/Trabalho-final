@@ -13,8 +13,6 @@
 
 	<%@ include file="menu.jsp" %>
 	
-	<div id='center' class="main center">
-    <div class="mainInner">
 	<div class="container">
 		
 		<h4>Escolha uma Escola: </h4>
@@ -31,9 +29,9 @@
 		</div>
 	<input type="submit" value="Escolher"/>
 	</form>
-		
-		<h3>Lista de Turmas</h3>
 		<hr>
+		<br>
+		<h3>Lista de Turmas</h3>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
@@ -54,7 +52,5 @@
 			</tbody>
 		</table>
 		</div>
-	</div>
-    </div>
 </body>
 </html>

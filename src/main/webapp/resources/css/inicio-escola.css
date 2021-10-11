@@ -15,30 +15,13 @@ body {
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #1d1b31;
+    background-color: #569CFA;
     position: fixed;
     height: 60px!important;
     overflow: hidden;
     z-index: 10;
 }
-.main {
-    margin: 0 auto;
-    display: block;
-    height: 90%;
-    margin-top: 60px;
-}
-.mainInner{
-    display: table;
-    height: 90%;
-    width: 100%;
-    text-align: center;
-}
-.mainInner div{
-    display:table-cell;
-    font-size: 2em;
-    font-weight: bold;
-    letter-spacing: 1.25px;
-}
+
 #sidebarMenu {
     height: 100%;
     position: fixed;
@@ -47,7 +30,7 @@ body {
     margin-top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: #1d1b31;
+    background: #569CFA;
 }
 .sidebarMenuInner{
     margin:0;
@@ -141,4 +124,12 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
+}
+
+.container{
+	margin-top: 100px;
+	display: block;
+	vertical-align: middle;
+	text-align: center;
+	 letter-spacing: 1.25px;
 }

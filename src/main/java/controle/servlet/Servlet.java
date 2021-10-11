@@ -8,9 +8,11 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.dao.aluno.AlunoDAO;
 import modelo.dao.aluno.AlunoDAOImpl;
@@ -336,6 +338,9 @@ public class Servlet extends HttpServlet {
 		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
 		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
 		
+		List<Turma> turmas = daoTurma.recuperarTurmas();
+		request.setAttribute("turmas", turmas);
+		
 		List<Aluno> alunos = daoAluno.recuperarAlunosTurma(turma);
 		request.setAttribute("alunos", alunos);
 		
@@ -348,6 +353,9 @@ public class Servlet extends HttpServlet {
 		
 		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
 		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
 		
 		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
 		request.setAttribute("turmas", turmas);
