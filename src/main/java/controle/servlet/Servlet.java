@@ -277,6 +277,10 @@ public class Servlet extends HttpServlet {
 				listarTurmasDaEscola(request, response);
 				break;
 				
+			case "/escolher-escola-professores":
+				listarTurmasDaEscola(request, response);
+				break;
+				
 			// =========Padrão=============
 				
 			case "/inicio":
@@ -354,13 +358,29 @@ public class Servlet extends HttpServlet {
 		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
 		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
 		
-		List<Escola> escolas = daoEscola.recuperarEscolas();
-		request.setAttribute("escolas", escolas);
-		
 		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
 		request.setAttribute("turmas", turmas);
 		
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void listarProfessoresDaDisciplina(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
+		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
+		
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
+		
+		List<Professor> professores = daoProfessor.recuperarProfessoresEscola(escola);
+		request.setAttribute("professores", professores);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -653,8 +673,9 @@ public class Servlet extends HttpServlet {
 	private void listarProfessores(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 
-		List<Professor> professores = daoProfessor.recuperarProfessores();
-		request.setAttribute("professores", professores);
+		List<Escola> escolas = daoEscola.recuperarEscolas();
+		request.setAttribute("escolas", escolas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -209,10 +209,10 @@ public class AlunoDAOImpl implements AlunoDAO {
 
 			Join<Aluno, Turma> juncaoTurma = raizAluno.join("turma");
 
-			ParameterExpression<Long> idAluno = construtor.parameter(Long.class);
-			criteria.where(construtor.equal(juncaoTurma.get("id"), idAluno));
+			ParameterExpression<Long> idTurma = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoTurma.get("id"), idTurma));
 
-			alunos = sessao.createQuery(criteria).setParameter(idAluno, turma.getId()).getResultList();
+			alunos = sessao.createQuery(criteria).setParameter(idTurma, turma.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 
