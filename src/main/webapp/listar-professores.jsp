@@ -11,6 +11,24 @@
 	<%@ include file="menu.jsp" %>
 	
 	<div class="container">
+	
+	<h4>Escolha uma Disciplina: </h4>
+	<form id="form" method="post" action="escolher-disciplina-professores">
+			<div class="select">
+			<select id="standard-select" name="id-disciplina">
+				<c:forEach var="disciplina" items="${disciplinas}">
+					<option value="${disciplina.id}">
+						<c:out value="${disciplina.nome}"/>
+					</option>
+				</c:forEach>
+			</select>
+		<span class="focus"></span>
+		</div>
+		
+		<input type="submit" value="Escolher"/>
+	</form>
+		<hr>
+		<br>
 			<h3>Lista de Professores</h3>
 			<hr>
 			<br>
@@ -30,7 +48,6 @@
 							<td><c:out value="${professor.nome}" /></td>
 							<td><c:out value="${professor.login}" /></td>
 							<td><c:out value="${professor.senha}" /></td>
-							<td><c:out value="${professor.disciplina.nome}" /></td>
 							<td><a href="editar-professor?id=<c:out value='${professor.id}'/>">Editar</a>	<a href="deletar-professor?id=<c:out value='${professor.id}'/>">Deletar</a></td>
 						</tr>
 					</c:forEach>

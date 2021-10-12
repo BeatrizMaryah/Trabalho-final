@@ -24,15 +24,14 @@
 				<tr>
 					<th>Nome</th>
 					<th>Ações</th>
-					<th>Professor</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="turma" items="${turmas}">
+				<c:forEach var="disciplina" items="${disciplinas}">
 					<tr>
-						<td><c:out value="${turma.nome}" /></td>
-						<td><a href="editar-turma?id=<c:out value='${turma.id}'/>">Editar</a>
-							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>	
+						<td><c:out value="${disciplina.nome}" /></td>
+						<td><a href="editar-disciplina?id=<c:out value='${disciplina.id}'/>">Editar</a>
+							<a href="deletar-disciplina?id=<c:out value='${disciplina.id}'/>">Deletar</a></td>	
 					</tr>
 					
 				</c:forEach>

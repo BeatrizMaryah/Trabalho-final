@@ -100,6 +100,11 @@ public class Servlet extends HttpServlet {
 			case "/listar-alunos":
 				listarAlunos(request, response, sessao);
 				break;
+				
+				
+			case "/escolher-turma-alunos":
+				listarAlunosDaTurma(request, response, sessao);
+				break;
 
 			// =========Escola=============
 
@@ -142,9 +147,13 @@ public class Servlet extends HttpServlet {
 				break;
 
 			case "/listar-professores":
-				listarProfessores(request, response);
+				listarProfessores(request, response, sessao);
 				break;
-
+				
+			case "/escolher-disciplina-professores":
+				listarProfessoresDaDisciplina(request, response, sessao);
+				break;
+				
 			// =========Turma=============
 
 			case "/nova-turma":
@@ -272,17 +281,7 @@ public class Servlet extends HttpServlet {
 			case "/quiz-while":
 				mostrarTelaQuizWhile(request, response);
 				break; 
-			
-			// =========Escolha nas listas=============
-				
-			case "/escolher-turma-alunos":
-				listarAlunosDaTurma(request, response, sessao);
-				break;
-				
-/*			case "/escolher-escola-turmas":
-				listarTurmasDaEscola(request, response);
-				break;
-*/					
+		
 			// =========Padrão=============
 				
 			case "/inicio":
@@ -389,8 +388,20 @@ public class Servlet extends HttpServlet {
 		response.sendRedirect("inicio");
 	}
 	
-	// ======================================Escolhas nas listas============================================
-	
+	//======================================Aluno===============================================
+
+	private void listarAlunos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws SQLException, IOException, ServletException {
+		
+		Escola escola = (Escola) sessao.getAttribute("usuario");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
+		dispatcher.forward(request, response);
+	}
+
 	private void listarAlunosDaTurma(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws ServletException, IOException {
 		
@@ -404,178 +415,6 @@ public class Servlet extends HttpServlet {
 		
 		List<Aluno> alunos = daoAluno.recuperarAlunosTurma(turma);
 		request.setAttribute("alunos", alunos);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-/*	private void listarTurmasDaEscola(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
-		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
-		
-		List<Escola> escolas = daoEscola.recuperarEscolas();
-		request.setAttribute("escolas", escolas);
-		
-		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
-		request.setAttribute("turmas", turmas);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp");
-		dispatcher.forward(request, response);
-	}
-*/	
-	// ======================================Teoria===============================================
-	
-	private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaScanner(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-scanner.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaVariaveis(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-variaveis.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaBoolean(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-boolean.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaFor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-for.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaRelacionais(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-relacionais.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaLogicos(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-logicos.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaSwitchCase(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-switch-case.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaIf(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-if.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaTeoriaWhile(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-while.jsp");
-		dispatcher.forward(request, response);
-	}
-	// ======================================Quiz===============================================
-	
-	private void mostrarTelaQuizSystem(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-system.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizScanner(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-scanner.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizVariaveis(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-variaveis.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizBoolean(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-boolean.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizFor(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-for.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizRelacionais(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-relacionais.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizLogicos(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-logicos.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizSwitchCase(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-switch-case.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizIf(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-if.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaQuizWhile(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-while.jsp");
-		dispatcher.forward(request, response);
-	}
-	//======================================Aluno===============================================
-
-	private void listarAlunos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
-			throws SQLException, IOException, ServletException {
-		
-		Escola escola = (Escola) sessao.getAttribute("usuario");
-		
-		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
-		request.setAttribute("turmas", turmas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
 		dispatcher.forward(request, response);
@@ -602,13 +441,12 @@ public class Servlet extends HttpServlet {
 		String cpf = request.getParameter("cpf");
 		
 		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
 		String telefone = request.getParameter("telefone");
 		
 		Aluno aluno = new Aluno(nome, login, senha, cpf);
 		daoAluno.inserirAluno(aluno);
 		
-		Contato contato = new Contato(email, celular, telefone, aluno);
+		Contato contato = new Contato(email, telefone, aluno);
 		daoContato.inserirContato(contato);
 		
 		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
@@ -669,7 +507,6 @@ public class Servlet extends HttpServlet {
 		String senha = request.getParameter("senha");
 		
 		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
 		String telefone = request.getParameter("telefone");
 
 		String nomeEndereco = request.getParameter("nome");
@@ -681,7 +518,7 @@ public class Servlet extends HttpServlet {
 		Escola escola = new Escola(nome, login, senha);
 		daoEscola.inserirEscola(escola);
 		
-		Contato contato = new Contato(email, celular, telefone, escola);
+		Contato contato = new Contato(email, telefone, escola);
 		daoContato.inserirContato(contato);
 		
 		Endereco endereco = new Endereco(nomeEndereco, complemento, numero, cidade, cep, escola);
@@ -711,17 +548,39 @@ public class Servlet extends HttpServlet {
 		daoEscola.deletarEscola(escola);
 		//response.sendRedirect("listar"); 
 	}
+	
 	// ======================================Professor===============================================
 
-	private void listarProfessores(HttpServletRequest request, HttpServletResponse response)
+	private void listarProfessores(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws SQLException, IOException, ServletException {
 
-		List<Professor> professores = daoProfessor.recuperarProfessores();
+		Escola escola = (Escola) sessao.getAttribute("usuario");
+		
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
+		request.setAttribute("disciplinas", disciplinas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void listarProfessoresDaDisciplina(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws ServletException, IOException {
+		
+		Long idDisciplina = Long.parseLong(request.getParameter("id-disciplina"));
+		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina));
+		
+		Escola escola = (Escola) sessao.getAttribute("usuario");
+		
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
+		request.setAttribute("disciplinas", disciplinas);
+		
+		List<Professor> professores = daoProfessor.recuperarProfessoresDisciplina(disciplina);
 		request.setAttribute("professores", professores);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
 	}
+	
 
 	private void mostrarFormularioNovoProfessor(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws ServletException, IOException {
@@ -743,13 +602,12 @@ public class Servlet extends HttpServlet {
 		String senha = request.getParameter("senha");
 		
 		String email = request.getParameter("email");
-		int celular = Integer.parseInt(request.getParameter("celular"));
 		String telefone = request.getParameter("telefone");
 
 		Professor professor = new Professor(nome, login, senha);
 		daoProfessor.inserirProfessor(professor);
 		
-		Contato contato = new Contato(email, celular, telefone, professor);
+		Contato contato = new Contato(email, telefone, professor);
 		daoContato.inserirContato(contato);
 		
 		Long idDisciplina = Long.parseLong(request.getParameter("id-disciplina"));
@@ -887,4 +745,147 @@ public class Servlet extends HttpServlet {
 		daoDisciplina.deletarDisciplina(disciplina);
 		response.sendRedirect("listar-turmas");
 	}
+	
+	// ======================================Teoria===============================================
+	
+		private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaScanner(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-scanner.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaVariaveis(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-variaveis.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaBoolean(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-boolean.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaFor(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-for.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaRelacionais(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-relacionais.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaLogicos(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-logicos.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaSwitchCase(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-switch-case.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaIf(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-if.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaWhile(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-while.jsp");
+			dispatcher.forward(request, response);
+		}
+		// ======================================Quiz===============================================
+		
+		private void mostrarTelaQuizSystem(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-system.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizScanner(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-scanner.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizVariaveis(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-variaveis.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizBoolean(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-boolean.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizFor(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-for.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizRelacionais(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-relacionais.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizLogicos(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-logicos.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizSwitchCase(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-switch-case.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizIf(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-if.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaQuizWhile(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-while.jsp");
+			dispatcher.forward(request, response);
+		}
 }

@@ -46,9 +46,6 @@ public class Fase implements Serializable {
 	@JoinColumn(name = "id_mundo")
 	private Mundo mundo;
 
-	@Column(name = "nota_fase", nullable = true, unique = false)
-	private float nota;
-
 	// Uma fase tem muitas atividades
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fase", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Atividade> atividades = new ArrayList<Atividade>();
@@ -108,15 +105,7 @@ public class Fase implements Serializable {
 	public void setStatus(Situacao status) {
 		this.status = status;
 	}
-
-	public float getNota() {
-		return nota;
-	}
-
-	public void setNota(float nota) {
-		this.nota = nota;
-	}
-
+	
 	public void adicionarAtividade(Atividade atividade) {
 		atividades.add(atividade);
 		atividade.setFase(this);

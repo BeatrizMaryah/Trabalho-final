@@ -18,7 +18,5 @@ public interface ProfessorDAO {
 
 	List<Professor> recuperarProfessores();
 
-	Professor recuperarProfessorDisciplina(Disciplina disciplina);
-	
-	List<Professor> recuperarProfessoresEscola(Escola escola);
+	List<Professor> recuperarProfessoresDisciplina(Disciplina disciplina);
 }
