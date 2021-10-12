@@ -6,7 +6,6 @@
 <title>Turmas</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/inicio-escola.css"/>
 <style><%@include file="/resources/css/inicio-escola.css"%></style>	
-<script><%@include file="/resources/js/metodos.js"%></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">	
 </head>
 <body>
@@ -16,7 +15,7 @@
 	<div class="container">
 		
 		<h4>Escolha uma Escola: </h4>
-		<form method="post" action="escolher-escola-turmas">
+		<form id="form" method="post" action="escolher-escola-turmas">
 		<div class="select">
 			<select id="standard-select" name="id-escola">
 				<c:forEach var="escola" items="${escolas}">
@@ -46,7 +45,7 @@
 						<td><c:out value="${turma.nome}" /></td>
 						<td><a href="editar-turma?id=<c:out value='${turma.id}'/>">Editar</a>
 							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>
-						<td><a href="<%=request.getContextPath()%>/listar-alunos" target="_self">Alunos</a></td>
+						<td><a href="escolher-turma-alunos?id-escola=<c:out value='${turma.id}'/>" >Alunos</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

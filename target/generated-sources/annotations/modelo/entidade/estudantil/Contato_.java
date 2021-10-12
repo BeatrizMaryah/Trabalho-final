@@ -1,6 +1,6 @@
 package modelo.entidade.estudantil;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Contato.class)
 public abstract class Contato_ {
 
-	public static volatile SingularAttribute<Contato, Integer> telefone;
+	public static volatile SingularAttribute<Contato, String> telefone;
 	public static volatile SingularAttribute<Contato, Integer> celular;
 	public static volatile SingularAttribute<Contato, Usuario> usuario;
 	public static volatile SingularAttribute<Contato, Long> id;

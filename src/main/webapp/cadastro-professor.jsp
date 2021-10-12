@@ -39,7 +39,7 @@
 				required="required" autocomplete="off" value="<c:out value='${usuario.senha}'/>" /> 
 				
 			<input id="telefone" type="number" name="telefone"
-				placeholder="Telefone(opcional)" autocomplete="off"
+				placeholder="Telefone(opcional)" autocomplete="off"  size="16" maxlength="15"
 				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
 				type="number" name="celular" placeholder="Celular"
 				required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" /> <input

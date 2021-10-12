@@ -3,14 +3,14 @@
 <html>
 <head>
 <title>Quiz While</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
 <style><%@include file="/resources/css/game.css"%></style>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
         <%@ include file="base-quiz.jsp" %>
-        <script type="text/javascript">const quizData = [{
+        <script type="text/javascript">
+        const quizData = [{
             question: 'Qual seria a condição para o while parar a execução?',
             a: 'Quando na primeira verificação da condição, ela for verdadeira. Neste caso, o programa simplesmente irá “pular” para a execução da próxima instrução após o laço.',
             b: 'Quando na primeira verificação da condição, ela for falsa. Neste caso, o programa simplesmente irá parar a execução do programa.',

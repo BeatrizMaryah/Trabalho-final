@@ -3,14 +3,14 @@
 <html>
 <head>
 <title>Quiz Lógicos</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
 <style><%@include file="/resources/css/game.css"%></style>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
         <%@ include file="base-quiz.jsp" %>
-        <script type="text/javascript">const quizData = [{
+        <script type="text/javascript">
+        const quizData = [{
             question: 'Assinale a alternativa que corresponde ao significado CORRETO de cada operação lógica:',
             a: '&= E, ||= OU, != Diferente.',
             b: '!= OU, ||= Negação, &= E.',

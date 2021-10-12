@@ -8,7 +8,6 @@
 </title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css" />
 <style><%@include file="/resources/css/cadastros.css"%></style>
-<script><%@include file="/resources/js/metodos.js"%></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Questrial&display=swap"
 	rel="stylesheet">
@@ -43,11 +42,11 @@
 				type="number" name="cpf" placeholder="CPF" required="required"
 				autocomplete="off" value="<c:out value='${aluno.cpf}'/>" /> 
 				
-				<input id="telefone" type="number" name="telefone"
-				placeholder="Telefone Responsável(opcional)" autocomplete="off"
+				<input id="telefone" type="text" name="telefone"
+				placeholder="Telefone Responsável(opcional)"  size="16" maxlength="15" autocomplete="off"
 				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
-				type="number" name="celular" placeholder="Celular(opcional)"
-				autocomplete="off" value="<c:out value='${contato.celular}'/>" />
+				type="text" name="celular" placeholder="Celular(opcional)"
+				autocomplete="off" size="16" maxlength="15" value="<c:out value='${contato.celular}'/>" />
 				<input id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" />	
 			
@@ -67,5 +66,6 @@
 				
 	</fieldset>
 </form>
+	<script><%@include file="/resources/js/metodos.js"%></script>
 </body>
 </html>

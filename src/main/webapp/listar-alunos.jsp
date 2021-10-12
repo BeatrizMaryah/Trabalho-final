@@ -5,7 +5,6 @@
 <title>Listar Aluno</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/inicio-escola.css"/>
 <style><%@include file="/resources/css/inicio-escola.css"%></style>	
-<script><%@include file="/resources/js/metodos.js"%></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">		
 </head>
 <body>
@@ -14,7 +13,7 @@
 	<div class="container">
 	
 	<h4>Escolha uma Turma: </h4>
-	<form method="post" action="escolher-turma-alunos">
+	<form id="form" method="post" action="escolher-turma-alunos">
 			<div class="select">
 			<select id="standard-select" name="id-turma">
 				<c:forEach var="turma" items="${turmas}">

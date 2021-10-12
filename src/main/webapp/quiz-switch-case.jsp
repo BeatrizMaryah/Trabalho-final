@@ -3,14 +3,14 @@
 <html>
 <head>
 <title>Quiz Switch Case</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
 <style><%@include file="/resources/css/game.css"%></style>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>     
         <%@ include file="base-quiz.jsp" %>
-        <script type="text/javascript">const quizData = [{
+        <script type="text/javascript">
+        const quizData = [{
             question: 'O que faz a estrutura de decisão switch/case ?',
             a: 'A estrutura switch compara o valor de cada caso com o da variável sequencialmente, e sempre que encontra um valor correspondente, executa o código associado ao caso. ',
             b: 'O condicional switch testa o valor contido em uma variável e o executa todos os valores fornecidos em cada caso, representados pela palavra reservada case.',

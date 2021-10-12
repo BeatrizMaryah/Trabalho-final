@@ -15,7 +15,7 @@
         <li><a href="<%=request.getContextPath()%>/fases" target="_self">Jogo</a></li>
         <li><a href="<%=request.getContextPath()%>/login" target="_self">Login</a></li>
         <li><a href="<%=request.getContextPath()%>/nova-escola" target="_self">Cadastrar Escola</a></li>
-        <li><a href="<%=request.getContextPath()%>/inicio-escola" target="_self">Inicio Escola</a></li>
+        <li><a href="<%=request.getContextPath()%>/listar-turmas" target="_self">Inicio Escola</a></li>
     </ul>
       </div>
         </nav>

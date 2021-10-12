@@ -1,14 +1,13 @@
-
 package controle.servlet;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +27,8 @@ import modelo.dao.professor.ProfessorDAO;
 import modelo.dao.professor.ProfessorDAOImpl;
 import modelo.dao.turma.TurmaDAO;
 import modelo.dao.turma.TurmaDAOImpl;
+import modelo.dao.usuario.UsuarioDAO;
+import modelo.dao.usuario.UsuarioDAOImpl;
 import modelo.entidade.estudantil.Aluno;
 import modelo.entidade.estudantil.Contato;
 import modelo.entidade.estudantil.Disciplina;
@@ -35,6 +36,7 @@ import modelo.entidade.estudantil.Endereco;
 import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
+import modelo.entidade.estudantil.Usuario;
 
 @WebServlet("/")
 public class Servlet extends HttpServlet {
@@ -48,6 +50,7 @@ public class Servlet extends HttpServlet {
 	private ProfessorDAO daoProfessor;
 	private TurmaDAO daoTurma;
 	private DisciplinaDAO daoDisciplina;
+	private UsuarioDAO daoUsuario;
 
 	public void init() {
 		daoContato = new ContatoDAOImpl();
@@ -57,6 +60,7 @@ public class Servlet extends HttpServlet {
 		daoProfessor = new ProfessorDAOImpl();
 		daoTurma = new TurmaDAOImpl();
 		daoDisciplina = new DisciplinaDAOImpl();
+		daoUsuario = new UsuarioDAOImpl();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -67,6 +71,8 @@ public class Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession sessao = request.getSession();
+		
 		String action = request.getServletPath();
 
 		try {
@@ -278,7 +284,7 @@ public class Servlet extends HttpServlet {
 				break;
 				
 			case "/escolher-escola-professores":
-				listarTurmasDaEscola(request, response);
+				listarProfessoresDaEscola(request, response);
 				break;
 				
 			// =========Padrão=============
@@ -298,6 +304,14 @@ public class Servlet extends HttpServlet {
 			case "/login":
 				mostrarTelaLogin(request, response);
 				break;
+				
+//			case "/logar":
+//				logar(request, response, sessao);
+//				break;
+
+	//		case "/deslogar":
+//				deslogar(request, response);
+//				break;
 		}	
 
 		} catch (SQLException ex) {
@@ -334,6 +348,37 @@ public class Servlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+//	private void logar(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+//			throws IOException {
+
+//		String login = request.getParameter("login");
+//		String senha = request.getParameter("senha");
+//		Usuario user = new Usuario();;
+//		user.setLogin(login);
+//		Usuario usuario = daoUsuario.recuperarUsuario(user); // Recupera um obj ou pf ou pj
+
+//		if (usuario instanceof Escola && senha.equals(usuario.getSenha())) {
+//			System.out.println("Nome 1: " + (usuario).getNome());
+//			System.out.println("É uma Escola");
+//			sessao.setAttribute("usuario", usuario);
+//		} else if (usuario instanceof Professor && senha.equals(usuario.getSenha())) {
+//			System.out.println("É um Professor!");
+//			sessao.setAttribute("usuario", usuario);
+//		} else if (usuario instanceof Aluno && senha.equals(usuario.getSenha())) {
+//			System.out.println("É um Aluno!");
+//			sessao.setAttribute("usuario", usuario);
+//		} else
+//			System.out.println("Senha incorreta :(");
+//
+//		if ((Usuario) sessao.getAttribute("usuario") == null)
+//			response.sendRedirect("login");
+//		else {
+//			System.out.println(sessao.getAttribute("usuario"));
+//			response.sendRedirect("inicio");
+//		}
+//	}
+	
 	// ======================================Escolhas nas listas============================================
 	
 	private void listarAlunosDaTurma(HttpServletRequest request, HttpServletResponse response)
@@ -358,17 +403,17 @@ public class Servlet extends HttpServlet {
 		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
 		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
 		
-		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
-		request.setAttribute("turmas", turmas);
-		
 		List<Escola> escolas = daoEscola.recuperarEscolas();
 		request.setAttribute("escolas", escolas);
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp");
 		dispatcher.forward(request, response);
 	}
 	
-	private void listarProfessoresDaDisciplina(HttpServletRequest request, HttpServletResponse response)
+	private void listarProfessoresDaEscola(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
@@ -380,7 +425,7 @@ public class Servlet extends HttpServlet {
 		List<Professor> professores = daoProfessor.recuperarProfessoresEscola(escola);
 		request.setAttribute("professores", professores);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -559,7 +604,7 @@ public class Servlet extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
+		String telefone = request.getParameter("telefone");
 		
 		Aluno aluno = new Aluno(nome, login, senha, cpf);
 		daoAluno.inserirAluno(aluno);
@@ -626,7 +671,7 @@ public class Servlet extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
+		String telefone = request.getParameter("telefone");
 
 		String nomeEndereco = request.getParameter("nome");
 		String complemento = request.getParameter("complemento");
@@ -699,7 +744,7 @@ public class Servlet extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		int celular = Integer.parseInt(request.getParameter("celular"));
-		int telefone = Integer.parseInt(request.getParameter("telefone"));
+		String telefone = request.getParameter("telefone");
 
 		Professor professor = new Professor(nome, login, senha);
 		daoProfessor.inserirProfessor(professor);
@@ -755,9 +800,6 @@ public class Servlet extends HttpServlet {
 		
 		List<Escola> escolas = daoEscola.recuperarEscolas();
 		request.setAttribute("escolas", escolas);
-
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
-		request.setAttribute("disciplinas", disciplinas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-turma.jsp");
 		dispatcher.forward(request, response);
@@ -770,15 +812,11 @@ public class Servlet extends HttpServlet {
 		Long idEscola = Long.parseLong(request.getParameter("id-escola"));
 		Escola escola = daoEscola.recuperarEscola(new Escola(idEscola));
 		
-		Long idDisciplina1 = Long.parseLong(request.getParameter("id-discilina1"));
-		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina1));
-		
-		
 		Turma turma = new Turma(nome, escola);
 		
 		daoTurma.inserirTurma(turma);
 		daoEscola.atualizarEscola(escola);
-		response.sendRedirect("inicio-escola");
+		response.sendRedirect("listar-turmas");
 	}
 
 	private void atualizarTurma(HttpServletRequest request, HttpServletResponse response)
