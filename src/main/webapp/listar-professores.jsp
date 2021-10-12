@@ -11,24 +11,6 @@
 	<%@ include file="menu.jsp" %>
 	
 	<div class="container">
-	
-	<h4>Escolha uma Escola: </h4>
-	<form id="form" method="post" action="escolher-escola-professores">
-			<div class="select">
-			<select id="standard-select" name="id-escola">
-				<c:forEach var="escola" items="${escolas}">
-					<option value="${escola.id}">
-						<c:out value="${escola.nome}"/>
-					</option>
-				</c:forEach>
-			</select>
-		<span class="focus"></span>
-		</div>
-		
-		<input type="submit" value="Escolher"/>
-	</form>
-		<hr>
-		<br>
 			<h3>Lista de Professores</h3>
 			<hr>
 			<br>

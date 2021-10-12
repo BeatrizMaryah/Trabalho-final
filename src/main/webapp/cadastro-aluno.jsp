@@ -32,18 +32,18 @@
 		</c:if>
 
 			<input id="nome" type="text" name="nome" placeholder="Nome"
-				required="required" autocomplete="off"
+				required="required" autocomplete="off" maxlength ="25"
 				value="<c:out value='${aluno.nome}'/>" /> <input id="login"
 				type="text" name="login" placeholder="Login" required="required"
-				autocomplete="off" value="<c:out value='${aluno.login}'/>" /> <input
+				autocomplete="off" maxlength ="25" value="<c:out value='${aluno.login}'/>" /> <input
 				id="senha" type="password" name="senha" placeholder="Senha"
-				required="required" autocomplete="off"
+				required="required" autocomplete="off" maxlength ="25"
 				value="<c:out value='${aluno.senha}'/>" /> <input id="cpf"
-				type="number" name="cpf" placeholder="CPF" required="required"
-				autocomplete="off" value="<c:out value='${aluno.cpf}'/>" /> 
+				type="text" name="cpf" placeholder="CPF" required="required"
+				autocomplete="off" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );" value="<c:out value='${aluno.cpf}'/>" /> 
 				
 				<input id="telefone" type="text" name="telefone"
-				placeholder="Telefone Responsável(opcional)"  size="16" maxlength="15" autocomplete="off"
+				placeholder="Telefone Responsável(opcional)"  size="16" maxlength="15" autocomplete="off" 
 				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
 				type="text" name="celular" placeholder="Celular(opcional)"
 				autocomplete="off" size="16" maxlength="15" value="<c:out value='${contato.celular}'/>" />

@@ -31,14 +31,14 @@
 			<input type="hidden" name="id" value="<c:out value="${professor.id}"/>" />
 			</c:if>
 			
-			<input id="nome" type="text" name="nome" placeholder="Nome"
+			<input id="nome" type="text" name="nome" placeholder="Nome" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${usuario.nome}'/>" /> <input
-				id="login" type="text" name="login" placeholder="Login"
+				id="login" type="text" name="login" placeholder="Login" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${usuario.login}'/>" /> <input
-				id="senha" type="password" name="senha" placeholder="Senha"
+				id="senha" type="password" name="senha" placeholder="Senha" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${usuario.senha}'/>" /> 
 				
-			<input id="telefone" type="number" name="telefone"
+			<input id="telefone" type="text" name="telefone"
 				placeholder="Telefone(opcional)" autocomplete="off"  size="16" maxlength="15"
 				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
 				type="number" name="celular" placeholder="Celular"

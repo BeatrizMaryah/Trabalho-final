@@ -31,11 +31,11 @@
 			<input type="hidden" name="id" value="<c:out value="${escola.id}"/>" />
 			</c:if>
 			
-			<input id="nome" type="text" name="nome" placeholder="Nome"
+			<input id="nome" type="text" name="nome" placeholder="Nome" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${escola.nome}'/>" /> <input
-				id="login" type="text" name="login" placeholder="Login"
+				id="login" type="text" name="login" placeholder="Login" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${escola.login}'/>" /> <input
-				id="senha" type="password" name="senha" placeholder="Senha"
+				id="senha" type="password" name="senha" placeholder="Senha" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${escola.senha}'/>" />
 				
 				    <input id="telefone" type="text" name="telefone"
@@ -54,7 +54,7 @@
                 required="required" autocomplete="off" value="<c:out value='${endereco.numero}'/>" />
             <input id="complemento" type="text" name="complemento"
                 placeholder="Complemento(opcional)" autocomplete="off"
-                value="<c:out value='${endereco.complemento}'/>" /> <input id="vemMonstro"
+                value="<c:out value='${endereco.complemento}'/>" /> <input id="cep"
                 type="text" name="cep" placeholder="CEP" maxlength="9" required="required" autocomplete="off"
                 value="<c:out value='${endereco.cep}'/>" /> 
 				
