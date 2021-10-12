@@ -9,9 +9,6 @@
 <style><%@include file="/resources/css/game.css"%></style>
 </head>
 <body>
-
-	<%@ include file="base-teoria.jsp" %>
-	
     <form method="post" action="quiz-logicos">
         <button class="botao">Jogar</button>
     </form>

@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Contato.class)
 public abstract class Contato_ {
 
-	public static volatile SingularAttribute<Contato, Integer> telefone;
+	public static volatile SingularAttribute<Contato, String> telefone;
 	public static volatile SingularAttribute<Contato, Integer> celular;
 	public static volatile SingularAttribute<Contato, Usuario> usuario;
 	public static volatile SingularAttribute<Contato, Long> id;

@@ -3,6 +3,7 @@ package modelo.dao.professor;
 import java.util.List;
 
 import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
 
 public interface ProfessorDAO {
@@ -18,5 +19,6 @@ public interface ProfessorDAO {
 	List<Professor> recuperarProfessores();
 
 	Professor recuperarProfessorDisciplina(Disciplina disciplina);
-
+	
+	List<Professor> recuperarProfessoresEscola(Escola escola);
 }

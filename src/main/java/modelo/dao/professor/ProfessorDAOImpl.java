@@ -13,8 +13,9 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
-
+import modelo.entidade.estudantil.Turma;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class ProfessorDAOImpl implements ProfessorDAO{
@@ -233,4 +234,46 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 
 			return professor;
 		}
+	
+	public List<Professor> recuperarProfessoresEscola (Escola escola) {
+		
+		Session sessao = null;
+		List<Professor> professores = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Professor> criteria = construtor.createQuery(Professor.class);
+			Root<Professor> raizProfessor = criteria.from(Professor.class);
+			
+			Join<Professor, Escola> juncaoEscola = raizProfessor.join("escola");
+			
+			ParameterExpression<Long> idEscola = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoEscola.get("professores"), idEscola));
+
+			professores = sessao.createQuery(criteria).setParameter(idEscola, escola.getId()).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
+		}
+
+		return professores;
 	}
+}

@@ -2,7 +2,6 @@
         <div class="quiz-header">
             <h2 id="question"></h2>
             <ul>
-
                 <li><input type="radio" id="a" name="answer" class="answer"><label for="a" id="a_text"></label>
                 </li>
                 <li><input type="radio" id="b" name="answer" class="answer"><label for="b" id="b_text"></label>
@@ -13,7 +12,5 @@
                 </li>
             </ul>
         </div>
-        
          <button id="submit">Próximo</button>
-
     </div>

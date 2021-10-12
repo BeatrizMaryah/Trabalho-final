@@ -20,7 +20,7 @@
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off" value="<c:out value='${turma.nome}'/>" />
 				
-		<label for="standard-select">Escola:</label>
+<!--  	<label for="standard-select">Escola:</label>
 		<div class="select">
 			<select id="standard-select" name="id-escola">
 				<c:forEach var="escola" items="${escolas}">
@@ -37,5 +37,7 @@
 			<input type="submit" value="Cadastrar"/>
 		</fieldset>
 	</form>
+-->	
+
 </body>
 </html>

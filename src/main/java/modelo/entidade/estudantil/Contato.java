@@ -32,7 +32,7 @@ public class Contato implements Serializable {
 	private int celular;
 	
 	@Column(name = "telefone_contato", nullable = true, unique = false)
-	private int telefone;
+	private String telefone;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@MapsId
@@ -44,14 +44,14 @@ public class Contato implements Serializable {
 	public Contato(Long id) {
 		setId(id);
 	}
-	public Contato(String email, int celular, int telefone, Usuario usuario) {
+	public Contato(String email, int celular, String telefone, Usuario usuario) {
 		setEmail(email);
 		setCelular(celular);
 		setTelefone(telefone);
 		setUsuario(usuario);
 	}
 	
-	public Contato(Long id, String email, int celular, int telefone, Usuario usuario) {
+	public Contato(Long id, String email, int celular, String telefone, Usuario usuario) {
 		setId(id);
 		setEmail(email);
 		setCelular(celular);
@@ -59,13 +59,13 @@ public class Contato implements Serializable {
 		setUsuario(usuario);
 	}
 	
-	public Contato(String email, int celular, int telefone) {
+	public Contato(String email, int celular, String telefone) {
 		setEmail(email);
 		setCelular(celular);
 		setTelefone(telefone);
 	}
 	
-	public Contato(Long id, String email, int celular, int telefone) {
+	public Contato(Long id, String email, int celular, String telefone) {
 		setId(id);
 		setEmail(email);
 		setCelular(celular);
@@ -79,10 +79,6 @@ public class Contato implements Serializable {
 
 	public Contato(String email) {
 		setEmail(email);
-	}
-
-	public Contato(int telefone) {
-		setTelefone(telefone);
 	}
 
 	public Long getId() {
@@ -110,11 +106,11 @@ public class Contato implements Serializable {
 		this.celular = celular;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 
 		this.telefone = telefone;
 	}

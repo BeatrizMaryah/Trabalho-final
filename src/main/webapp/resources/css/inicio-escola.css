@@ -15,31 +15,13 @@ body {
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #1d1b31;
+    background-color: #569CFA;
     position: fixed;
     height: 60px!important;
     overflow: hidden;
     z-index: 10;
 }
-.main {
-    margin: 0 auto;
-    display: block;
-    height: 100%;
-    margin-top: 60px;
-}
-.mainInner{
-    display: table;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-}
-.mainInner div{
-    display:table-cell;
-    vertical-align: middle;
-    font-size: 3em;
-    font-weight: bold;
-    letter-spacing: 1.25px;
-}
+
 #sidebarMenu {
     height: 100%;
     position: fixed;
@@ -48,7 +30,7 @@ body {
     margin-top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: #1d1b31;
+    background: #569CFA;
 }
 .sidebarMenuInner{
     margin:0;
@@ -142,4 +124,31 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
+}
+
+.container{
+	margin-top: 100px;
+	display: table;
+	vertical-align: middle;
+	text-align: center;
+	 letter-spacing: 1.25px;
+}
+
+/* BOTÃO */
+
+#form input[type=submit] {
+    background: #569CFA;
+    color: #fff;
+    border-color: #569CFA;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 3px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 3px 0px 0px #569CFA;
+    -moz-box-shadow: 0px 3px 0px 0px #569CFA;
+    box-shadow: 0px 3px 0px 0px #569CFA;
 }
