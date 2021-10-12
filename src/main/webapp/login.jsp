@@ -16,7 +16,7 @@
         <h2>Login</h2>
         <h4>Insira seus dados para entrar</h4>
 
-        <input id="email" type="email" name="email" placeholder="E-mail" required="required" autocomplete="off" />
+        <input id="login" type="text" name="login" placeholder="login" required="required" autocomplete="off" />
         <input id="senha" type="password" name="senha" placeholder="Senha" required="required" autocomplete="off" />
 
         <input type="submit" value="Entrar"/>

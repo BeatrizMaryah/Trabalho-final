@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Turma;
 import modelo.factory.conexao.ConexaoFactory;
 
@@ -211,6 +212,48 @@ public class DisciplinaDAOImpl implements DisciplinaDAO {
 			criteria.where(construtor.equal(juncaoTurma.get("id"), idTurma));
 
 			disciplinas = sessao.createQuery(criteria).setParameter(idTurma, turma.getId()).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
+		}
+
+		return disciplinas;
+	}
+	
+	public List<Disciplina> recuperarDisciplinasEscola (Escola escola) {
+		
+		Session sessao = null;
+		List<Disciplina> disciplinas = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Disciplina> criteria = construtor.createQuery(Disciplina.class);
+			Root<Disciplina> raizDisciplina = criteria.from(Disciplina.class);
+			
+			Join<Disciplina, Escola> juncaoEscola = raizDisciplina.join("escola");
+			
+			ParameterExpression<Long> idEscola = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoEscola.get("id"), idEscola));
+
+			disciplinas = sessao.createQuery(criteria).setParameter(idEscola, escola.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 

@@ -3,6 +3,7 @@ package modelo.dao.disciplina;
 import java.util.List;
 
 import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Turma;
 
 public interface DisciplinaDAO {
@@ -18,5 +19,7 @@ public interface DisciplinaDAO {
 	List<Disciplina> recuperarDisciplinas();
 
 	List<Disciplina> recuperarDisciplinasTurma(Turma turma);
+	
+	List<Disciplina> recuperarDisciplinasEscola (Escola escola);
 
 }

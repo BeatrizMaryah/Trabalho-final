@@ -14,7 +14,7 @@
 	
 	<div class="container">
 		
-		<h4>Escolha uma Escola: </h4>
+<!-- 	<h4>Escolha uma Escola: </h4>
 		<form id="form" method="post" action="escolher-escola-turmas">
 		<div class="select">
 			<select id="standard-select" name="id-escola">
@@ -29,7 +29,8 @@
 	<input type="submit" value="Escolher"/>
 	</form>
 		<hr>
-		<br>
+		<br> -->	
+		
 		<h3>Lista de Turmas</h3>
 		<table class="table">
 			<thead class="thead-light">

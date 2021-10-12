@@ -68,7 +68,7 @@
                 </a>
             </li>
             <li>
-               	<a href="<%=request.getContextPath()%>/inicio" target="_self">
+               	<a href="<%=request.getContextPath()%>/deslogar" target="_self">
                     <i class="fi fi-rr-sign-in"></i>
                     <span class="links_name">Sair</span>
                 </a>
