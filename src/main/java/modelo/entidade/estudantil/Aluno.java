@@ -1,16 +1,20 @@
 package modelo.entidade.estudantil;
 
 import java.io.Serializable;
-
-
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import modelo.entidades.jogo.Fase;
 
 @Entity
 @Table(name = "aluno")
@@ -25,6 +29,9 @@ public class Aluno extends Usuario implements Serializable  {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_turma")
 	private Turma turma;
+
+	@ManyToMany(mappedBy = "fases", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<Fase> fases = new ArrayList<Fase>();
 
 	public Aluno() {}
 

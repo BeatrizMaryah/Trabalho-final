@@ -640,7 +640,7 @@ public class Servlet extends HttpServlet {
 		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
 		request.setAttribute("turmas", turmas);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp"); // listar
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-turmas.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -55,7 +55,7 @@
             <div class="qa_set">
                 <h4>3. Assinale a alternativa CORRETA de como deve ser usada a variável boolean:</h4>
                 <div class="qa_ans_row">
-                  <input type="radio" name="a3"  valid="valid">
+                  <input type="radio" name="a3" valid="valid">
                   <span>Boolean isPrimo=true;</span>  
                 </div>
                 <div class="qa_ans_row">
@@ -67,7 +67,7 @@
                     <span>Boolean isPrimo=verdadeiro;</span>  
                   </div>
                   <div class="qa_ans_row">
-                    <input type="radio" name="a3" valid="valid">
+                    <input type="radio" name="a3">
                     <span>Boolean isPrimo=falso;</span>  
                   </div>
             </div>
