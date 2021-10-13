@@ -14,6 +14,7 @@
       <ul class="nav-links">
         <li><a href="<%=request.getContextPath()%>/login" target="_self">Login</a></li>
         <li><a href="<%=request.getContextPath()%>/nova-escola" target="_self">Cadastrar Escola</a></li>
+        <li><a href="<%=request.getContextPath()%>/boolean" target="_self">Boolean</a></li>
     </ul>
       </div>
         </nav>

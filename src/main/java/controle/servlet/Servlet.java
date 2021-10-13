@@ -116,10 +116,6 @@ public class Servlet extends HttpServlet {
 				inserirEscola(request, response, sessao);
 				break;
 
-			case "/deletar-escola":
-				deletarEscola(request, response);
-				break;
-
 			case "/atualizar-escola":
 				atualizarEscola(request, response);
 				break;
@@ -147,7 +143,7 @@ public class Servlet extends HttpServlet {
 				break;
 
 			case "/listar-professores":
-				listarProfessores(request, response, sessao);
+				listarProfessores(request, response);
 				break;
 				
 			case "/escolher-disciplina-professores":
@@ -281,7 +277,11 @@ public class Servlet extends HttpServlet {
 			case "/quiz-while":
 				mostrarTelaQuizWhile(request, response);
 				break; 
-		
+				
+			case "/boolean":
+				mostrarBoolean(request, response);
+				break; 
+	
 			// =========Padrão=============
 				
 			case "/inicio":
@@ -537,27 +537,16 @@ public class Servlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		daoEscola.atualizarEscola(new Escola(id, nome, login, senha));
-		response.sendRedirect("listar"); // volta para o "cadastro" para editar
-	}
-
-	private void deletarEscola(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		Escola escola = daoEscola.recuperarEscola(new Escola(id));
-		daoEscola.deletarEscola(escola);
-		//response.sendRedirect("listar"); 
+		response.sendRedirect("listar-turmas");
 	}
 	
 	// ======================================Professor===============================================
 
-	private void listarProfessores(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+	private void listarProfessores(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 
-		Escola escola = (Escola) sessao.getAttribute("usuario");
-		
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
-		request.setAttribute("disciplinas", disciplinas);
+		List<Professor> professores = daoProfessor.recuperarProfessores();
+		request.setAttribute("professores", professores);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
@@ -577,7 +566,7 @@ public class Servlet extends HttpServlet {
 		List<Professor> professores = daoProfessor.recuperarProfessoresDisciplina(disciplina);
 		request.setAttribute("professores", professores);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-disciplinas.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -646,7 +635,6 @@ public class Servlet extends HttpServlet {
 	private void listarTurmas(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws SQLException, IOException, ServletException {
 
-		
 		Escola escola = (Escola) sessao.getAttribute("usuario");
 		
 		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
@@ -886,6 +874,13 @@ public class Servlet extends HttpServlet {
 				throws ServletException, IOException {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("quiz-while.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarBoolean(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("boolean.jsp");
 			dispatcher.forward(request, response);
 		}
 }

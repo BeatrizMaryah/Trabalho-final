@@ -13,8 +13,6 @@
 <body>
 
 	<%@ include file="menu.jsp" %>
-	<div id='center' class="main center">
-    <div class="mainInner">
 	<div class="container">
 		<h3>Lista de Disciplinas</h3>
 		<hr>
@@ -38,7 +36,5 @@
 			</tbody>
 		</table>
 	</div>
-	</div>
-    </div>
 </body>
 </html>

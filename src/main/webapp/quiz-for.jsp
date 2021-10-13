@@ -2,104 +2,83 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Quiz For</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
-<style><%@include file="/resources/css/game.css"%></style>	
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/quiz.css"/>
+<style><%@include file="/resources/css/quiz.css"%></style>
 </head>
 <body>
-        <%@ include file="base-quiz.jsp" %>
-        <script type="text/javascript">
-        const quizData = [{
-            question: 'Qual a função da estrutura de repetição for?',
-            a: 'Utilizamos quando precisamos executar diversas vezes um mesmo bloco de código.',
-            b: 'Utilizamos quando precisamos executar o código.',
-            c: 'Utilizamos quando precisamos executar uma vez um mesmo bloco de código.',
-            d: 'Utilizamos sempre.',
-            correct: 'a',
-        },
-        {
-            question: 'A repetição for contem três partes importantes, assinale a alternativa que explica CORRETAMENTE essas partes:',
-            a: 'Parte 1: onde nós declaramos uma variável; Parte 2: onde nós colocamos uma condição para que continue ou seja terminado; Parte 3: onde nós deixamos o código funcionar.',
-            b: 'Parte 1: onde nós declaramos uma variável; Parte 2: onde nós deixamos o programa funcionar; Parte 3: onde nós incrementamos a nossa variável.',
-            c: 'Parte 1: onde nós declaramos uma variável; Parte 2: onde nós colocamos uma condição para que continue ou seja terminado; Parte 3: onde nós incrementamos a nossa variável.',
-            d: 'Parte 1: onde nós deixamos o código escolher uma variável; Parte 2: onde nós colocamos uma condição para que continue ou seja terminado; Parte 3: onde nós incrementamos a nossa variável.',
-            correct: 'c',
-        },
-        {
-
-            question: 'Qual a diferença entre um operador de incremento e um operador de decremento?',
-            a: 'Incremento: incrementa três valores em um. Decremento diminui um valor em um.',
-            b: 'Incremento: diminui um valor em um. Decremento: incrementa um valor em um.',
-            c: 'Incremento: incrementa um valor em um. Decremento: diminui quatro valores em um.',
-            d: 'Incremento: incrementa um valor em um. Decremento: diminui um valor em um.',
-            correct: 'd',
-        },
-
-    ];
-
-    const quiz = document.getElementById("quiz");
-    const answerEls = document.querySelectorAll(".answer");
-    const questionEl = document.getElementById("question");
-    const a_text = document.getElementById("a_text");
-    const b_text = document.getElementById("b_text");
-    const c_text = document.getElementById("c_text");
-    const d_text = document.getElementById("d_text");
-    const submitBtn = document.getElementById("submit");
-
-    let currentQuiz = 0;
-    let score = 0;
-
-    loadQuiz();
-
-    function loadQuiz() {
-        deselectAnswers();
-
-        const currentQuizData = quizData[currentQuiz];
-
-        questionEl.innerText = currentQuizData.question;
-        a_text.innerText = currentQuizData.a;
-        b_text.innerText = currentQuizData.b;
-        c_text.innerText = currentQuizData.c;
-        d_text.innerText = currentQuizData.d;
-    }
-
-    function getSelected() {
-        let answer = undefined;
-
-        answerEls.forEach((answerEl) => {
-            if (answerEl.checked) {
-                answer = answerEl.id;
-            }
-        });
-        return answer;
-    }
-
-    function deselectAnswers() {
-        answerEls.forEach((answerEl) => {
-            answerEl.checked = false;
-        });
-    }
-
-    submitBtn.addEventListener('click', () => {
-        const answer = getSelected();
-
-        if (answer) {
-            if (answer === quizData[currentQuiz].correct) {
-                score++;
-            }
-
-            currentQuiz++;
-            if (currentQuiz < quizData.length) {
-                loadQuiz();
-            } else {
-                quiz.innerHTML = `
-              <h2>Você acertou ${score}/${quizData.length} questões. </h2>
-              <form action="fases">
-              <button onclick="location.reload()">Próximo</button>
-              </form>`;
-            }
-        }
-    });</script>
+		<div class="qa_box">
+        <div class="qa_header">
+            <span>Score: <span id="score">0</span></span>
+            <span id="countdown">0</span>
+        </div>
+        <div class="qa_body">
+            <div class="qa_set active">
+                <h4>1. Qual a função da estrutura de repetição for?</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a1" valid="valid">
+                  <span>Utilizamos quando precisamos executar diversas vezes um mesmo bloco de código.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a1">
+                    <span>Utilizamos quando precisamos executar o código.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a1">
+                    <span>Utilizamos quando precisamos executar uma vez um mesmo bloco de código.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a1">
+                    <span>Utilizamos sempre.</span>  
+                  </div>
+            </div>
+            <div class="qa_set">
+                <h4>2. A repetição for contem três partes importantes, assinale a alternativa que explica CORRETAMENTE essas partes:</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a2">
+                  <span>Parte 1: onde nós declaramos uma variável; Parte 2: onde nós colocamos uma condição para que continue ou seja terminado; Parte 3: onde nós deixamos o código funcionar.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a2">
+                    <span>Parte 1: onde nós declaramos uma variável; Parte 2: onde nós deixamos o programa funcionar; Parte 3: onde nós incrementamos a nossa variável.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a2" valid="valid">
+                    <span>Parte 1: onde nós declaramos uma variável; Parte 2: onde nós colocamos uma condição para que continue ou seja terminado; Parte 3: onde nós incrementamos a nossa variável.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a2">
+                    <span>Parte 1: onde nós deixamos o código escolher uma variável; Parte 2: onde nós colocamos uma condição para que continue ou seja terminado; Parte 3: onde nós incrementamos a nossa variável.</span>  
+                  </div>
+            </div>
+            <div class="qa_set">
+                <h4>3. Qual a diferença entre um operador de incremento e um operador de decremento?</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a3">
+                  <span>Incremento: incrementa três valores em um. Decremento diminui um valor em um.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a3">
+                    <span>Incremento: diminui um valor em um. Decremento: incrementa um valor em um.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a3">
+                    <span>Incremento: incrementa um valor em um. Decremento: diminui quatro valores em um.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a3" valid="valid">
+                    <span>Incremento: incrementa um valor em um. Decremento: diminui um valor em um.</span>  
+                  </div>
+            </div>
+            <div class="qa_set active">
+                <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
+            </div>
+        </div>  
+        <div class="qa_footer">
+            <span class="btn1" id="skip">Próximo</span>
+        </div>
+    </div>
+        <script><%@include file="/resources/js/quiz.js"%></script>
 </body>
 </html>

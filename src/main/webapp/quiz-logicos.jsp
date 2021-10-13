@@ -2,95 +2,64 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Quiz Lógicos</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
-<style><%@include file="/resources/css/game.css"%></style>	
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/quiz.css"/>
+<style><%@include file="/resources/css/quiz.css"%></style>	
 </head>
 <body>
-        <%@ include file="base-quiz.jsp" %>
-        <script type="text/javascript">
-        const quizData = [{
-            question: 'Assinale a alternativa que corresponde ao significado CORRETO de cada operação lógica:',
-            a: '&= E, ||= OU, != Diferente.',
-            b: '!= OU, ||= Negação, &= E.',
-            c: '&= E, ||= OU, != Negação.',
-            d: 'Nenhuma das alternativas.',
-            correct: 'c',
-        },
-        {
-            question: 'Para que resultado de A&&B seja verdadeiro, A e B precisam ser:',
-            a: 'A=verdadeiro e B=falso.',
-            b: 'A=falso e B=verdadeiro.',
-            c: 'A=falso e B=falso.',
-            d: 'A=verdadeiro e B=verdadeiro. ',
-            correct: 'd',
-        },
-
-    ];
-
-    const quiz = document.getElementById("quiz");
-    const answerEls = document.querySelectorAll(".answer");
-    const questionEl = document.getElementById("question");
-    const a_text = document.getElementById("a_text");
-    const b_text = document.getElementById("b_text");
-    const c_text = document.getElementById("c_text");
-    const d_text = document.getElementById("d_text");
-    const submitBtn = document.getElementById("submit");
-
-    let currentQuiz = 0;
-    let score = 0;
-
-    loadQuiz();
-
-    function loadQuiz() {
-        deselectAnswers();
-
-        const currentQuizData = quizData[currentQuiz];
-
-        questionEl.innerText = currentQuizData.question;
-        a_text.innerText = currentQuizData.a;
-        b_text.innerText = currentQuizData.b;
-        c_text.innerText = currentQuizData.c;
-        d_text.innerText = currentQuizData.d;
-    }
-
-    function getSelected() {
-        let answer = undefined;
-
-        answerEls.forEach((answerEl) => {
-            if (answerEl.checked) {
-                answer = answerEl.id;
-            }
-        });
-        return answer;
-    }
-
-    function deselectAnswers() {
-        answerEls.forEach((answerEl) => {
-            answerEl.checked = false;
-        });
-    }
-
-    submitBtn.addEventListener('click', () => {
-        const answer = getSelected();
-
-        if (answer) {
-            if (answer === quizData[currentQuiz].correct) {
-                score++;
-            }
-
-            currentQuiz++;
-            if (currentQuiz < quizData.length) {
-                loadQuiz();
-            } else {
-                quiz.innerHTML = `
-              <h2>Você acertou ${score}/${quizData.length} questões. </h2>
-              <form action="fases">
-              <button onclick="location.reload()">Próximo</button>
-              </form>`;
-            }
-        }
-    });</script>
+        <div class="qa_box">
+        <div class="qa_header">
+            <span>Score: <span id="score">0</span></span>
+            <span id="countdown">0</span>
+        </div>
+        <div class="qa_body">
+            <div class="qa_set active">
+                <h4>1. Assinale a alternativa que corresponde ao significado CORRETO de cada operação lógica:</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a1">
+                  <span>&= E, ||= OU, != Diferente.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a1">
+                    <span>!= OU, ||= Negação, &= E.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a1" valid="valid">
+                    <span>&= E, ||= OU, != Negação.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a1">
+                    <span>Nenhuma das alternativas.</span>  
+                  </div>
+            </div>
+            <div class="qa_set">
+                <h4>2. Para que resultado de A&&B seja verdadeiro, A e B precisam ser:</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a2">
+                  <span>A=verdadeiro e B=falso.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a2">
+                    <span>A=falso e B=verdadeiro.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a2">
+                    <span>A=falso e B=falso.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a2" valid="valid">
+                    <span>A=verdadeiro e B=verdadeiro.</span>  
+                  </div>
+            </div>
+            <div class="qa_set active">
+                <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
+            </div>
+        </div>  
+        <div class="qa_footer">
+            <span class="btn1" id="skip">Próximo</span>
+        </div>
+    </div>
+    	<script><%@include file="/resources/js/quiz.js"%></script>
 </body>
 </html>
