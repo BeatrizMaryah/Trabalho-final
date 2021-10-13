@@ -20,6 +20,8 @@
 			
 			<input id="nome" type="text" name="nome" placeholder="Nome" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${disciplina.nome}'/>" /> 
+				
+			<input type="submit" value="Cadastrar"/>
 		</fieldset>		
 	</form>
 </body>

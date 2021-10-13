@@ -1,66 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-body,
-h1 {
-    background-color: #470063;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Poppins", sans-serif;
+body {
     margin: 0;
-    min-height: 100vh;
-    text-align: left;
-}
-
-.quiz-container:hover,
-.quiz-container:focus {
-    color: #000;
-    outline: 0;
-}
-
-.quiz-container {
-    border-radius: 5px;
-    border-color: #9232b7;
-    color: #000;
-    box-shadow: 0 0 40px 40px #9232b7 inset, 0 0 0 0 #9232b7;
-    transition: all 150ms ease-in-out;
-}
-
-.quiz-container:hover {
-    box-shadow: 0 0 10px 0 #9232b7 inset, 0 0 10px 4px;
-}
-
-.quiz-container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 100.1);
-    width: 600px;
-    max-width: 100%;
-}
-
-.quiz-header {
-    padding: 2rem;
-}
-
-h2 {
-    margin: 0;
-}
-
-ul {
-    list-style-type: none;
     padding: 0;
-}
-
-ul li {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-}
-
-ul li label {
-    cursor: pointer;
+    background-color: #d8d8d8;
+    color: #eee;
+    overflow: hidden;
 }
 
 button {
@@ -71,51 +20,20 @@ button {
     display: block;
     font-family: inherit;
     font-size: 1.3rem;
-    width: 100%;
+    width: 150px;
     padding: 1.3rem;
     border-radius: 10px;
+    float: right;
+    margin-top: -110px;
+    margin-right: 20px;
 }
 
 button:hover {
     background-color: #ad66c9;
 }
 
-.paginacao {
-    display: inline-block;
-    text-decoration: none;
-    list-style: none;
-}
-
-.fase1 {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    margin-top: 45px;
-    margin-left: 20px;
-}
-
-.robo img {
-    width: 200px;
-    height: 200px;
-    float: right;
-    margin-top: 45px;
-    margin-left: 20px;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-.botao-teoria {
-    width: 140px;
-    height: 40px;
-    font-size: medium;
-    border-width: 3px;
-    border-radius: 6px;
-    text-decoration: none;
-    margin-left: 90vw;
+.s-content img {
+    width: 100%;
 }
 
 .outer-wrapper {
@@ -125,8 +43,12 @@ button:hover {
 
 .s-wrap {
     width: 100%;
+    margin-bottom: 50px;
     padding-bottom: 55%;
     position: relative;
+    border: 10px solid #000;
+    background-color: #efefe8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
@@ -155,26 +77,6 @@ button:hover {
     background-size: cover;
 }
 
-.s-wrap .s-item-1 {
-    background-image: url("../html/img/k.png");
-}
-
-.s-wrap .s-item-2 {
-    background-image: url("../html/img/k.png");
-}
-
-.s-wrap .s-item-3 {
-    background-image: url("imagens/k.jpg");
-}
-
-.s-wrap .s-item-4 {
-    background-image: url("imagens/k.jpg");
-}
-
-.s-wrap .s-item-5 {
-    background-image: url("imagens/k.jpg");
-}
-
 .s-type-1 .s-control {
     position: absolute;
     bottom: 18px;
@@ -184,7 +86,7 @@ button:hover {
     transition-timing-function: ease-out;
 }
 
-.s-type-1 .s-control>label[class^=s-c-] {
+.s-type-1 .s-control>label[class^="s-c-"] {
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -208,9 +110,9 @@ button:hover {
 .s-type-1 .s-nav label::after {
     content: "";
     display: block;
-    width: 6px;
+    width: 8px;
     height: 24px;
-    background-color: #1A1E2D;
+    background-color: #fff;
 }
 
 .s-type-1 .s-nav label::before {
@@ -218,7 +120,7 @@ button:hover {
 }
 
 .s-type-1 .s-nav label.left {
-    left: 6px;
+    left: 20px;
 }
 
 .s-type-1 .s-nav label.left::before {
@@ -230,7 +132,7 @@ button:hover {
 }
 
 .s-type-1 .s-nav label.right {
-    right: 6px;
+    right: 20px;
 }
 
 .s-type-1 .s-nav label.right::before {

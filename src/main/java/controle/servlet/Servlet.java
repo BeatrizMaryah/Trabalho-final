@@ -307,6 +307,7 @@ public class Servlet extends HttpServlet {
 			case "/deslogar":
 				deslogar(request, response);
 				break;
+			
 		}	
 
 		} catch (SQLException ex) {
@@ -545,8 +546,8 @@ public class Servlet extends HttpServlet {
 	private void listarProfessores(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 
-		List<Professor> professores = daoProfessor.recuperarProfessores();
-		request.setAttribute("professores", professores);
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
+		request.setAttribute("disciplinas", disciplinas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);

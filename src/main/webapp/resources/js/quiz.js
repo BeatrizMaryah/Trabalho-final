@@ -10,14 +10,14 @@ var qaAnsRow = document.querySelectorAll('.qa_set .qa_ans_row input');
 
 skip.addEventListener('click', function(){
     step();
-    duration =20
+    duration =10
 })
 
 qaAnsRow.forEach( function(qaAnsRowSingle) {
     qaAnsRowSingle.addEventListener('click', function(){
         setTimeout(function(){
             step();
-            duration = 20
+            duration = 10
     }, 500)
 
     var valid = this.getAttribute("valid");
@@ -36,7 +36,6 @@ function step(){
     }
     qaSet[count].className='qa_set active';
     if(count == 4){
-       skip.style.display ='none'; 
        clearInterval(durationTime);
        countdown.innerHTML = 0;
     }

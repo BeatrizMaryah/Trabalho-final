@@ -8,6 +8,7 @@
 <style><%@include file="/resources/css/quiz.css"%></style>	
 </head>
 <body>
+	<form action="salvar-nota" method="post">
          <div class="qa_box">
         <div class="qa_header">
             <span>Score: <span id="score">0</span></span>
@@ -98,7 +99,8 @@
             <span class="btn1" id="skip">Próximo</span>
         </div>
     </div>
-    
+    </form>
+
     <script><%@include file="/resources/js/quiz.js"%></script>
 </body>
 </html>
