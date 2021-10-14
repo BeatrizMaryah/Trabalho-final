@@ -311,6 +311,10 @@ public class Servlet extends HttpServlet {
 			case "/deslogar":
 				deslogar(request, response);
 				break;
+				
+			case "/salvar-nota":
+				salvarNota(request, response, sessao);
+				break;
 		
 		}	
 
@@ -393,6 +397,24 @@ public class Servlet extends HttpServlet {
 		response.sendRedirect("inicio");
 	}
 	
+	private void salvarNota(HttpServletRequest request, HttpServletResponse response, HttpSession sessao) throws IOException {
+		
+		Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+		Fase fase = (Fase) sessao.getAttribute("fase");
+		
+		Integer nota = Integer.parseInt(request.getParameter("nota"));
+		
+		fase.setNota(nota);
+		
+		fase.adicionarAluno(aluno);
+		aluno.adicionarFase(fase);
+		
+		daoFase.atualizarFase(fase);
+		daoAluno.atualizarAluno(aluno);
+		
+		response.sendRedirect("fases");
+	}
+	
 	//======================================Aluno===============================================
 
 	private void listarAlunos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
@@ -468,7 +490,7 @@ public class Servlet extends HttpServlet {
 	private void atualizarAluno(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 
-		long id = Long.parseLong(request.getParameter("id"));
+		Long id = Long.parseLong(request.getParameter("id"));
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
@@ -751,6 +773,7 @@ public class Servlet extends HttpServlet {
 			
 			sessao.setAttribute("fase", fase);
 			
+			System.out.println("Teste");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
 			dispatcher.forward(request, response);
 		}

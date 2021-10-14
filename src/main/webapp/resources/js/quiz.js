@@ -35,7 +35,7 @@ function step(){
         qaSet[i].className='qa_set';
     }
     qaSet[count].className='qa_set active';
-    if(count == 4){
+    if(count == 5){
 		skip.style.display ='none';
        clearInterval(durationTime);
        countdown.innerHTML = 0;
@@ -53,3 +53,8 @@ var durationTime = setInterval(function(){
    }
 
 }, 1000)
+
+function getNota(){
+	document.getElementById('nota').value =	scoreCount;
+}
+

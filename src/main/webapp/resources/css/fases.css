@@ -1,14 +1,14 @@
-body {
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
 
 @font-face {
     font-family: 'maquina';
     src: url(fonte/JMH\ Typewriter.ttf);
 }
 
-.fases img {
+body{
+	background: #470063;
+}
+
+.fases a {
     display: inline-block;
     width: 150px;
     height: 150px;

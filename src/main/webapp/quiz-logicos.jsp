@@ -53,21 +53,40 @@
                   </div>
             </div>
             <div class="qa_set">
-                <h4>3. Utilizado quando precisamos que pelo meno um das expressões seja verdadeira.</h4>
+                <h4>3. O que representa os simbolos seguintes símbolos? <br> !=; &&; ||</h4>
                 <div class="qa_ans_row">
                   <input type="radio" name="a3">
-                  <span>A=verdadeiro e B=falso.</span>  
+                  <span>Significa E; NÃO; OU respctivamente.</span>  
                 </div>
                 <div class="qa_ans_row">
-                    <input type="radio" name="a3" valid="valid">
-                    <span>Utilizado quando desejamos que as duas expressões sejam verdadeiras.</span>  
+                    <input type="radio" name="a3">
+                    <span>Significa Maior; NÃO; OU respctivamente.</span>  
                   </div>
                   <div class="qa_ans_row">
                     <input type="radio" name="a3">
-                    <span>Utilizado quando desejamos verificar se uma variável é maior ou igual a outra</span>  
+                    <span>Significa Menor; Maior; E respctivamente.</span>  
                   </div>
                   <div class="qa_ans_row">
-                    <input type="radio" name="a3" >
+                    <input type="radio" name="a3"  valid="valid" >
+                    <span>Significa NÃO; OU; E respctivamente.</span>  
+                  </div>
+            </div>
+            <div class="qa_set">
+                <h4>4. Quando é utilizado a expressão "||"?</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a4" valid="valid">
+                  <span>Utilizado quando precisamos que pelo meno um das expressões seja verdadeira.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a4">
+                    <span>Utilizado quando desejamos que as duas expressões sejam verdadeiras.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a4">
+                    <span>Utilizado quando desejamos verificar se uma variável é maior ou igual a outra.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a4" >
                     <span>Utilizado quando desejamos verificar se uma variável é menor ou igual a outra.</span>  
                   </div>
             </div>

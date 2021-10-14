@@ -98,6 +98,18 @@ public class Fase implements Serializable {
 	public void setNota(Integer nota) {
 		this.nota = nota;
 	}
+	
+	public List<Aluno> getAlunos(){
+		return alunos;
+	}
+
+	public void removerAluno(Aluno aluno) {
+		getAlunos().remove(aluno);
+	}
+	
+	public void adicionarAluno(Aluno aluno) {
+		getAlunos().add(aluno);
+	}
 
 /*	public Mundo getMundo() {
 		return mundo;

@@ -75,4 +75,16 @@ public class Aluno extends Usuario implements Serializable  {
 	public void setCpf (String cpf) { 
 		this.cpf = cpf;
 	}
+	
+	public List<Fase> getFases(){
+		return fases;
+	}
+	
+	public void adicionarFase(Fase fase) {
+		getFases().add(fase);
+	}
+	
+	public void removerFase(Fase fase) {
+		getFases().remove(fase);
+	}
 }
