@@ -14,6 +14,8 @@ public interface FaseDAO {
 	
 	void atualizarFase (Fase fase);
 	
+	Fase recuperarFase(Fase fase);
+	
 	List<Fase> recuperarFases();
 	
 	List<Fase> recuperarFasesMundo(Mundo mundo);

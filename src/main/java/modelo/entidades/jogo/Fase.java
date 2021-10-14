@@ -33,7 +33,7 @@ public class Fase implements Serializable {
 	private String nome;
 	
 	@Column(name = "nota_fase", nullable = true, unique = false)
-	private int nota;
+	private Integer nota;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "aluno_fase", joinColumns = @JoinColumn(name = "id_aluno"), inverseJoinColumns = @JoinColumn(name = "id_fase"))
@@ -91,11 +91,11 @@ public class Fase implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getNota() {
+	public Integer getNota() {
 		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(Integer nota) {
 		this.nota = nota;
 	}
 

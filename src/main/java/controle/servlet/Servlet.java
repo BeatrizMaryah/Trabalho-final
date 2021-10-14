@@ -1,7 +1,6 @@
 package controle.servlet;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -23,6 +22,8 @@ import modelo.dao.endereco.EnderecoDAO;
 import modelo.dao.endereco.EnderecoDAOImpl;
 import modelo.dao.escola.EscolaDAO;
 import modelo.dao.escola.EscolaDAOImpl;
+import modelo.dao.fase.FaseDAO;
+import modelo.dao.fase.FaseDAOImpl;
 import modelo.dao.professor.ProfessorDAO;
 import modelo.dao.professor.ProfessorDAOImpl;
 import modelo.dao.turma.TurmaDAO;
@@ -37,6 +38,7 @@ import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
 import modelo.entidade.estudantil.Usuario;
+import modelo.entidades.jogo.Fase;
 
 @WebServlet("/")
 public class Servlet extends HttpServlet {
@@ -51,6 +53,7 @@ public class Servlet extends HttpServlet {
 	private TurmaDAO daoTurma;
 	private DisciplinaDAO daoDisciplina;
 	private UsuarioDAO daoUsuario;
+	private FaseDAO daoFase;
 
 	public void init() {
 		daoContato = new ContatoDAOImpl();
@@ -61,6 +64,7 @@ public class Servlet extends HttpServlet {
 		daoTurma = new TurmaDAOImpl();
 		daoDisciplina = new DisciplinaDAOImpl();
 		daoUsuario = new UsuarioDAOImpl();
+		daoFase = new FaseDAOImpl();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -197,7 +201,7 @@ public class Servlet extends HttpServlet {
 			// =========Teoria=============
 				
 			case "/teoria-system":
-				mostrarTelaTeoriaSystem(request, response);
+				mostrarTelaTeoriaSystem(request, response, sessao);
 				break;
 				
 			case "/teoria-scanner":
@@ -307,7 +311,7 @@ public class Servlet extends HttpServlet {
 			case "/deslogar":
 				deslogar(request, response);
 				break;
-			
+		
 		}	
 
 		} catch (SQLException ex) {
@@ -470,7 +474,7 @@ public class Servlet extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String cpf = request.getParameter("cpf");
 		daoAluno.atualizarAluno(new Aluno(id, nome, login, senha, cpf));
-		response.sendRedirect("listar-alunos"); // Terá botão na lista de alunos para excluir.
+		response.sendRedirect("listar-alunos"); 
 	}
 
 	private void deletarAluno(HttpServletRequest request, HttpServletResponse response)
@@ -479,7 +483,7 @@ public class Servlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		Aluno aluno = daoAluno.recuperarAluno(new Aluno(id));
 		daoAluno.deletarAluno(aluno);
-		response.sendRedirect("listar-alunos"); // Terá botão na lista de alunos para deletar.
+		response.sendRedirect("listar-alunos"); 
 	}
 
 	// ======================================Escola===============================================
@@ -739,8 +743,13 @@ public class Servlet extends HttpServlet {
 	
 	// ======================================Teoria===============================================
 	
-		private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response)
+		private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
+			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
 			dispatcher.forward(request, response);

@@ -111,6 +111,48 @@ public class FaseDAOImpl implements FaseDAO {
 		}
 	}
 	
+	public Fase recuperarFase(Fase fase) {
+
+		Session sessao = null;
+		Fase faseRecuperada = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Fase> criteria = construtor.createQuery(Fase.class);
+			Root<Fase> raizFase= criteria.from(Fase.class);
+
+			criteria.select(raizFase);
+			
+			ParameterExpression<Long> idFase= construtor.parameter(Long.class);
+			criteria.where(construtor.equal(raizFase.get("id"), idFase));
+
+			faseRecuperada = sessao.createQuery(criteria).setParameter(idFase, fase.getId()).getSingleResult();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
+		}
+
+		return faseRecuperada;
+	}
+	
 	public List<Fase> recuperarFases() {
 
 		Session sessao = null;

@@ -36,6 +36,7 @@ function step(){
     }
     qaSet[count].className='qa_set active';
     if(count == 4){
+		skip.style.display ='none';
        clearInterval(durationTime);
        countdown.innerHTML = 0;
     }
