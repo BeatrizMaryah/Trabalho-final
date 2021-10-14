@@ -143,7 +143,7 @@ public class Servlet extends HttpServlet {
 				break;
 
 			case "/listar-professores":
-				listarProfessores(request, response);
+				listarProfessores(request, response, sessao);
 				break;
 				
 			case "/escolher-disciplina-professores":
@@ -543,10 +543,12 @@ public class Servlet extends HttpServlet {
 	
 	// ======================================Professor===============================================
 
-	private void listarProfessores(HttpServletRequest request, HttpServletResponse response)
+	private void listarProfessores(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws SQLException, IOException, ServletException {
 
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinas();
+		Escola escola = (Escola) sessao.getAttribute("usuario");
+		
+		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
 		request.setAttribute("disciplinas", disciplinas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
@@ -567,7 +569,7 @@ public class Servlet extends HttpServlet {
 		List<Professor> professores = daoProfessor.recuperarProfessoresDisciplina(disciplina);
 		request.setAttribute("professores", professores);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-disciplinas.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
 	}
 	

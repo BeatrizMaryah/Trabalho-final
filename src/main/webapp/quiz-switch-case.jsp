@@ -71,6 +71,25 @@
                     <span>Não serva para nada, não altera nada na execução do código.</span>  
                   </div>
             </div>
+            <div class="qa_set">
+                <h4>4. Quando usamos a estrutura de controle Switch/ case?</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a4">
+                  <span>Usamos quando precisamos de múltiplas condições for em um programa.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a4" valid="valid">
+                    <span>Usamos quando precisamos de múltiplas condições if/ else em um programa.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a4" >
+                    <span>Usamos quando precisamos de múltiplas condições switch/ case em um programa.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a4">
+                    <span>Usamos quando precisamos de múltiplas condições boolean em um programa.</span>  
+                  </div>
+            </div>
             <div class="qa_set active">
                 <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
             </div>

@@ -38,7 +38,6 @@
 						<th>Nome</th>
 						<th>Login</th>
 						<th>Senha</th>
-						<th>Disciplina</th>
 						<th>Ações</th>
 					</tr>
 				</thead>

@@ -8,7 +8,7 @@
 <style><%@include file="/resources/css/quiz.css"%></style>
 </head>
 <body>        
-        <div class="qa_box">
+   <div class="qa_box">
         <div class="qa_header">
             <span>Score: <span id="score">0</span></span>
             <span id="countdown">0</span>

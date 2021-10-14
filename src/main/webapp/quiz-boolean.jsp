@@ -8,7 +8,7 @@
 <style><%@include file="/resources/css/quiz.css"%></style>
 </head>
 <body>
-   <div class="qa_box">
+<div class="qa_box">
         <div class="qa_header">
             <span>Score: <span id="score">0</span></span>
             <span id="countdown">0</span>
@@ -69,6 +69,25 @@
                   <div class="qa_ans_row">
                     <input type="radio" name="a3">
                     <span>Boolean isPrimo=falso;</span>  
+                  </div>
+            </div>
+            <div class="qa_set">
+                <h4>4. Em uma linguagem mais matemática, os tipos booleanos estão relacionados com quais operadores lógicos?</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a4" >
+                  <span>Maior e menor (< >)</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a4">
+                    <span>Diferente de (!=)</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a4" valid="valid">
+                    <span>And e Or (E e Ou)</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a4">
+                    <span>Menor ou igual (<=) </span>  
                   </div>
             </div>
             <div class="qa_set active">

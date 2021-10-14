@@ -8,7 +8,7 @@
 <style><%@include file="/resources/css/quiz.css"%></style>	
 </head>
 <body>
-        <div class="qa_box">
+         <div class="qa_box">
         <div class="qa_header">
             <span>Score: <span id="score">0</span></span>
             <span id="countdown">0</span>
@@ -50,6 +50,25 @@
                   <div class="qa_ans_row">
                     <input type="radio" name="a2" valid="valid">
                     <span>A=verdadeiro e B=verdadeiro.</span>  
+                  </div>
+            </div>
+            <div class="qa_set">
+                <h4>3. Utilizado quando precisamos que pelo meno um das expressões seja verdadeira.</h4>
+                <div class="qa_ans_row">
+                  <input type="radio" name="a3">
+                  <span>A=verdadeiro e B=falso.</span>  
+                </div>
+                <div class="qa_ans_row">
+                    <input type="radio" name="a3" valid="valid">
+                    <span>Utilizado quando desejamos que as duas expressões sejam verdadeiras.</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a3">
+                    <span>Utilizado quando desejamos verificar se uma variável é maior ou igual a outra</span>  
+                  </div>
+                  <div class="qa_ans_row">
+                    <input type="radio" name="a3" >
+                    <span>Utilizado quando desejamos verificar se uma variável é menor ou igual a outra.</span>  
                   </div>
             </div>
             <div class="qa_set active">
