@@ -9,11 +9,10 @@ body {
     padding: 0;
     background-color: #FEDC3D;
     color: #eee;
-    overflow: hidden;
 }
 
 button {
-    background-color: #FEDC3D;
+    background-color: #470063;
     border: none;
     color: #000;
     cursor: pointer;
@@ -49,7 +48,6 @@ button:hover {
     border: 10px solid #000;
     background-color: #efefe8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
 }
 
 .s-wrap>input {

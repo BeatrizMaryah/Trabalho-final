@@ -57,6 +57,9 @@ var durationTime = setInterval(function(){
 }, 1000)
 
 function getNota(){
-	document.getElementById('nota').value =	scoreCount;
+	var nota = document.getElementById('nota').value;
+	var notaFinal = document.getElementById('totalScore').value;
+	
+	nota.value = notaFinal.value;
 }
 

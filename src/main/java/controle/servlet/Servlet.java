@@ -311,7 +311,6 @@ public class Servlet extends HttpServlet {
 			case "/salvar-nota":
 				salvarNota(request, response, sessao);
 				break;
-		
 		}	
 
 		} catch (SQLException ex) {

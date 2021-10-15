@@ -94,7 +94,7 @@
             <div class="qa_set active">
                 <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
             </div>
-            <input type="hidden" id="nota" name="nota" onsubmit="getNota();">
+            <input type="hidden" id="nota" name="nota" onsubmit="getNota();" value="">
         </div>  
         <div class="qa_footer">
             <span class="btn1" id="skip"><input type="submit" value="Próximo"/></span>

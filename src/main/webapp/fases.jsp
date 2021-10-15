@@ -8,11 +8,19 @@
 	<script><%@include file="/resources/js/metodos.js"%></script>	
 </head>
 <body>
+ 	<div class="sair">
+ 	 <form action="deslogar" method="post" id="sair">
+        <a href="#" onClick="document.getElementById('sair').submit();">
+            <i class="fi fi-rr-sign-in"></i>
+            <span class="links_name">Sair</span>
+        </a>
+     </form>
+    </div>
 <div class="fases">  
  	<div class="fases1"> 
         <form action="teoria-system" method="post" id="fase1">
         	<input type="hidden" name="id" id="id" value="1">
-        	<a href="#" onClick="document.getElementById('fase1').submit();" id="1"><img src="imagens/cinza.jpg"></a>
+        	<a href="#" onClick="document.getElementById('fase1').submit();" id="1"><img src="/resources/imagens/fase1"></a>
         </form>
         <form action="teoria-variaveis" method="post" id="fase2">
        		<input type="hidden" name="id" id="id" value="2">

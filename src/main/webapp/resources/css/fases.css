@@ -4,6 +4,13 @@
     src: url(fonte/JMH\ Typewriter.ttf);
 }
 
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+.sair a {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+}
+
 body{
 	background: #470063;
 }
