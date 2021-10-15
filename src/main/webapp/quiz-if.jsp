@@ -8,6 +8,7 @@
 <style><%@include file="/resources/css/quiz.css"%></style>	
 </head>
 <body>
+<form action="salvar-nota" method="post">
  <div class="qa_box">
                 <div class="qa_header">
                     <span>Score: <span id="score">0</span></span>
@@ -94,11 +95,13 @@
             <div class="qa_set active">
                 <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
             </div>
+            <input type="hidden" id="nota" name="nota" onsubmit="getNota();">
         </div>  
         <div class="qa_footer">
-            <span class="btn1" id="skip">Próximo</span>
+            <span class="btn1" id="skip"><input type="submit" value="Próximo"/></span>
         </div>
     </div>
+    </form>
     	<script><%@include file="/resources/js/quiz.js"%></script>
 </body>
 </html>

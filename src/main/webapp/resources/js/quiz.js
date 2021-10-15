@@ -10,14 +10,14 @@ var qaAnsRow = document.querySelectorAll('.qa_set .qa_ans_row input');
 
 skip.addEventListener('click', function(){
     step();
-    duration =10
+    duration =30
 })
 
 qaAnsRow.forEach( function(qaAnsRowSingle) {
     qaAnsRowSingle.addEventListener('click', function(){
         setTimeout(function(){
             step();
-            duration = 10
+            duration = 30
     }, 500)
 
     var valid = this.getAttribute("valid");
@@ -37,18 +37,20 @@ function step(){
     qaSet[count].className='qa_set active';
     if(count == 5){
 		skip.style.display ='none';
+    }
+	if(count == 4){
        clearInterval(durationTime);
        countdown.innerHTML = 0;
     }
 }
 
 var durationTime = setInterval(function(){
-   if(duration == 10){
+   if(duration == 30){
        duration = 0;
    } 
    duration +=1;
    countdown.innerHTML=duration;
-   if(countdown.innerHTML == "10"){
+   if(countdown.innerHTML == "30"){
       step() 
    }
 

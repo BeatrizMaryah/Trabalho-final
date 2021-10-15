@@ -292,10 +292,6 @@ public class Servlet extends HttpServlet {
 				voltarIndex(request, response, sessao);
 				break;
 				
-			case "/inicio-escola":
-				mostrarTelaPrincipalEscola(request, response, sessao);
-				break;
-				
 			case "/fases":
 				mostrarTelaFases(request, response);
 				break;
@@ -336,13 +332,6 @@ public class Servlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("fases.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void mostrarTelaPrincipalEscola(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("tela-principal-escola.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -412,6 +401,7 @@ public class Servlet extends HttpServlet {
 		daoFase.atualizarFase(fase);
 		daoAluno.atualizarAluno(aluno);
 		
+		sessao.removeAttribute("fase");
 		response.sendRedirect("fases");
 	}
 	
