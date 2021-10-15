@@ -4,8 +4,7 @@
 <head>
 <title>Fases</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/fases.css"/>
-	<style><%@include file="/resources/css/fases.css"%></style>	
-	<script><%@include file="/resources/js/metodos.js"%></script>	
+	<style><%@include file="/resources/css/fases.css"%></style>		
 </head>
 <body>
  	<div class="sair">
@@ -72,6 +71,7 @@
             <label class="modal-content-btn" for="modal-toggle">OK</label>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

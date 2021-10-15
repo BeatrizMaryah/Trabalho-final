@@ -1,10 +1,9 @@
-
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
 @font-face {
     font-family: 'maquina';
     src: url(fonte/JMH\ Typewriter.ttf);
 }
 
-@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
 .sair a {
     text-decoration: none;
     color: #fff;

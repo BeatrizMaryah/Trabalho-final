@@ -205,42 +205,41 @@ public class Servlet extends HttpServlet {
 				mostrarTelaTeoriaSystem(request, response, sessao);
 				break;
 				
-			case "/teoria-scanner":
-				mostrarTelaTeoriaScanner(request, response);
+			case "/teoria-variaveis":
+				mostrarTelaTeoriaVariaveis(request, response, sessao);
 				break;
 				
-			case "/teoria-variaveis":
-				mostrarTelaTeoriaVariaveis(request, response);
+			case "/teoria-scanner":
+				mostrarTelaTeoriaScanner(request, response, sessao);
 				break;
 				
 			case "/teoria-boolean":
-				mostrarTelaTeoriaBoolean(request, response);
-				break;
-				
-			case "/teoria-for":
-				mostrarTelaTeoriaFor(request, response);
+				mostrarTelaTeoriaBoolean(request, response, sessao);
 				break;
 				
 			case "/teoria-relacionais":
-				mostrarTelaTeoriaRelacionais(request, response);
-				break;
-				
-			case "/teoria-logicos":
-				mostrarTelaTeoriaLogicos(request, response);
-				break;
-				
-			case "/teoria-switch-case":
-				mostrarTelaTeoriaSwitchCase(request, response);
+				mostrarTelaTeoriaRelacionais(request, response, sessao);
 				break;
 				
 			case "/teoria-if":
-				mostrarTelaTeoriaIf(request, response);
+				mostrarTelaTeoriaIf(request, response, sessao);
+				break;
+
+			case "/teoria-switch-case":
+				mostrarTelaTeoriaSwitchCase(request, response, sessao);
+				break;
+				
+			case "/teoria-logicos":
+				mostrarTelaTeoriaLogicos(request, response, sessao);
 				break;
 				
 			case "/teoria-while":
-				mostrarTelaTeoriaWhile(request, response);
+				mostrarTelaTeoriaWhile(request, response, sessao);
 				break;
 				
+			case "/teoria-for":
+				mostrarTelaTeoriaFor(request, response, sessao);
+				break;
 			// =========Quiz=============
 				
 			case "/quiz-system":
@@ -776,71 +775,126 @@ public class Servlet extends HttpServlet {
 			
 			sessao.setAttribute("fase", fase);
 			
-			System.out.println("Teste");
+			System.out.println("fase 1");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
 			dispatcher.forward(request, response);
 		}
 		
-		private void mostrarTelaTeoriaScanner(HttpServletRequest request, HttpServletResponse response)
+		private void mostrarTelaTeoriaVariaveis(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-scanner.jsp");
-			dispatcher.forward(request, response);
-		}
-		
-		private void mostrarTelaTeoriaVariaveis(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
 			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 2");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-variaveis.jsp");
 			dispatcher.forward(request, response);
 		}
 		
-		private void mostrarTelaTeoriaBoolean(HttpServletRequest request, HttpServletResponse response)
+		private void mostrarTelaTeoriaScanner(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 3");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-scanner.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaBoolean(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+				throws ServletException, IOException {
+			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 4");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-boolean.jsp");
 			dispatcher.forward(request, response);
 		}
+
 		
-		private void mostrarTelaTeoriaFor(HttpServletRequest request, HttpServletResponse response)
+		private void mostrarTelaTeoriaRelacionais(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-for.jsp");
-			dispatcher.forward(request, response);
-		}
-		
-		private void mostrarTelaTeoriaRelacionais(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
 			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 6");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-relacionais.jsp");
 			dispatcher.forward(request, response);
 		}
 		
-		private void mostrarTelaTeoriaLogicos(HttpServletRequest request, HttpServletResponse response)
+		private void mostrarTelaTeoriaIf(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-logicos.jsp");
-			dispatcher.forward(request, response);
-		}
-		
-		private void mostrarTelaTeoriaSwitchCase(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-switch-case.jsp");
-			dispatcher.forward(request, response);
-		}
-		
-		private void mostrarTelaTeoriaIf(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
+			sessao.setAttribute("fase", fase);
 			
+			System.out.println("fase 9");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-if.jsp");
 			dispatcher.forward(request, response);
 		}
 		
-		private void mostrarTelaTeoriaWhile(HttpServletRequest request, HttpServletResponse response)
+		private void mostrarTelaTeoriaSwitchCase(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 8");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-switch-case.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaLogicos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+				throws ServletException, IOException {
+			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 7");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-logicos.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		private void mostrarTelaTeoriaWhile(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+				throws ServletException, IOException {
+			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 9");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-while.jsp");
+			dispatcher.forward(request, response);
+		}
+
+		private void mostrarTelaTeoriaFor(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+				throws ServletException, IOException {
+			
+			long id = Long.parseLong(request.getParameter("id"));
+			Fase fase = daoFase.recuperarFase(new Fase(id));
+			
+			sessao.setAttribute("fase", fase);
+			
+			System.out.println("fase 5");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-for.jsp");
 			dispatcher.forward(request, response);
 		}
 		// ======================================Quiz===============================================

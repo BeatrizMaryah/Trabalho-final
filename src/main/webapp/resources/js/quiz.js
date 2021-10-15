@@ -27,6 +27,7 @@ qaAnsRow.forEach( function(qaAnsRowSingle) {
         score.innerHTML = scoreCount;
         totalScore.innerHTML = scoreCount;
 		nota.value = scoreCount;
+		console.log(nota.value);
     }
     })
 });

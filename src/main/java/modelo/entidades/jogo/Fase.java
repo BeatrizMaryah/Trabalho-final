@@ -8,8 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,7 +23,6 @@ public class Fase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_fase")
 	private Long id;
 
@@ -36,7 +33,7 @@ public class Fase implements Serializable {
 	private Integer nota;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name = "aluno_fase", joinColumns = @JoinColumn(name = "id_aluno"), inverseJoinColumns = @JoinColumn(name = "id_fase"))
+	@JoinTable(name = "aluno_fase", joinColumns = @JoinColumn(name = "id_fase"), inverseJoinColumns = @JoinColumn(name = "id_aluno"))
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 /*
 	@Column(name = "situacao_fase", nullable = false, unique = false)
