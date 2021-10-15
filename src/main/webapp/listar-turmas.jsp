@@ -13,31 +13,12 @@
 	<%@ include file="menu.jsp" %>
 	
 	<div class="container">
-		
-<!-- 	<h4>Escolha uma Escola: </h4>
-		<form id="form" method="post" action="escolher-escola-turmas">
-		<div class="select">
-			<select id="standard-select" name="id-escola">
-				<c:forEach var="escola" items="${escolas}">
-					<option value="${escola.id}">
-						<c:out value="${escola.nome}"/>
-					</option>
-				</c:forEach>
-			</select>
-			<span class="focus"></span>
-		</div>
-	<input type="submit" value="Escolher"/>
-	</form>
-		<hr>
-		<br> -->	
-		
 		<h3>Lista de Turmas</h3>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
 					<th>Nome</th>
 					<th>Ações</th>
-					<th>Alunos</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,7 +27,6 @@
 						<td><c:out value="${turma.nome}" /></td>
 						<td><a href="editar-turma?id=<c:out value='${turma.id}'/>">Editar</a>
 							<a href="deletar-turma?id=<c:out value='${turma.id}'/>">Deletar</a></td>
-						<td><a href="escolher-turma-alunos?id-escola=<c:out value='${turma.id}'/>" >Alunos</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

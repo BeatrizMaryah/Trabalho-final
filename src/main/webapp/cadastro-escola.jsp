@@ -38,11 +38,9 @@
 				id="senha" type="password" name="senha" placeholder="Senha" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${escola.senha}'/>" />
 				
-				    <input id="telefone" type="text" name="telefone"
+			<input id="telefone" type="text" name="telefone"
                 placeholder="Telefone" required="required" size="16" maxlength="15" autocomplete="off"
-                value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
-                type="text" size="16" maxlength="15" name="celular" placeholder="Celular"
-                required="required" autocomplete="off" value="<c:out value='${contato.celular}'/>" />
+                value="<c:out value='${contato.telefone}'/>" />
             <input id="email" type="email" name="email" placeholder="E-mail"
                 required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" /> 
  
@@ -55,7 +53,7 @@
             <input id="complemento" type="text" name="complemento"
                 placeholder="Complemento(opcional)" autocomplete="off"
                 value="<c:out value='${endereco.complemento}'/>" /> <input id="cep"
-                type="text" name="cep" placeholder="CEP" maxlength="9" required="required" autocomplete="off"
+                type="text" name="cep" placeholder="CEP" maxlength="8" required="required" autocomplete="off"
                 value="<c:out value='${endereco.cep}'/>" /> 
 				
 				<input type="submit" value="Cadastrar"/>

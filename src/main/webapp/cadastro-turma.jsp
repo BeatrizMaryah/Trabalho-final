@@ -19,25 +19,9 @@
 			
 			<input id="nome" type="text" name="nome" placeholder="Nome"
 				required="required" autocomplete="off" value="<c:out value='${turma.nome}'/>" />
-				
-<!--  	<label for="standard-select">Escola:</label>
-		<div class="select">
-			<select id="standard-select" name="id-escola">
-				<c:forEach var="escola" items="${escolas}">
-					<option value="${escola.id}">
-						<c:out value="${escola.nome}"/>
-					</option>
-				</c:forEach>
-			</select>
-			<span class="focus"></span>
-		</div>
-		
-				<br>
 			
 			<input type="submit" value="Cadastrar"/>
-		</fieldset>
+			</fieldset>
 	</form>
--->	
-
 </body>
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import modelo.entidade.estudantil.Aluno;
 import modelo.entidade.estudantil.Turma;
+import modelo.entidades.jogo.Fase;
 
 public interface AlunoDAO {
 
@@ -18,4 +19,6 @@ public interface AlunoDAO {
 	List<Aluno> recuperarAlunos();
 
 	List<Aluno> recuperarAlunosTurma(Turma turma);
+	
+	List<Aluno> recuperarAlunosFase(Fase fase);
 }

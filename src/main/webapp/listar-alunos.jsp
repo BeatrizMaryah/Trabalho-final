@@ -11,7 +11,7 @@
 	<%@ include file="menu.jsp" %>
 	
 	<div class="container">
-	
+<div class="escolha">	
 	<h4>Escolha uma Turma: </h4>
 	<form id="form" method="post" action="escolher-turma-alunos">
 			<div class="select">
@@ -27,6 +27,7 @@
 		
 		<input type="submit" value="Escolher"/>
 	</form>
+</div>
 		<hr>
 		<br>
 			<h3>Lista de Alunos</h3>

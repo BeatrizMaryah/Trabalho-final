@@ -28,9 +28,6 @@ public class Contato implements Serializable {
 	@Column(name = "email_contato", length = 45, nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "celular_contato", nullable = true, unique = false)
-	private int celular;
-	
 	@Column(name = "telefone_contato", nullable = true, unique = false)
 	private String telefone;
 	
@@ -44,41 +41,28 @@ public class Contato implements Serializable {
 	public Contato(Long id) {
 		setId(id);
 	}
-	public Contato(String email, int celular, String telefone, Usuario usuario) {
+	public Contato(String email, String telefone, Usuario usuario) {
 		setEmail(email);
-		setCelular(celular);
 		setTelefone(telefone);
 		setUsuario(usuario);
 	}
 	
-	public Contato(Long id, String email, int celular, String telefone, Usuario usuario) {
+	public Contato(Long id, String email, String telefone, Usuario usuario) {
 		setId(id);
 		setEmail(email);
-		setCelular(celular);
 		setTelefone(telefone);
 		setUsuario(usuario);
 	}
 	
-	public Contato(String email, int celular, String telefone) {
+	public Contato(String email, String telefone) {
 		setEmail(email);
-		setCelular(celular);
 		setTelefone(telefone);
 	}
 	
-	public Contato(Long id, String email, int celular, String telefone) {
+	public Contato(Long id, String email, String telefone) {
 		setId(id);
 		setEmail(email);
-		setCelular(celular);
 		setTelefone(telefone);
-	}
-
-	public Contato(String email, int celular) {
-		setEmail(email);
-		setCelular(celular);
-	}
-
-	public Contato(String email) {
-		setEmail(email);
 	}
 
 	public Long getId() {
@@ -98,14 +82,6 @@ public class Contato implements Serializable {
 		this.email = email;
 	}
 
-	public int getCelular() {
-		return celular;
-	}
-
-	public void setCelular(int celular) {
-		this.celular = celular;
-	}
-
 	public String getTelefone() {
 		return telefone;
 	}
@@ -122,5 +98,4 @@ public class Contato implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 }

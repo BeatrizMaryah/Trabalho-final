@@ -23,9 +23,6 @@ public class Teoria implements Serializable {
 	@Column(name = "id_teoria")
 	private Long id;
 	
-	@Column(name = "texto_teoria", length = 300, nullable = true, unique = false)
-	private String texto;
-	
 	//Uma teoria ter� uma fase (Uma fase tem v�rias teorias)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fase")
@@ -37,14 +34,12 @@ public class Teoria implements Serializable {
 		setId(id);
 	}
 	
-	public Teoria(String texto, Fase fase) {
-		setTexto(texto);
+	public Teoria(Fase fase) {
 		setFase(fase);
 	}
 	
-	public Teoria(Long id, String texto, Fase fase) {
+	public Teoria(Long id, Fase fase) {
 		setId(id);
-		setTexto(texto);
 		setFase(fase);
 	}
 
@@ -55,14 +50,6 @@ public class Teoria implements Serializable {
 	public void setId (Long id) {
 		this.id = id;
 	}
-	public String getTexto() {
-		return texto;
-	}
-
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
-
 	public Fase getFase() {
 		return fase;
 	}

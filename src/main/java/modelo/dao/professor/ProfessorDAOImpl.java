@@ -193,49 +193,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 		return professores;
 	}
 	
-	public Professor recuperarProfessorDisciplina (Disciplina disciplina) {
 
-			Session sessao = null;
-			Professor professor = null;
-
-			try {
-
-				sessao = fabrica.getConexao().openSession();
-				sessao.beginTransaction();
-
-				CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-				CriteriaQuery<Professor> criteria = construtor.createQuery(Professor.class);
-				Root<Professor> raizProfessor = criteria.from(Professor.class);
-
-				Join<Professor, Disciplina> juncaoDisciplina = raizProfessor.join("disciplina");
-
-				ParameterExpression<Long> idDisciplina = construtor.parameter(Long.class);
-				criteria.where(construtor.equal(juncaoDisciplina.get("id"), idDisciplina));
-
-				professor = sessao.createQuery(criteria).setParameter(idDisciplina, disciplina.getId()).getSingleResult();
-
-				sessao.getTransaction().commit();
-
-			} catch (Exception sqlException) {
-
-				sqlException.printStackTrace();
-
-				if (sessao.getTransaction() != null) {
-					sessao.getTransaction().rollback();
-				}
-
-			} finally {
-
-				if (sessao != null) {
-					sessao.close();
-				}
-			}
-
-			return professor;
-		}
-	
-	public List<Professor> recuperarProfessoresEscola (Escola escola) {
+	public List<Professor> recuperarProfessoresDisciplina (Disciplina disciplina) {
 		
 		Session sessao = null;
 		List<Professor> professores = null;
@@ -250,12 +209,12 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 			CriteriaQuery<Professor> criteria = construtor.createQuery(Professor.class);
 			Root<Professor> raizProfessor = criteria.from(Professor.class);
 			
-			Join<Professor, Escola> juncaoEscola = raizProfessor.join("escola");
+			Join<Professor, Disciplina> juncaoDisciplina = raizProfessor.join("disciplina");
 			
-			ParameterExpression<Long> idEscola = construtor.parameter(Long.class);
-			criteria.where(construtor.equal(juncaoEscola.get("professores"), idEscola));
+			ParameterExpression<Long> idDisciplina = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoDisciplina.get("id"), idDisciplina));
 
-			professores = sessao.createQuery(criteria).setParameter(idEscola, escola.getId()).getResultList();
+			professores = sessao.createQuery(criteria).setParameter(idDisciplina, disciplina.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 

@@ -34,7 +34,7 @@ public class Mundo  implements Serializable {
 	@Column(name = "nome_mundo", length = 45, nullable = false, unique = true)
 	private String nome;
 	
-	//ENUM
+	/*	//ENUM
 	@Column(name = "situacao_mundo", nullable = false, unique = false)
 	@Enumerated(EnumType.STRING)
 	private Situacao status;
@@ -45,7 +45,7 @@ public class Mundo  implements Serializable {
 	//Um mundo tem v�rias fases
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "mundo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Fase> fases = new ArrayList<Fase>();
-	
+	*/
 	//Um mundo tem um jogo
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_jogo")
@@ -59,15 +59,15 @@ public class Mundo  implements Serializable {
 	
 	public Mundo(String nome, Situacao status, float media) { //throws NomeInvalidoException
 		setNome(nome);
-		setStatus(status);
-		setMedia(media);
+		//setStatus(status);
+		//setMedia(media);
 	}
 	
 	public Mundo(Long id, String nome, Situacao status, float media) { //throws NomeInvalidoException
 		setId(id);
 		setNome(nome);
-		setStatus(status);
-		setMedia(media);
+		//setStatus(status);
+		//setMedia(media);
 	}
 
 	public Long getId() {
@@ -86,7 +86,7 @@ public class Mundo  implements Serializable {
 
 		this.nome = nome;
 	}
-
+	/*
 	public Situacao getStatus() {
 		return status;
 	}
@@ -124,7 +124,7 @@ public class Mundo  implements Serializable {
 	public void concluirMundo() {
 		setStatus(status.CONCLUIDO);
 	}
-
+*/
 	public Jogo getJogo() {
 		return jogo;
 	}

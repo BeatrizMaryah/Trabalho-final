@@ -2,103 +2,107 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Quiz Variáveis</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/game.css"/>
-<style><%@include file="/resources/css/game.css"%></style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>	
+<link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/quiz.css"/>
+<style><%@include file="/resources/css/quiz.css"%></style>
 </head>
 <body>     
-        <%@ include file="base-quiz.jsp" %>
-        <script type="text/javascript">
-        const quizData = [{
-            question: 'O que é uma variável?',
-            a: 'É um conjunto de números e nomes que definimos para armazenar dados de formas simples. ',
-            b: ' É um número que definimos para armazenar dados de formas simples.',
-            c: 'É uma área de memória, associada a um nome, que pode armazenar valores de um determinado tipo. ',
-            d: 'É um conjunto de nomes que definimos para armazenar dados de formas simples.',
-            correct: 'c',
-        },
-        {
-            question: 'O valor de uma variável pode ser alterado no andamento do algoritmo?',
-            a: 'Não, por isso o nome é variável.',
-            b: 'Depende da situação.',
-            c: 'Não.',
-            d: 'Sim, por isso o nome de variável. ',
-            correct: 'd',
-        },
-        {
-            question: 'Assinale os tipos de variáveis do tipo primitivas:',
-            a: ' Boolean, byte, char, short, int, long, float e double. ',
-            b: 'Strings, Arrays Primitivos e Objetos.',
-            c: 'Boolean, byte, char e  Arrays Primitivos.',
-            d: 'Arrays Primitivos, float e double. ',
-            correct: 'a',
-        },
-
-    ];
-
-    const quiz = document.getElementById("quiz");
-    const answerEls = document.querySelectorAll(".answer");
-    const questionEl = document.getElementById("question");
-    const a_text = document.getElementById("a_text");
-    const b_text = document.getElementById("b_text");
-    const c_text = document.getElementById("c_text");
-    const d_text = document.getElementById("d_text");
-    const submitBtn = document.getElementById("submit");
-
-    let currentQuiz = 0;
-    let score = 0;
-
-    loadQuiz();
-
-    function loadQuiz() {
-        deselectAnswers();
-
-        const currentQuizData = quizData[currentQuiz];
-
-        questionEl.innerText = currentQuizData.question;
-        a_text.innerText = currentQuizData.a;
-        b_text.innerText = currentQuizData.b;
-        c_text.innerText = currentQuizData.c;
-        d_text.innerText = currentQuizData.d;
-    }
-
-    function getSelected() {
-        let answer = undefined;
-
-        answerEls.forEach((answerEl) => {
-            if (answerEl.checked) {
-                answer = answerEl.id;
-            }
-        });
-        return answer;
-    }
-
-    function deselectAnswers() {
-        answerEls.forEach((answerEl) => {
-            answerEl.checked = false;
-        });
-    }
-
-    submitBtn.addEventListener('click', () => {
-        const answer = getSelected();
-
-        if (answer) {
-            if (answer === quizData[currentQuiz].correct) {
-                score++;
-            }
-
-            currentQuiz++;
-            if (currentQuiz < quizData.length) {
-                loadQuiz();
-            } else {
-                quiz.innerHTML = `
-              <h2>Você acertou ${score}/${quizData.length} questões. </h2>
-              <form action="fases">
-              <button onclick="location.reload()">Próximo</button>
-              </form>`;
-            }
-        }
-    });</script>
+<form action="salvar-nota" method="post">
+            <div class="qa_box">
+                <div class="qa_header">
+                    <span>Score: <span id="score">0</span></span>
+                    <span id="countdown">0</span>
+                </div>
+                <div class="qa_body">
+                    <div class="qa_set active">
+                        <h4>1. O que é uma variável?</h4>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a1">
+                            <span>É um conjunto de números e nomes que definimos para armazenar dados de formas simples.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a1">
+                            <span>É um número que definimos para armazenar dados de formas simples.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a1" valid="valid">
+                            <span>É uma área de memória, associada a um nome, que pode armazenar valores de um determinado tipo.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a1">
+                            <span>É um conjunto de nomes que definimos para armazenar dados de formas simples.</span>
+                        </div>
+                    </div>
+                    <div class="qa_set">
+                        <h4>2. O valor de uma variável pode ser alterado no andamento do algoritmo?</h4>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a2">
+                            <span>Não, por isso o nome é variável. </span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a2">
+                            <span>Depende da situação.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a2">
+                            <span>Não.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a2" valid="valid">
+                            <span>Sim, por isso o nome de variável.</span>
+                        </div>
+                    </div>
+                    <div class="qa_set">
+                        <h4>4. int valor;<br> valor = 100;<br> System.out.println(valor);
+                            <br>
+                        </h4>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a3">
+                            <span>Declaramos uma variável do tipo int, de nome valor. Na linha seguinte atribuímos o número inteiro 100 a variável valor. Por fim, utilizamos a função println(). para imprimirmos na tela qualquer valor inteiro.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a3" valid="valid">
+                            <span>Declaramos uma variável do tipo int, de nome valor. Na linha seguinte atribuímos o número inteiro 100 a variável valor. Por fim, utilizamos a função println(). para imprimirmos na tela o valor contido na variável valor.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a3">
+                            <span> Declaramos uma variável do tipo float, de nome valor. Na linha seguinte atribuímos o número inteiro 100 a variável valor. Por fim, utilizamos a função println(). para imprimirmos na tela o valor contido na variável valor. </span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a3">
+                            <span>Declaramos uma variável do tipo boolean, de nome valor. Na linha seguinte atribuímos o número inteiro 100 a variável valor. Por fim, utilizamos a função println(). para imprimirmos na tela o valor contido na variável valor.</span>
+                        </div>
+                    </div>
+                    <div class="qa_set">
+                        <h4>4.Assinale os tipos de variáveis do tipo primitivas:</h4>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a4">
+                            <span>Boolean, byte, char e  Arrays Primitivos.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a4">
+                            <span>Arrays Primitivos, float e double.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a4" valid="valid">
+                            <span>Boolean, byte, char, short, int, long, float e double.</span>
+                        </div>
+                        <div class="qa_ans_row">
+                            <input type="radio" name="a4">
+                            <span>Strings, Arrays Primitivos e Objetos.</span>
+                        </div>
+                    </div>
+            <div class="qa_set active">
+                <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
+            </div>
+            <input type="hidden" id="nota" name="nota" value="">
+        </div>  
+        <div class="qa_footer">
+            <span class="btn1" id="skip"><input type="submit" onsubmit="getNota();" value="Próximo"/></span>
+        </div>
+    </div>
+    </form>
+    <script><%@include file="/resources/js/quiz.js"%></script>
 </body>
 </html>

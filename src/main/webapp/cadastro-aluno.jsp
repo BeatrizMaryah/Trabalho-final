@@ -44,9 +44,7 @@
 				
 				<input id="telefone" type="text" name="telefone"
 				placeholder="Telefone Responsável(opcional)"  size="16" maxlength="15" autocomplete="off" 
-				value="<c:out value='${contato.telefone}'/>" /> <input id="celular"
-				type="text" name="celular" placeholder="Celular(opcional)"
-				autocomplete="off" size="16" maxlength="15" value="<c:out value='${contato.celular}'/>" />
+				value="<c:out value='${contato.telefone}'/>" />
 				<input id="email" type="email" name="email" placeholder="E-mail"
 				required="required" autocomplete="off" value="<c:out value='${contato.email}'/>" />	
 			
