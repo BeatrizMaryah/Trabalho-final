@@ -53,7 +53,7 @@
             <input id="complemento" type="text" name="complemento"
                 placeholder="Complemento(opcional)" autocomplete="off"
                 value="<c:out value='${endereco.complemento}'/>" /> <input id="cep"
-                type="text" name="cep" placeholder="CEP" maxlength="9" required="required" autocomplete="off"
+                type="text" name="cep" placeholder="CEP" maxlength="8" required="required" autocomplete="off"
                 value="<c:out value='${endereco.cep}'/>" /> 
 				
 				<input type="submit" value="Cadastrar"/>

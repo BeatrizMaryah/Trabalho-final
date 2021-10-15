@@ -102,13 +102,9 @@ public class Fase implements Serializable {
 	public List<Aluno> getAlunos(){
 		return alunos;
 	}
-
-	public void removerAluno(Aluno aluno) {
-		getAlunos().remove(aluno);
-	}
 	
-	public void adicionarAluno(Aluno aluno) {
-		getAlunos().add(aluno);
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 /*	public Mundo getMundo() {

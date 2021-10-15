@@ -62,7 +62,7 @@
        </form>
     <div class="modal-container">
         <input id="modal-toggle" type="checkbox">
-        <label class="modal-btn" for="modal-toggle" id="robo"><a href="#" class="button button-circle">Como Jogar</a></label>
+        <label class="modal-btn" for="modal-toggle" id="robo"><a class="button button-circle">Como Jogar</a></label>
         <label class="modal-backdrop" for="modal-toggle"></label>
         <div class="modal-content">
             <label class="modal-close" for="modal-toggle">X</label>

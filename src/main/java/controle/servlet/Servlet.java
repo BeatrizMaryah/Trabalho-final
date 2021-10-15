@@ -2,6 +2,7 @@ package controle.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -394,9 +395,22 @@ public class Servlet extends HttpServlet {
 		
 		fase.setNota(nota);
 		
-		fase.adicionarAluno(aluno);
-		aluno.adicionarFase(fase);
+		List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
+		List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
 		
+		if(alunosFase == null) {
+			alunosFase = new ArrayList<Aluno>();
+		}	
+		if(fasesAluno == null) {
+			fasesAluno = new ArrayList<Fase>();
+		}
+		
+		aluno.setFases(fasesAluno);
+		fase.setAlunos(alunosFase);
+		
+		aluno.getFases().add(fase);
+		fase.getAlunos().add(aluno);
+
 		daoFase.atualizarFase(fase);
 		daoAluno.atualizarAluno(aluno);
 		

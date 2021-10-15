@@ -2,7 +2,6 @@ package modelo.dao.aluno;
 
 import java.util.List;
 
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -13,6 +12,7 @@ import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Aluno;
 import modelo.entidade.estudantil.Turma;
+import modelo.entidades.jogo.Fase;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class AlunoDAOImpl implements AlunoDAO {
@@ -213,6 +213,48 @@ public class AlunoDAOImpl implements AlunoDAO {
 			criteria.where(construtor.equal(juncaoTurma.get("id"), idTurma));
 
 			alunos = sessao.createQuery(criteria).setParameter(idTurma, turma.getId()).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
+		}
+
+		return alunos;
+	}
+	
+	public List<Aluno> recuperarAlunosFase (Fase fase) {
+
+		Session sessao = null;
+		List<Aluno> alunos = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Aluno> criteria = construtor.createQuery(Aluno.class);
+			Root<Aluno> raizAluno = criteria.from(Aluno.class);
+
+			Join<Aluno, Fase> juncaoFase = raizAluno.join("fases");
+
+			ParameterExpression<Long> idFase = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoFase.get("id"), idFase));
+
+			alunos = sessao.createQuery(criteria).setParameter(idFase, fase.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 

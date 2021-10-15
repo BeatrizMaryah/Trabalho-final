@@ -2,6 +2,7 @@ var skip = document.getElementById('skip');
 var score = document.getElementById('score');
 var totalScore = document.getElementById('totalScore');
 var countdown = document.getElementById('countdown');
+var nota = document.getElementById('nota');
 var count = 0;
 var scoreCount = 0;
 var duration = 0;
@@ -25,6 +26,7 @@ qaAnsRow.forEach( function(qaAnsRowSingle) {
         scoreCount +=25;
         score.innerHTML = scoreCount;
         totalScore.innerHTML = scoreCount;
+		nota.value = scoreCount;
     }
     })
 });
@@ -55,11 +57,3 @@ var durationTime = setInterval(function(){
    }
 
 }, 1000)
-
-function getNota(){
-	var nota = document.getElementById('nota').value;
-	var notaFinal = document.getElementById('totalScore').value;
-	
-	nota.value = notaFinal.value;
-}
-

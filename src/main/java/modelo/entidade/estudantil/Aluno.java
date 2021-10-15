@@ -80,11 +80,7 @@ public class Aluno extends Usuario implements Serializable  {
 		return fases;
 	}
 	
-	public void adicionarFase(Fase fase) {
-		getFases().add(fase);
-	}
-	
-	public void removerFase(Fase fase) {
-		getFases().remove(fase);
+	public void setFases(List<Fase> fases) {
+		this.fases = fases;
 	}
 }
