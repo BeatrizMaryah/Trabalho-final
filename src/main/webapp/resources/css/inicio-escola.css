@@ -15,7 +15,7 @@ body {
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #569CFA;
+    background-color: #2b4e7d;
     position: fixed;
     height: 60px!important;
     overflow: hidden;
@@ -30,7 +30,7 @@ body {
     margin-top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: #569CFA;
+    background: #2b4e7d;
 }
 .sidebarMenuInner{
     margin:0;
