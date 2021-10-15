@@ -95,11 +95,11 @@
                     </div>
             <div class="qa_set active">
                 <h4>Seu score foi <span id="totalScore">0</span> de 100</h4>
-                <input type="hidden" id="nota" name="nota" onsubmit="getNota();">
+                <input type="hidden" id="nota" name="nota" value="">
             </div>
         </div>  
         <div class="qa_footer">
-            <span class="btn1" id="skip"><input type="submit" value="Próximo"/></span>
+            <span class="btn1" id="skip"><input type="submit" onsubmit="getNota();" value="Próximo"/></span>
         </div>
     </div>
     </form>
