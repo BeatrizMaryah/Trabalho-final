@@ -23,7 +23,7 @@
                 </div>
                 <div class="qa_ans_row">
                     <input type="radio" name="a1" valid="valid">
-                    <span>São para imprimir algo na tela.</span>  
+                    <span>São para ler uma informação que o usuário escreve.</span>  
                   </div>
                   <div class="qa_ans_row">
                     <input type="radio" name="a1">
