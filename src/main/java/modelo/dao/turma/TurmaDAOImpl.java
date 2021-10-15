@@ -209,7 +209,7 @@ public class TurmaDAOImpl implements TurmaDAO{
 				Join<Turma, Escola> juncaoEscola = raizTurma.join("escola");
 				
 				ParameterExpression<Long> idEscola = construtor.parameter(Long.class);
-				criteria.where(construtor.equal(juncaoEscola.get("turmas"), idEscola));
+				criteria.where(construtor.equal(juncaoEscola.get("id"), idEscola));
 
 				turmas = sessao.createQuery(criteria).setParameter(idEscola, escola.getId()).getResultList();
 

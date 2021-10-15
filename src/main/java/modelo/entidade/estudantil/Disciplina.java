@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,6 +42,10 @@ public class Disciplina implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "disciplina_turma", joinColumns = @JoinColumn(name = "id_disciplina"), inverseJoinColumns = @JoinColumn(name = "id_turma"))
 	private List<Turma> turmas = new ArrayList<Turma>();
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_escola")
+	private Escola escola;
 
 	public Disciplina() {}
 	
@@ -48,18 +53,25 @@ public class Disciplina implements Serializable {
 		setId(id);
 	}
 	
-	public Disciplina(String nome, Turma turma)  {
+	public Disciplina(Long id, String nome) {
+		setId(id);
 		setNome(nome);
-		adicionarTurma(turma);
-		adicionarDisciplinaNaTurma(turma);
+	}
+	
+	public Disciplina(String nome) {
+		setNome(nome);
+	}
+	
+	public Disciplina(String nome, Escola escola)  {
+		setNome(nome);
+		setEscola(escola);
 		
 	}
 	
-	public Disciplina(Long id, String nome, Turma turma)  {
+	public Disciplina(Long id, String nome, Escola escola)  {
 		setId(id);
 		setNome(nome);
-		adicionarTurma(turma);
-		adicionarDisciplinaNaTurma(turma);
+		setEscola(escola);
 	}
 	
 	public Long getId() {
@@ -87,21 +99,12 @@ public class Disciplina implements Serializable {
 	public List<Professor> getProfessor () {
 		return professores;
 	}
-
-	public void adicionarTurma(Turma turma) {
-		turmas.add(turma);
+	
+	public Escola getEscola() {
+		return escola;
 	}
-
-	public void adicionarDisciplinaNaTurma(Turma turma) {
-		turma.adicionarDisciplina(this);
+	
+	public void setEscola(Escola escola) {
+		this.escola = escola;
 	}
-
-	public void removerTurma(Turma turma) {
-		turmas.remove(turma);
-	}
-
-	public void removerDisciplinaNaTurma(Turma turma) {
-		turma.removerDisciplina(this);
-	}
-
 }

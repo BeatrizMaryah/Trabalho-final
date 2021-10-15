@@ -14,16 +14,6 @@
 
 	<form id="form" method="post" action="inserir-endereco">
 
-		<ul id="progresso">
-			<a href="cadastro-escola.jsp">
-				<li class="ativo">Informações Gerais</li>
-			</a>
-			<li class="ativo">Contato</li>
-
-			<li class="ativo">Endereço</li>
-
-		</ul>
-
 		<fieldset>
 			<h2>Endereço</h2>
 			<h4>Dados da Conta</h4>
@@ -38,8 +28,10 @@
 				placeholder="Complemento" required="required"
 				value="<c:out value='${endereco.complemento}'/>" /> <input id="cep"
 				type="number" name="cep" placeholder="CEP" required="required"
-				value="<c:out value='${endereco.cep}'/>" /> <a
-				href="contato-escola.html"> <input class="voltar" type="button"
+				value="<c:out value='${endereco.cep}'/>" />
+				
+				<a href="<%=request.getContextPath()%>/novo-contato-escola" target="_self">
+				<input class="voltar" type="button"
 				name="voltar" value="Voltar" />
 			</a> <input type="submit" value="Cadastrar" />
 

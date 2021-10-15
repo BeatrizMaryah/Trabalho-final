@@ -8,11 +8,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Teoria.class)
 public abstract class Teoria_ {
 
-	public static volatile SingularAttribute<Teoria, String> texto;
 	public static volatile SingularAttribute<Teoria, Fase> fase;
 	public static volatile SingularAttribute<Teoria, Long> id;
 
-	public static final String TEXTO = "texto";
 	public static final String FASE = "fase";
 	public static final String ID = "id";
 

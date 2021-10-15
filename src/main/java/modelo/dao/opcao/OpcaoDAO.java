@@ -2,6 +2,7 @@ package modelo.dao.opcao;
 
 import java.util.List;
 
+import modelo.entidades.jogo.Atividade;
 import modelo.entidades.jogo.Opcao;
 
 public interface OpcaoDAO {
@@ -13,5 +14,7 @@ public interface OpcaoDAO {
 	void atualizarOpcao (Opcao opcao);
 	
 	List<Opcao> recuperarOpcoes();
+	
+	List<Opcao> recuperarOpcoesAtividades(Atividade atividade);
 	
 }

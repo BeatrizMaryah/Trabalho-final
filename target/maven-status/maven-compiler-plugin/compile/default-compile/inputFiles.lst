@@ -4,7 +4,6 @@ C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\fase\Fa
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\factory\conexao\ConexaoFactory.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\entidade\estudantil\Contato.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\entidade\estudantil\Escola.java
-C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\entidades\jogo\Situacao.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\aluno\AlunoDAOImpl.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\entidade\estudantil\Disciplina.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\contato\ContatoDAO.java
@@ -35,6 +34,7 @@ C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\entidade\es
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\usuario\UsuarioDAOImpl.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\contato\ContatoDAOImpl.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\entidade\estudantil\Turma.java
+C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\enumeracao\Situacao.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\opcao\OpcaoDAO.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\fase\FaseDAO.java
 C:\Users\beatriz.carmo\Documents\Trabalho-final\src\main\java\modelo\dao\mundo\MundoDAO.java

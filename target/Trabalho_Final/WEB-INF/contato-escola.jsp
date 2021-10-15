@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Cadastro</title>
 <link rel="stylesheet" href="style.css" />
 <link
@@ -15,9 +14,7 @@
 
 	<form id="form" method="post" action="inserir-contato-escola">
 		<ul id="progresso">
-			<a href="cadastro-escola.jsp">
-				<li class="ativo">Informações Gerais</li>
-			</a>
+			<li class="ativo">Informações Gerais</li>
 			<li class="ativo">Contato</li>
 
 			<li>Endereço</li>

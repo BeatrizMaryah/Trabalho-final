@@ -14,58 +14,58 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario implements Serializable {
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Long id;
-	
+
 	@Column(name = "nome_usuario", length = 45, nullable = false, unique = true)
 	private String nome;
-	
+
 	@Column(name = "login_usuario", length = 30, nullable = false, unique = true)
 	private String login;
-	
+
 	@Column(name = "senha_usuario", length = 30, nullable = false, unique = false)
 	private String senha;
-	
+
 	public Usuario() {}
-	
+
 	public Usuario(Long id) {
 		setId(id);
 	}
-	
-	public Usuario(String nome, String login, String senha)  {
+
+	public Usuario(String nome, String login, String senha) {
 		setNome(nome);
 		setLogin(login);
 		setSenha(senha);
 	}
-	
-	public Usuario(Long id, String nome, String login, String senha, Contato contato)  {
+
+	public Usuario(Long id, String nome, String login, String senha, Contato contato) {
 		setId(id);
 		setNome(nome);
 		setLogin(login);
 		setSenha(senha);
 	}
-	
-	public Usuario(Long id, String nome, String login, String senha)  {
+
+	public Usuario(Long id, String nome, String login, String senha) {
 		setId(id);
 		setNome(nome);
 		setLogin(login);
 		setSenha(senha);
 	}
-	
-	public Long getId () {
+
+	public Long getId() {
 		return id;
 	}
-	
-	public void setId (Long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 
 		return nome;
@@ -75,12 +75,11 @@ public abstract class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-
 	public String getLogin() {
 		return login;
 	}
 
-	public void setLogin(String login)  {
+	public void setLogin(String login) {
 
 		this.login = login;
 	}
@@ -89,8 +88,8 @@ public abstract class Usuario implements Serializable {
 		return senha;
 	}
 
-	public void setSenha(String senha)  {
-	
+	public void setSenha(String senha) {
+
 		this.senha = senha;
 	}
 

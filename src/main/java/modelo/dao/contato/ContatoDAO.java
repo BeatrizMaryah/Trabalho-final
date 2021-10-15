@@ -3,6 +3,7 @@ package modelo.dao.contato;
 import java.util.List;
 
 import modelo.entidade.estudantil.Contato;
+import modelo.entidade.estudantil.Usuario;
 
 public interface ContatoDAO {
 
@@ -10,9 +11,12 @@ public interface ContatoDAO {
 
 	void deletarContato(Contato contato);
 
-	void atualizarContato (Contato contato);
+	void atualizarContato(Contato contato);
 
 	Contato recuperarContato(Contato contato);
 	
+	Contato recuperarContatoUsuario(Usuario usuario);
+
 	List<Contato> recuperarContatos();
+	
 }

@@ -35,7 +35,7 @@ public class Turma implements Serializable {
 	private String nome;
 	
 	//Uma escola tem muitas turmas.
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_escola")
 	private Escola escola;
 	
@@ -47,8 +47,7 @@ public class Turma implements Serializable {
 	@ManyToMany(mappedBy = "turmas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
-	public Turma() {
-	}
+	public Turma() {}
 	
 	public Turma(Long id) {
 		setId(id);
@@ -113,32 +112,4 @@ public class Turma implements Serializable {
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-
-	public void adicionarAluno(Aluno aluno) {
-		alunos.add(aluno);
-		aluno.setTurma(this);
-	}
-
-	public void removerAluno(Aluno aluno) {
-		alunos.remove(aluno);
-		aluno.setTurma(null);
-
-	}
-
-	public void adicionarDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
-	}
-
-	public void adicionarTurmaDaDisciplina(Disciplina disciplina) {
-		disciplina.adicionarTurma(this);
-	}
-
-	public void removerDisciplina(Disciplina disciplina) {
-		disciplinas.remove(disciplina);
-	}
-
-	public void removerTurmaDaDisciplina(Disciplina disciplina) {
-		disciplina.removerTurma(this);
-	}
-
 }

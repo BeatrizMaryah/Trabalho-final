@@ -28,11 +28,8 @@ public class Contato implements Serializable {
 	@Column(name = "email_contato", length = 45, nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "celular_contato", nullable = true, unique = false)
-	private int celular;
-	
 	@Column(name = "telefone_contato", nullable = true, unique = false)
-	private int telefone;
+	private String telefone;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@MapsId
@@ -44,36 +41,27 @@ public class Contato implements Serializable {
 	public Contato(Long id) {
 		setId(id);
 	}
-	public Contato(String email, int celular, int telefone, Usuario usuario) {
+	public Contato(String email, String telefone, Usuario usuario) {
 		setEmail(email);
-		setCelular(celular);
 		setTelefone(telefone);
+		setUsuario(usuario);
 	}
 	
-	public Contato(Long id, String email, int celular, int telefone) {
+	public Contato(Long id, String email, String telefone, Usuario usuario) {
 		setId(id);
 		setEmail(email);
-		setCelular(celular);
+		setTelefone(telefone);
+		setUsuario(usuario);
+	}
+	
+	public Contato(String email, String telefone) {
+		setEmail(email);
 		setTelefone(telefone);
 	}
 	
-	public Contato( String email, int celular, int telefone) {
+	public Contato(Long id, String email, String telefone) {
+		setId(id);
 		setEmail(email);
-		setCelular(celular);
-		setTelefone(telefone);
-	}
-
-
-	public Contato(String email, int celular) {
-		setEmail(email);
-		setCelular(celular);
-	}
-
-	public Contato(String email) {
-		setEmail(email);
-	}
-
-	public Contato(int telefone) {
 		setTelefone(telefone);
 	}
 
@@ -94,19 +82,11 @@ public class Contato implements Serializable {
 		this.email = email;
 	}
 
-	public int getCelular() {
-		return celular;
-	}
-
-	public void setCelular(int celular) {
-		this.celular = celular;
-	}
-
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 
 		this.telefone = telefone;
 	}
@@ -118,5 +98,4 @@ public class Contato implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 }

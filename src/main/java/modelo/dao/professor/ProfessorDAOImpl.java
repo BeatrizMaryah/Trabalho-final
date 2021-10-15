@@ -13,8 +13,9 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Disciplina;
+import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
-
+import modelo.entidade.estudantil.Turma;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class ProfessorDAOImpl implements ProfessorDAO{
@@ -192,45 +193,46 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 		return professores;
 	}
 	
-	public Professor recuperarProfessorDisciplina (Disciplina disciplina) {
 
-			Session sessao = null;
-			Professor professor = null;
+	public List<Professor> recuperarProfessoresDisciplina (Disciplina disciplina) {
+		
+		Session sessao = null;
+		List<Professor> professores = null;
 
-			try {
+		try {
 
-				sessao = fabrica.getConexao().openSession();
-				sessao.beginTransaction();
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
 
-				CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
 
-				CriteriaQuery<Professor> criteria = construtor.createQuery(Professor.class);
-				Root<Professor> raizProfessor = criteria.from(Professor.class);
+			CriteriaQuery<Professor> criteria = construtor.createQuery(Professor.class);
+			Root<Professor> raizProfessor = criteria.from(Professor.class);
+			
+			Join<Professor, Disciplina> juncaoDisciplina = raizProfessor.join("disciplina");
+			
+			ParameterExpression<Long> idDisciplina = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoDisciplina.get("id"), idDisciplina));
 
-				Join<Professor, Disciplina> juncaoDisciplina = raizProfessor.join("disciplina");
+			professores = sessao.createQuery(criteria).setParameter(idDisciplina, disciplina.getId()).getResultList();
 
-				ParameterExpression<Long> idDisciplina = construtor.parameter(Long.class);
-				criteria.where(construtor.equal(juncaoDisciplina.get("id"), idDisciplina));
+			sessao.getTransaction().commit();
 
-				professor = sessao.createQuery(criteria).setParameter(idDisciplina, disciplina.getId()).getSingleResult();
+		} catch (Exception sqlException) {
 
-				sessao.getTransaction().commit();
+			sqlException.printStackTrace();
 
-			} catch (Exception sqlException) {
-
-				sqlException.printStackTrace();
-
-				if (sessao.getTransaction() != null) {
-					sessao.getTransaction().rollback();
-				}
-
-			} finally {
-
-				if (sessao != null) {
-					sessao.close();
-				}
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
 			}
 
-			return professor;
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
 		}
+
+		return professores;
 	}
+}
