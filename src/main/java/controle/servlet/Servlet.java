@@ -506,6 +506,7 @@ public class Servlet extends HttpServlet {
 
 		long id = Long.parseLong(request.getParameter("id"));
 		Aluno aluno = daoAluno.recuperarAluno(new Aluno(id));
+		
 		daoAluno.deletarAluno(aluno);
 		response.sendRedirect("listar-alunos"); 
 	}
@@ -762,7 +763,7 @@ public class Servlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(id));
 		daoDisciplina.deletarDisciplina(disciplina);
-		response.sendRedirect("listar-turmas");
+		response.sendRedirect("listar-disciplinas");
 	}
 	
 	// ======================================Teoria===============================================
