@@ -387,31 +387,13 @@ public class Servlet extends HttpServlet {
 	
 	private void salvarNota(HttpServletRequest request, HttpServletResponse response, HttpSession sessao) throws IOException {
 		
-		Aluno aluno = (Aluno) sessao.getAttribute("usuario");
 		Fase fase = (Fase) sessao.getAttribute("fase");
 		
 		Integer nota = Integer.parseInt(request.getParameter("nota"));
 		
 		fase.setNota(nota);
-		
-		List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
-		List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
-		
-		if(alunosFase == null) {
-			alunosFase = new ArrayList<Aluno>();
-		}	
-		if(fasesAluno == null) {
-			fasesAluno = new ArrayList<Fase>();
-		}
-		
-		aluno.setFases(fasesAluno);
-		fase.setAlunos(alunosFase);
-		
-		aluno.getFases().add(fase);
-		fase.getAlunos().add(aluno);
 
 		daoFase.atualizarFase(fase);
-		daoAluno.atualizarAluno(aluno);
 		
 		sessao.removeAttribute("fase");
 		response.sendRedirect("fases");
@@ -771,11 +753,25 @@ public class Servlet extends HttpServlet {
 				throws ServletException, IOException {
 			
 			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			Fase fase = new Fase(id, "System");
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
-			
 			System.out.println("fase 1");
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
 			dispatcher.forward(request, response);
 		}
