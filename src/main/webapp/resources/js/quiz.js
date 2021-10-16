@@ -27,7 +27,6 @@ qaAnsRow.forEach( function(qaAnsRowSingle) {
         score.innerHTML = scoreCount;
         totalScore.innerHTML = scoreCount;
 		nota.value = scoreCount;
-		console.log(nota.value);
     }
     })
 });
@@ -41,6 +40,7 @@ function step(){
     if(count == 5){
 		skip.style.display ='none';
     }
+
 	if(count == 4){
        clearInterval(durationTime);
        countdown.innerHTML = 0;

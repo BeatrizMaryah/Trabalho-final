@@ -1,8 +1,7 @@
 package controle.servlet;
-
 import java.io.IOException;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -105,8 +104,7 @@ public class Servlet extends HttpServlet {
 			case "/listar-alunos":
 				listarAlunos(request, response, sessao);
 				break;
-				
-				
+					
 			case "/escolher-turma-alunos":
 				listarAlunosDaTurma(request, response, sessao);
 				break;
@@ -355,7 +353,7 @@ public class Servlet extends HttpServlet {
 		Usuario usuario = daoUsuario.recuperarUsuario(user); 
 
 		if (usuario instanceof Escola && senha.equals(usuario.getSenha())) {
-			System.out.println("É uma Escola");
+			System.out.println("É uma Escola"); //Debugar
 			sessao.setAttribute("usuario", usuario);
 			
 			if ((Usuario) sessao.getAttribute("usuario") == null)
@@ -366,7 +364,7 @@ public class Servlet extends HttpServlet {
 			}
 			
 		} else if (usuario instanceof Aluno && senha.equals(usuario.getSenha())) {
-			System.out.println("É um Aluno!");
+			System.out.println("É um Aluno!"); //Debugar
 			sessao.setAttribute("usuario", usuario);
 			
 			if ((Usuario) sessao.getAttribute("usuario") == null)
@@ -752,8 +750,8 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = new Fase(id, "System");
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("System", ordem);
 
 			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
 

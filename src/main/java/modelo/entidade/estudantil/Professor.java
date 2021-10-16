@@ -1,6 +1,5 @@
 package modelo.entidade.estudantil;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -8,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "professor")
@@ -32,8 +30,8 @@ public class Professor extends Usuario implements Serializable {
 		setDisciplina(disciplina);
 	}
 	
-	public Professor(Long id, String nome, String login, String senha, Contato contato, Disciplina disciplina){ //throws NomeInvalidoException, CpfInvalidoException, SenhaInvalidaException, LoginInvalidoException
-		super(id, nome, login, senha, contato);
+	public Professor(Long id, String nome, String login, String senha, Disciplina disciplina){ //throws NomeInvalidoException, CpfInvalidoException, SenhaInvalidaException, LoginInvalidoException
+		super(id, nome, login, senha);
 		setDisciplina(disciplina);
 	}
 	

@@ -45,18 +45,17 @@ public class Escola extends Usuario implements Serializable {
 	public List<Turma> getTurmas (){
 		return turmas;
 	}
+	
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
 
 	public List<Disciplina> getDisciplinas(){
 		return disciplinas;
 	}
 	
-	public void adicionarDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
-		disciplina.setEscola(this);
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
-
-	public void removerDisciplina(Disciplina disciplina) {
-		disciplinas.remove(disciplina);
-		disciplina.setEscola(null);
-	}
+	
 }

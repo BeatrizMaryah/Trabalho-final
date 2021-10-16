@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,6 +25,7 @@ public class Fase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_fase")
 	private Long id;
 
@@ -35,6 +38,9 @@ public class Fase implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "aluno_fase", joinColumns = @JoinColumn(name = "id_fase"), inverseJoinColumns = @JoinColumn(name = "id_aluno"))
 	private List<Aluno> alunos = new ArrayList<Aluno>();
+	
+	@Column(name = "ordem_fase", nullable = false, unique = false)
+	private byte ordem;
 /*
 	@Column(name = "situacao_fase", nullable = false, unique = false)
 	@Enumerated(EnumType.STRING)
@@ -58,19 +64,16 @@ public class Fase implements Serializable {
 		setId(id);
 	}
 
-	public Fase(String nome) { // throws NomeInvalidoException
+	public Fase(String nome, byte ordem) {
 		setNome(nome);
-		//setMundo(mundo);
-		//setStatus(status);
+		setOrdem(ordem);
 	}
 
-	public Fase(Long id, String nome) { // throws NomeInvalidoException
+	public Fase(Long id, String nome, byte ordem) { 
 		setId(id);
 		setNome(nome);
-		//setMundo(mundo);
-		//setStatus(status);
+		setOrdem(ordem);
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -104,48 +107,11 @@ public class Fase implements Serializable {
 		this.alunos = alunos;
 	}
 
-/*	public Mundo getMundo() {
-		return mundo;
+	public byte getOrdem() {
+		return ordem;
 	}
 
-	public void setMundo(Mundo mundo) {
-		this.mundo = mundo;
+	public void setOrdem(byte ordem) {
+		this.ordem = ordem;
 	}
-
-	public Situacao getStatus() {
-		return status;
-	}
-
-	public void setStatus(Situacao status) {
-		this.status = status;
-	}
-	
-	public void adicionarAtividade(Atividade atividade) {
-		atividades.add(atividade);
-		atividade.setFase(this);
-	}
-
-	public void removerAtividade(Atividade atividade) {
-		atividades.remove(atividade);
-		atividade.setFase(null);
-	}
-
-	public void adicionarTeoria(Teoria teoria) {
-		teorias.add(teoria);
-		teoria.setFase(this);
-	}
-
-	public void removerTeoria(Teoria teoria) {
-		teorias.remove(teoria);
-		teoria.setFase(null);
-	}
-
-	public void desbloquearFase() {
-		setStatus(status.DESBLOQUEADO);
-	}
-
-	public void concluirFase() {
-		setStatus(status.CONCLUIDO);
-	}
-*/
 }

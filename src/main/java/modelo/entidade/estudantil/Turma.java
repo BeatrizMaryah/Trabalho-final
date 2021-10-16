@@ -53,22 +53,22 @@ public class Turma implements Serializable {
 		setId(id);
 	}
 
-	public Turma(String nome, Escola escola)  { //throws NomeInvalidoException
+	public Turma(String nome, Escola escola)  {
 		setNome(nome);
 		setEscola(escola);
 	}
 
-	public Turma(Long id, String nome, Escola escola)  { //throws NomeInvalidoException
+	public Turma(Long id, String nome, Escola escola)  {
 		setId(id);
 		setNome(nome);
 		setEscola(escola);
 	}
 	
-	public Turma(String nome)  { //throws NomeInvalidoException
+	public Turma(String nome)  {
 		setNome(nome);
 	}
 	
-	public Turma(Long id, String nome)  { //throws NomeInvalidoException
+	public Turma(Long id, String nome)  {
 		setId(id);
 		setNome(nome);
 	}
@@ -86,11 +86,7 @@ public class Turma implements Serializable {
 		return nome;
 	}
 
-	public void setNome(String nome)  { //throws NomeInvalidoException
-
-		//if (nome.isEmpty())
-			//throw new NomeInvalidoException("N�o pode ser vazio!");
-
+	public void setNome(String nome)  {
 		this.nome = nome;
 	}
 

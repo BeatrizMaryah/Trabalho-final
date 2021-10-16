@@ -23,7 +23,7 @@ public class Usuario implements Serializable {
 	@Column(name = "id_usuario")
 	private Long id;
 
-	@Column(name = "nome_usuario", length = 45, nullable = false, unique = true)
+	@Column(name = "nome_usuario", length = 45, nullable = false, unique = false)
 	private String nome;
 
 	@Column(name = "login_usuario", length = 30, nullable = false, unique = true)
@@ -44,20 +44,13 @@ public class Usuario implements Serializable {
 		setSenha(senha);
 	}
 
-	public Usuario(Long id, String nome, String login, String senha, Contato contato) {
-		setId(id);
-		setNome(nome);
-		setLogin(login);
-		setSenha(senha);
-	}
-
 	public Usuario(Long id, String nome, String login, String senha) {
 		setId(id);
 		setNome(nome);
 		setLogin(login);
 		setSenha(senha);
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -92,5 +85,4 @@ public class Usuario implements Serializable {
 
 		this.senha = senha;
 	}
-
 }
