@@ -309,6 +309,10 @@ public class Servlet extends HttpServlet {
 			case "/salvar-nota":
 				salvarNota(request, response, sessao);
 				break;
+				
+			case "/mostrar-notas-aluno":
+				mostrarTelaNotasDoAluno(request, response, sessao);
+				break;
 		}	
 
 		} catch (SQLException ex) {
@@ -395,6 +399,17 @@ public class Servlet extends HttpServlet {
 		
 		sessao.removeAttribute("fase");
 		response.sendRedirect("fases");
+	}
+	
+	private void mostrarTelaNotasDoAluno(HttpServletRequest request, HttpServletResponse response, HttpSession sessao) throws IOException, ServletException {
+		
+		Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+		
+		List<Fase> fases = daoFase.recuperarFasesAluno(aluno);
+		request.setAttribute("fases", fases);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("notas-aluno.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 	//======================================Aluno===============================================

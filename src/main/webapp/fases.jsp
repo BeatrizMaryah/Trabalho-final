@@ -7,14 +7,21 @@
 	<style><%@include file="/resources/css/fases.css"%></style>		
 </head>
 <body>
- 	<div class="sair">
- 	 <form action="deslogar" method="post" id="sair">
-        <a href="#" onClick="document.getElementById('sair').submit();">
-            <i class="fi fi-rr-sign-in"></i>
-            <span class="links_name">Sair</span>
-        </a>
-     </form>
-    </div>
+
+<nav role="navigation">
+  <div id="menuToggle">
+    <input type="checkbox" />
+    	<span></span>
+   	 	<span></span>
+    	<span></span>
+    <ul id="menu">
+      <a href="<%=request.getContextPath()%>/fases" target="_self"><li>Fases</li></a>
+      <a href="<%=request.getContextPath()%>/mostrar-notas-aluno" target="_self"><li>Notas</li></a>
+      <a href="<%=request.getContextPath()%>/deslogar" target="_self"><li>Sair</li></a>
+    </ul>
+  </div>
+</nav>
+
 <div class="fases">  
  	<div class="fases1"> 
         <form action="teoria-system" method="post" id="fase1">

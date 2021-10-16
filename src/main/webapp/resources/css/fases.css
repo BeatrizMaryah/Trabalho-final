@@ -27,33 +27,6 @@ p {
     margin-top: 29px;
 }
 
-.balao {
-    font-family: "maquina";
-    font-size: 25px;
-    margin: 10% 68%;
-    background: #000;
-    border-radius: 30px 30px 30px 30px;
-    width: 300px;
-    height: 124px;
-    color: #000;
-    text-align: center;
-    background-color: #b8b8b8;
-    position: relative;
-    margin-bottom: 1em;
-}
-
-.balao:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: -32px;
-    border-top: 15px solid transparent;
-    border-bottom: 22px solid transparent;
-    border-left: 70px solid #b8b8b8;
-    border-radius: 50%;
-}
-
 .modal-container .modal-content,
 .modal-container .modal-backdrop {
     height: 0;
@@ -149,39 +122,6 @@ p {
     .modal-container #modal-toggle:checked~.modal-content {
         left: 0;
     }
-}
-
-.iara img {
-    width: 219px;
-    height: 219px;
-    margin-top: -6%;
-}
-
-.balao2 {
-    font-family: "maquina";
-    font-size: 19px;
-    margin: -7% 15%;
-    background: #000;
-    border-radius: 30px 30px 30px 30px;
-    width: 300px;
-    height: 124px;
-    color: #000;
-    text-align: center;
-    background-color: #b8b8b8;
-    position: relative;
-    margin-bottom: 1em;
-}
-
-.balao2:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    right: 275px;
-    border-top: 15px solid transparent;
-    border-bottom: 22px solid transparent;
-    border-left: 50px solid #b8b8b8;
-    border-radius: 50%;
 }
 
 .button {
@@ -297,61 +237,6 @@ button.button:disabled {
   font-size: 18px;
 }
 
-
-.button-primary {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #00b5e5), color-stop(100%, #008db2));
-  background: -webkit-linear-gradient(top, #00b5e5, #008db2);
-  background: -moz-linear-gradient(top, #00b5e5, #008db2);
-  background: -o-linear-gradient(top, #00b5e5, #008db2);
-  background: linear-gradient(top, #00b5e5, #008db2);
-  background-color: #00a1cb;
-  border-color: #007998;
-  color: white;
-  text-shadow: 0 -1px 1px rgba(0, 40, 50, 0.35);
-}
-
-.button-primary:hover {
-  background-color: #00a1cb;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #00c9fe), color-stop(100%, #008db2));
-  background: -webkit-linear-gradient(top, #00c9fe, #008db2);
-  background: -moz-linear-gradient(top, #00c9fe, #008db2);
-  background: -o-linear-gradient(top, #00c9fe, #008db2);
-  background: linear-gradient(top, #00c9fe, #008db2);
-}
-
-.button-primary:active {
-  background: #1495b7;
-  color: #005065;
-}
-
-
-.button-action {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #8fcf00), color-stop(100%, #6b9c00));
-  background: -webkit-linear-gradient(top, #8fcf00, #6b9c00);
-  background: -moz-linear-gradient(top, #8fcf00, #6b9c00);
-  background: -o-linear-gradient(top, #8fcf00, #6b9c00);
-  background: linear-gradient(top, #8fcf00, #6b9c00);
-  background-color: #7db500;
-  border-color: #5a8200;
-  color: white;
-  text-shadow: 0 -1px 1px rgba(19, 28, 0, 0.35);
-}
-
-.button-action:hover {
-  background-color: #7db500;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a0e800), color-stop(100%, #6b9c00));
-  background: -webkit-linear-gradient(top, #a0e800, #6b9c00);
-  background: -moz-linear-gradient(top, #a0e800, #6b9c00);
-  background: -o-linear-gradient(top, #a0e800, #6b9c00);
-  background: linear-gradient(top, #a0e800, #6b9c00);
-}
-
-.button-action:active {
-  background: #76a312;
-  color: #374f00;
-}
-
-
 .button-highlight {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fa9915), color-stop(100%, #d87e04));
   background: -webkit-linear-gradient(top, #fa9915, #d87e04);
@@ -378,57 +263,130 @@ button.button:disabled {
   color: #8d5303;
 }
 
-
-.button-caution {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e8543f), color-stop(100%, #d9331a));
-  background: -webkit-linear-gradient(top, #e8543f, #d9331a);
-  background: -moz-linear-gradient(top, #e8543f, #d9331a);
-  background: -o-linear-gradient(top, #e8543f, #d9331a);
-  background: linear-gradient(top, #e8543f, #d9331a);
-  background-color: #e54028;
-  border-color: #c22d18;
-  color: white;
-  text-shadow: 0 -1px 1px rgba(103, 24, 13, 0.35);
+body
+{
+  margin: 0;
+  padding: 0;
+  color: #FEDC3D;
 }
 
-.button-caution:hover {
-  background-color: #e54028;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eb6855), color-stop(100%, #d9331a));
-  background: -webkit-linear-gradient(top, #eb6855, #d9331a);
-  background: -moz-linear-gradient(top, #eb6855, #d9331a);
-  background: -o-linear-gradient(top, #eb6855, #d9331a);
-  background: linear-gradient(top, #eb6855, #d9331a);
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.button-caution:active {
-  background: #cd5240;
-  color: #952312;
+#menuToggle a
+{
+  text-decoration: none;
+  color: #f18d05;
+  
+  transition: color 0.3s ease;
 }
 
-
-.button-royal {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #99389f), color-stop(100%, #752a79));
-  background: -webkit-linear-gradient(top, #99389f, #752a79);
-  background: -moz-linear-gradient(top, #99389f, #752a79);
-  background: -o-linear-gradient(top, #99389f, #752a79);
-  background: linear-gradient(top, #99389f, #752a79);
-  background-color: #87318c;
-  border-color: #632466;
-  color: white;
-  text-shadow: 0 -1px 1px rgba(26, 9, 27, 0.35);
+#menuToggle a:hover
+{
+  color: #470063;
 }
 
-.button-royal:hover {
-  background-color: #87318c;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ab3eb2), color-stop(100%, #752a79));
-  background: -webkit-linear-gradient(top, #ab3eb2, #752a79);
-  background: -moz-linear-gradient(top, #ab3eb2, #752a79);
-  background: -o-linear-gradient(top, #ab3eb2, #752a79);
-  background: linear-gradient(top, #ab3eb2, #752a79);
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
 }
 
-.button-royal:active {
-  background: #764479;
-  color: #3e1740;
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #FEDC3D;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
 }
 
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #FEDC3D;
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #fff;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
