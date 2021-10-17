@@ -24,7 +24,7 @@
 </nav>
 
 <div class="container">
-		<h3>Lista de Fases</h3>
+		<h3>Lista de Fases e Notas</h3>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
