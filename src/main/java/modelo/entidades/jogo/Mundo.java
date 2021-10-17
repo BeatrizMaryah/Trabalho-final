@@ -1,21 +1,15 @@
 package modelo.entidades.jogo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import modelo.enumeracao.Situacao;
@@ -46,6 +40,7 @@ public class Mundo  implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "mundo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Fase> fases = new ArrayList<Fase>();
 	*/
+	
 	//Um mundo tem um jogo
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_jogo")
@@ -57,17 +52,14 @@ public class Mundo  implements Serializable {
 		setId(id);
 	}
 	
-	public Mundo(String nome, Situacao status, float media) { //throws NomeInvalidoException
+	public Mundo(String nome, Situacao status, float media) { 
 		setNome(nome);
-		//setStatus(status);
-		//setMedia(media);
+
 	}
 	
-	public Mundo(Long id, String nome, Situacao status, float media) { //throws NomeInvalidoException
+	public Mundo(Long id, String nome, Situacao status, float media) { 
 		setId(id);
 		setNome(nome);
-		//setStatus(status);
-		//setMedia(media);
 	}
 
 	public Long getId() {
@@ -86,45 +78,7 @@ public class Mundo  implements Serializable {
 
 		this.nome = nome;
 	}
-	/*
-	public Situacao getStatus() {
-		return status;
-	}
-
-	public void setStatus(Situacao status) {
-		this.status = status;
-	}
-
-	public float getMedia() {
-		return media;
-	}
-
-	public void setMedia(float media) {
-		this.media = media;
-	}
-
-	public List<Fase> getFases() {
-		return fases;
-	}
-
-	public void adicionarFase(Fase fase) {
-		fases.add(fase);
-		fase.setMundo(this);
-	}
-
-	public void removerFase(Fase fase) {
-		fases.remove(fase);
-		fase.setMundo(null);
-	}
-
-	public void desbloquearMundo() {
-		setStatus(status.DESBLOQUEADO);
-	}
-
-	public void concluirMundo() {
-		setStatus(status.CONCLUIDO);
-	}
-*/
+	
 	public Jogo getJogo() {
 		return jogo;
 	}
