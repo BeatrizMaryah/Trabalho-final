@@ -13,7 +13,7 @@
 </head>
 <body>
 <form id="form" method="post" action="inserir-turma">
-		<fieldset>
+	<fieldset>
 			<h2>Cadastrar Turma</h2>
 			<h4>Insira os dados da turma</h4>
 			
@@ -21,7 +21,7 @@
 				required="required" autocomplete="off" value="<c:out value='${turma.nome}'/>" />
 			
 			<input type="submit" value="Cadastrar"/>
-			</fieldset>
-	</form>
+	</fieldset>
+</form>
 </body>
 </html>

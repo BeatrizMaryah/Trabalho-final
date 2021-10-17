@@ -18,5 +18,4 @@ public interface ContatoDAO {
 	Contato recuperarContatoUsuario(Usuario usuario);
 
 	List<Contato> recuperarContatos();
-	
 }

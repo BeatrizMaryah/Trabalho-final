@@ -43,9 +43,9 @@ public class Turma implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "turma", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 	
-	//Uma turma tem v�rias disciplinas.
+	//Uma turma tem vários professores.
 	@ManyToMany(mappedBy = "turmas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	private List<Professor> professores = new ArrayList<Professor>();
 
 	public Turma() {}
 	
@@ -105,7 +105,11 @@ public class Turma implements Serializable {
 		return alunos;
 	}
 
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+	
+	public void setProfessor(List<Professor> professores) {
+		this.professores = professores;
 	}
 }

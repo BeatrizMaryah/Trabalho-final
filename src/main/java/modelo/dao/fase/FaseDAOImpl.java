@@ -12,7 +12,6 @@ import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Aluno;
 import modelo.entidades.jogo.Fase;
-import modelo.entidades.jogo.Mundo;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class FaseDAOImpl implements FaseDAO {
@@ -171,48 +170,6 @@ public class FaseDAOImpl implements FaseDAO {
 			criteria.select(raizFase);
 
 			fases = sessao.createQuery(criteria).getResultList();
-
-			sessao.getTransaction().commit();
-
-		} catch (Exception sqlException) {
-
-			sqlException.printStackTrace();
-
-			if (sessao.getTransaction() != null) {
-				sessao.getTransaction().rollback();
-			}
-
-		} finally {
-
-			if (sessao != null) {
-				sessao.close();
-			}
-		}
-
-		return fases;
-	}
-	
-	public List<Fase> recuperarFasesMundo(Mundo mundo) {
-
-		Session sessao = null;
-		List<Fase> fases = null;
-
-		try {
-
-			sessao = fabrica.getConexao().openSession();
-			sessao.beginTransaction();
-
-			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
-
-			CriteriaQuery<Fase> criteria = construtor.createQuery(Fase.class);
-			Root<Fase> raizFase = criteria.from(Fase.class);
-
-			Join<Fase, Mundo> juncaoMundo = raizFase.join("mundo");
-
-			ParameterExpression<Long> idMundo = construtor.parameter(Long.class);
-			criteria.where(construtor.equal(juncaoMundo.get("id"), idMundo));
-
-			fases = sessao.createQuery(criteria).setParameter(idMundo, mundo.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 

@@ -33,19 +33,6 @@
                 </a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/nova-disciplina" target="_self">
-                    <i class="fi fi-rr-folder-add"></i>
-                    <span class="links_name">Cadastrar Disciplina</span>
-                </a>
-
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/listar-disciplinas" target="_self">
-                    <i class="fi fi-rr-folder"></i>
-                    <span class="links_name">Disciplinas</span>
-                </a>
-            </li>
-            <li>
                 <a href="<%=request.getContextPath()%>/novo-professor" target="_self">
                     <i class="fi-rr-user-add"></i>
                     <span class="links_name">Cadastrar Professor</span>
