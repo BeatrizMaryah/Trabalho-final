@@ -144,9 +144,22 @@ public class Servlet extends HttpServlet {
 				listarProfessores(request, response, sessao);
 				break;
 				
-			case "/escolher-disciplina-professores":
-				listarProfessoresDaDisciplina(request, response, sessao);
+			case "/escolher-turma-professores":
+				listarProfessoresDaTurma(request, response, sessao);
 				break;
+			
+			case "/listar-alunos-professor":
+				telaProfessorListarAlunos(request, response, sessao);
+				break;
+			
+			case "/escolher-turma-alunos-professor":
+				telaProfessorListarAlunosDaTurma(request, response, sessao);
+				break;
+				
+			case "/mostrar-fases-aluno":
+				telaProfessorMostrarFasesAluno(request, response, sessao);
+				break;
+			
 				
 			// =========Turma=============
 
@@ -334,6 +347,17 @@ public class Servlet extends HttpServlet {
 			else {
 				System.out.println(sessao.getAttribute("usuario"));
 				response.sendRedirect("listar-turmas");
+			}
+			
+		} else 	if (usuario instanceof Professor && senha.equals(usuario.getSenha())) {
+			System.out.println("É um Professor"); //Debugar
+			sessao.setAttribute("usuario", usuario);
+			
+			if ((Usuario) sessao.getAttribute("usuario") == null)
+				response.sendRedirect("login");
+			else {
+				System.out.println(sessao.getAttribute("usuario"));
+				response.sendRedirect("listar-alunos-professor");
 			}
 			
 		} else if (usuario instanceof Aluno && senha.equals(usuario.getSenha())) {
@@ -538,12 +562,28 @@ public class Servlet extends HttpServlet {
 	private void listarProfessores(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws SQLException, IOException, ServletException {
 		
+		Escola escola = (Escola) sessao.getAttribute("usuario");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
 	}
 	
-	private void listarProfessoresDaDisciplina(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+	private void listarProfessoresDaTurma(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws ServletException, IOException {
+		
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
+		
+		Escola escola = (Escola) sessao.getAttribute("usuario");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
+		
+		List<Professor> professores = daoProfessor.recuperarProfessoresTurma(turma);
+		request.setAttribute("professores", professores);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
@@ -651,6 +691,50 @@ public class Servlet extends HttpServlet {
 		Professor professor = daoProfessor.recuperarProfessor(new Professor(id));
 		daoProfessor.deletarProfessor(professor);
 		response.sendRedirect("listar");
+	}
+	
+	private void telaProfessorListarAlunos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws SQLException, IOException, ServletException {
+		
+		Professor professor = (Professor) sessao.getAttribute("usuario");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasProfessor(professor);
+		request.setAttribute("turmas", turmas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos-professor.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void telaProfessorListarAlunosDaTurma(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws ServletException, IOException {
+		
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
+		
+		Professor professor = (Professor) sessao.getAttribute("professor");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasProfessor(professor);
+		request.setAttribute("turmas", turmas);
+		
+		List<Aluno> alunos = daoAluno.recuperarAlunosTurma(turma);
+		request.setAttribute("alunos", alunos);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos-professor.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void telaProfessorMostrarFasesAluno(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws ServletException, IOException {
+		
+		Long idAluno = Long.parseLong(request.getParameter("id"));
+		Aluno aluno = daoAluno.recuperarAluno(new Aluno(idAluno));
+		request.setAttribute("aluno", aluno);
+		
+		List<Fase> fases = daoFase.recuperarFasesAluno(aluno);
+		request.setAttribute("fases", fases);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("professor-mostrar-fases-aluno.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	// ======================================Turma===============================================

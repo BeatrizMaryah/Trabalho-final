@@ -8,6 +8,9 @@
 <style><%@include file="/resources/css/teoria.css"%></style>
 </head>
 <body>
+    <form action="quiz-variaveis">
+        <button id="submit">Jogar</button>
+    </form>
 	 <div class="outer-wrapper">
         <div class="s-wrap s-type-1" role="slider">
             <input type="radio" id="s-1" name="slider-control" checked="checked">
@@ -36,8 +39,5 @@
             </div>
         </div>
     </div>
-    <form action="quiz-variaveis">
-        <button id="submit">Próximo</button>
-    </form>
 </body>
 </html>
