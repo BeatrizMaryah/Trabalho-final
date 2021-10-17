@@ -65,7 +65,7 @@
 					<c:forEach var="aluno" items="${alunos}">
 						<tr>
 							<td><c:out value="${aluno.nome}" /></td>
-							<td><a href="mostrar-fases-aluno?id=<c:out value='${aluno.id}'/>">Fase</a></td>
+							<td><a href="mostrar-fases-aluno?id=<c:out value='${aluno.id}'/>">Fases</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

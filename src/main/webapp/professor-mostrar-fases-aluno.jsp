@@ -34,7 +34,7 @@
 </div>
 
 <div class="container">
-		<h3><%request.getAttribute("aluno"); %></h3>
+		<h3><c:out value="${aluno.nome}" /></h3>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>

@@ -711,7 +711,7 @@ public class Servlet extends HttpServlet {
 		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
 		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
 		
-		Professor professor = (Professor) sessao.getAttribute("professor");
+		Professor professor = (Professor) sessao.getAttribute("usuario");
 		
 		List<Turma> turmas = daoTurma.recuperarTurmasProfessor(professor);
 		request.setAttribute("turmas", turmas);
