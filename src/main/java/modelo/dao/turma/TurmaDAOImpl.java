@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Escola;
+import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
 import modelo.factory.conexao.ConexaoFactory;
 
@@ -232,4 +233,46 @@ public class TurmaDAOImpl implements TurmaDAO{
 
 			return turmas;
 		}
+	
+	public List<Turma> recuperarTurmasProfessor(Professor professor) {
+		
+		Session sessao = null;
+		List<Turma> turmas = null;
+
+		try {
+
+			sessao = fabrica.getConexao().openSession();
+			sessao.beginTransaction();
+
+			CriteriaBuilder construtor = sessao.getCriteriaBuilder();
+
+			CriteriaQuery<Turma> criteria = construtor.createQuery(Turma.class);
+			Root<Turma> raizTurma = criteria.from(Turma.class);
+			
+			Join<Turma, Professor> juncaoProfessor = raizTurma.join("professores");
+			
+			ParameterExpression<Long> idProfessor = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoProfessor.get("id"), idProfessor));
+
+			turmas = sessao.createQuery(criteria).setParameter(idProfessor, professor.getId()).getResultList();
+
+			sessao.getTransaction().commit();
+
+		} catch (Exception sqlException) {
+
+			sqlException.printStackTrace();
+
+			if (sessao.getTransaction() != null) {
+				sessao.getTransaction().rollback();
+			}
+
+		} finally {
+
+			if (sessao != null) {
+				sessao.close();
+			}
+		}
+
+		return turmas;
+	}
 }

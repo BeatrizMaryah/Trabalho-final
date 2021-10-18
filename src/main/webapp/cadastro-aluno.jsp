@@ -2,10 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>
-		<c:if test="${aluno != null}">Editar aluno</c:if> 
-		<c:if test="${aluno == null}">Cadastrar aluno</c:if>
-</title>
+<title>Cadastrar Aluno</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css" />
 <style><%@include file="/resources/css/cadastros.css"%></style>
 <link
@@ -13,18 +10,9 @@
 	rel="stylesheet">
 </head>
 <body>
-		<c:if test="${aluno != null}">
-			<form id="form" action="atualizar-aluno" method="post">
-		</c:if>
-		<c:if test="${aluno == null}">
-			<form id="form" action="inserir-aluno" method="post">
-		</c:if>
-		
+<form id="form" action="inserir-aluno" method="post">
 	<fieldset>
-		<h2>
-			<c:if test="${aluno != null}">Editar aluno</c:if>
-			<c:if test="${aluno == null}">Cadastrar aluno</c:if>
-		</h2>
+		<h2>Cadastrar Aluno</h2>
 		<h4>Insira os dados do aluno</h4>
 		
 		<c:if test="${aluno != null}">
@@ -52,7 +40,7 @@
 			<div class="select">
 			<select id="standard-select" name="id-turma">
 				<c:forEach var="turma" items="${turmas}">
-					<option value="${turma.id}">
+					<option select value="${turma.id}">
 						<c:out value="${turma.nome}"/>
 					</option>
 				</c:forEach>

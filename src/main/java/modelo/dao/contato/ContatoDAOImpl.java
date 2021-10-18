@@ -2,6 +2,7 @@ package modelo.dao.contato;
 
 import java.util.List;
 
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -11,9 +12,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 
 import modelo.entidade.estudantil.Contato;
-import modelo.entidade.estudantil.Disciplina;
 import modelo.entidade.estudantil.Usuario;
-import modelo.entidades.jogo.Jogo;
 import modelo.factory.conexao.ConexaoFactory;
 
 public class ContatoDAOImpl implements ContatoDAO {

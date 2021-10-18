@@ -2,10 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>
-		<c:if test="${escola != null}">Editar escola</c:if> 
-		<c:if test="${escola == null}">Cadastrar escola</c:if>
-</title>
+<title>Cadastrar Escola</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>resources/css/cadastros.css"/>
 <style><%@include file="/resources/css/cadastros.css"%></style>		
 <link
@@ -13,23 +10,11 @@
 	rel="stylesheet">
 </head>
 <body>
-		<c:if test="${escola != null}">
-			<form id="form" action="atualizar-escola" method="post">
-		</c:if>
-		<c:if test="${escola == null}">
-			<form id="form" action="inserir-escola" method="post">
-		</c:if>
+<form id="form" action="inserir-escola" method="post">
 		
 		<fieldset>
-			<h2>
-				<c:if test="${escola != null}">Editar Escola</c:if>
-				<c:if test="${escola == null}">Cadastrar Escola</c:if>
-			</h2>
+			<h2>Cadastrar Escola</h2>
 			<h4>Insira os dados da escola</h4>
-			
-			<c:if test="${escola != null}">
-			<input type="hidden" name="id" value="<c:out value="${escola.id}"/>" />
-			</c:if>
 			
 			<input id="nome" type="text" name="nome" placeholder="Nome" maxlength ="25"
 				required="required" autocomplete="off" value="<c:out value='${escola.nome}'/>" /> <input

@@ -2,8 +2,6 @@ package modelo.dao.professor;
 
 import java.util.List;
 
-
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -12,8 +10,6 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 
-import modelo.entidade.estudantil.Disciplina;
-import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
 import modelo.factory.conexao.ConexaoFactory;
@@ -194,7 +190,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 	}
 	
 
-	public List<Professor> recuperarProfessoresDisciplina (Disciplina disciplina) {
+	public List<Professor> recuperarProfessoresTurma(Turma turma) {
 		
 		Session sessao = null;
 		List<Professor> professores = null;
@@ -209,12 +205,12 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 			CriteriaQuery<Professor> criteria = construtor.createQuery(Professor.class);
 			Root<Professor> raizProfessor = criteria.from(Professor.class);
 			
-			Join<Professor, Disciplina> juncaoDisciplina = raizProfessor.join("disciplina");
+			Join<Professor, Turma> juncaoTurma = raizProfessor.join("turmas");
 			
-			ParameterExpression<Long> idDisciplina = construtor.parameter(Long.class);
-			criteria.where(construtor.equal(juncaoDisciplina.get("id"), idDisciplina));
+			ParameterExpression<Long> idTurma = construtor.parameter(Long.class);
+			criteria.where(construtor.equal(juncaoTurma.get("id"), idTurma));
 
-			professores = sessao.createQuery(criteria).setParameter(idDisciplina, disciplina.getId()).getResultList();
+			professores = sessao.createQuery(criteria).setParameter(idTurma, turma.getId()).getResultList();
 
 			sessao.getTransaction().commit();
 
