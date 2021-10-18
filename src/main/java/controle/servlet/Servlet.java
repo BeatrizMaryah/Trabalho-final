@@ -526,7 +526,7 @@ public class Servlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String telefone = request.getParameter("telefone");
 
-		String nomeEndereco = request.getParameter("nome");
+		String nomeEndereco = request.getParameter("rua");
 		String complemento = request.getParameter("complemento");
 		short numero = Short.parseShort((request.getParameter("numero")));
 		String cidade = request.getParameter("cidade");
