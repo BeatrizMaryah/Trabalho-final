@@ -494,6 +494,7 @@ public class Servlet extends HttpServlet {
 
 		long id = Long.parseLong(request.getParameter("id"));
 		Aluno aluno = daoAluno.recuperarAluno(new Aluno(id));
+		
 		daoAluno.deletarAluno(aluno);
 		response.sendRedirect("listar-alunos"); 
 	}
@@ -779,7 +780,6 @@ public class Servlet extends HttpServlet {
 		daoTurma.deletarTurma(turma);
 		response.sendRedirect("listar-turmas");
 	}
-	
 	// ======================================Teoria===============================================
 	
 		private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)

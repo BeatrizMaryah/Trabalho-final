@@ -1,7 +1,6 @@
 package modelo.entidade.estudantil;
 
 import javax.annotation.processing.Generated;
-import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
