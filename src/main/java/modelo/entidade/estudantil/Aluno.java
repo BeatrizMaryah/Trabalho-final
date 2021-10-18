@@ -44,8 +44,8 @@ public class Aluno extends Usuario implements Serializable  {
 		setTurma(turma);
 	}
 	
-	public Aluno(Long id, String nome, String login, String senha, String cpf, Contato contato, Turma turma) {
-		super(id, nome, login, senha, contato);
+	public Aluno(Long id, String nome, String login, String senha, String cpf, Turma turma) {
+		super(id, nome, login, senha);
 		setCpf(cpf);
 		setTurma(turma);
 	}

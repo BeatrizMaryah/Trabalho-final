@@ -8,6 +8,9 @@
 <style><%@include file="/resources/css/teoria.css"%></style>
 </head>
 <body>
+    <form action="quiz-scanner">
+        <button id="submit">Jogar</button>
+    </form>
 	<div class="outer-wrapper">
         <div class="s-wrap s-type-1" role="slider">
             <input type="radio" id="s-1" name="slider-control" checked="checked">
@@ -15,9 +18,9 @@
             <input type="radio" id="s-3" name="slider-control">
 
             <ul class="s-content">
-                <li class="s-item s-item-1"><img src="https://lh3.googleusercontent.com/vDnVKNwhuUB5YNtAkoZQETzFBUJZPrd7jVV8SvjjRCcmVGMxdliQDp5tTkdzOVx_G3GbO_2OK8-T_J63pybexyI9DjRq51B6mWGIJnGboZrHWszf7HziWT5t_kJrbwWrOBf0XPn5Ideg5no7bFvEWHDKNUZmJYzxzOOPDAod658q1Jl_n6bnxtZzlgq9xG_GgimSeQIoqczI98PmcYPP2cdS48PqPzoK8Qi47SiDO8MVwi0iwkEbHlnf2BaWs63pD3HJNbtossx6xOPm6leUNqHol8fPvYny2gpBdwqHtFLsvCOv7H6tZ7kx0CbYWehrvkufcMyhFccCoft1R4rTLTBx796XlqhMpdlFi7UDbxfnNkjMsHpD9A4zCzaYgxibIiiA6YFH8eUyIiaZhlK4ED-YylQa48y6qfuyIc36TA4pi5M5NzzfxcTd-akngjm7cuXhMn6kzIFMMrRGBfbgtgHByxlFP07QHYgNZHSJbsnCWms7zynvonkL7_oEOz9H6Bkt6CSDUloTKNtZtHEFYPJCbFO3Ms1pD18yuw6BvBFwq4U0_Yn_3_Z_KuDYX8hn0GVS1x3wZ_r2k83ayV41uXm4KIr5228B6nMhJSu-8Bc_htbwebLV4f_-xLYjo4ivw8n-9qu3iY80xZhIBXMx8XNhyQkJjc0OC4-ivlGUtJXH4mKqJlipxeEqGHTdVv-6o_lOLIywkvQwdiMa=w1560-h878-no?authuser=0"></li>
-                <li class="s-item s-item-2"><img src="https://lh3.googleusercontent.com/jS0Nu1usPLD6WydsT0LTTSB6ysvBoRc5OC4sh5P8L0JSStpVivsb4JvjgDyqjDsLHaCctzXdjn4-v1UbFOdQaoIsJhIsSR4Rj-77-7gSFAVtJcMP4tcNJUo22OcY6BSfWNLNdXDdlul2Qh56WQ5Mb42NdB2hBhJ1tgAhzl-xmOQb9wZc4R-2mYmnwK7_iGeRH8tIZoQSF1kY66qwzx7zkbQKqBnt1FZDXb48szdwKOs8mv7qIVXsveK5USfC-0ysoCvqbsTX75BYHu6cHKEkt8cljOTKByLWttqUVqOOCMUSPlzDHLY2Xn2Y7_ycB2jPoJNR8mPYbGAI8-YhumEZFAr6oAuPNvNaovs_Q5SvB_MeMIqwAjb_zrrXTCZiE-1mH0rpIqO8Jxr1jDISGulUu4V1Ezg4-qpr1mZiaSEdD2xzDCZEJ2vzqVzAkICcU_-NvofhB2N4Q13GjWjmtNt_obI0i8foTVvve2ZWWNp-Vm8R1O9zubNz1ugD9aA8qhggDUl1p5HwNZS-nPEvIfoTk56r5qphQ7E4TdXo9RhjQlEvT6cj6ead8jc0eAu-pvVSrL5yfGqk59AGSbbDYtphLb8kRHWPM-xIaU1lNV6rBvTYG748QIsiuaYta9qUY_ZHGNMMlQA9sGYBgdY3S001ElyBPOxwqU1An1HhDq1Id4eD-yduTwkTgQX2YGhwi2qPa-ebs33xheRFrD2W=w1560-h878-no?authuser=0"></li>
-                <li class="s-item s-item-3"><img src="https://lh3.googleusercontent.com/NMZGyK9kfcioT1DRJkfNllT8IWdlLBBQomV3RivojpvNIOLLug3nVMw7E4sRzuGBMxJDE4hHs_n6WvaqUwMzKDKFw04C5LCJO9nz2bf9NG8WTUSsiRBn3aFvsEyQX9-HX-3lWPJ72J5T2zQgpl5b2qIgoly_50c1iukDv6JzBYc6B4OKDbj8gP5zklgV1EkfRTIrzCv757YdfPXmtJB0kZyAFoVyEOPXzDPL5ruy2nBabtKLVjw_5KnIWQgZXuBKxtFthdVB4gUegQfkpaWflRdhE6Si-gR-00IIcM1CcBEZ1x2sueqvP78_Go5VKgGT0o96N28h_SNLy3K5RMgsgwJS4CztrRq9F5psqe59ElToYadDjfQ-aZ23FLHzOT_r5KfxpHHOZ0jxrUPs5afFvuEx-yNQ_fpBKmCsR__VH7GRfEnlAevlVizL2UssSqLy3GJqO179GL6JKvO2nEgmOdKuRxEpEiY67XdbXPzo1yFyJ_1y6CY6qNvnJW7VWYBdE2Ediai_TTcL1d9fAhCq8NApz4nlMRPgS6WrG-aMJJXpwRAiHAqVacTK9BrfeCZaRkweH-BkcpaMB40XxyWS4FTnaQMBm7T3unCkeS6V-GsxSREutBskp6M-5wov-ESfYWNOts9e93L7wWE0KbYlNOMIeTOOxVXllaKS9aSTTvFm0NA8Z76bYUJHyOJ6PKkcAJlVwPqbc7hERg-E=w1560-h878-no?authuser=0"></li>
+                <li class="s-item s-item-1"><img src="https://lh3.googleusercontent.com/OOUoxDz3Wl6ZuFBZBt1Xxt2qshheII9lAl0lhT-G9xdZDwTukGGptdQTYwgz7HB0IfD40qkrN6opyWW4kcGDlxCcmG9tJJ0jpIeBYNN7dWyx0kPYRouvresEvfN8Giz_fOY1mhhM_NaU46o8SUXuXCkwE6Ezc7tZ2TNfMjpg2C71ldfws3fHMfqYMRsvuIe0wolZsM6fUOGNO-aBWyr5pG3usnUsaB1ca1oGZuLla8JD2neksSbwt-_fxQXCHtk3kSnYsGNR6tzY7ZTcgnHLxORb4z8qkBOqGbHICYqU3vde2EDDLrl8-5ZA9gskmdn0gG63KaFTVMclFh48dNPzaydC7JR94c60E1NWzqhQN5scxa2XK4zZ4AfTuBpDBw15DMgexgVSHnle9_lfgSwdkbfK9F1EDi5O_OD5M-Li6LFzRvB09FMLwLRpdvkTsrmKacwmZcYiiNxvbd3HAi59UFyrz-na8z0wNGxJypeLBKl58iG_CplL-rnkRHIkbCVH_N3jvn9DMcpxxYlo-H1fGDXPsUqkZR_678IfTR1jwlpwZ5lb5NrPNWtVYV79sNqaQNSYxsdKqPwHgWzygNVl4PP47EOStwHp1yL92GclZUVui9pUNsa-2rnfAoXW1xP7R9GdBf2KW_6ZCD8r2JSd6KEgVAuregO49xw7Nqy_dmRiZH7zGwlIPrNcsF2dbx1eRMUNcPydWn3RZOKvB6d0_A=w1006-h566-no?authuser=0"></li>
+                <li class="s-item s-item-2"><img src="https://lh3.googleusercontent.com/J3zR-lj51PhiuQqq-V1USxnElbppW7q7RV9LXfrP9sWpMMocqVMgsYsdHr8fpm3J1vrwMKV5YeKhgZvGOPBygTaf-hilK3SxnKzvxsur3DSahX8TMKevScFv1jy7Vc0h-u7WAPeMp0T4KZcNEnfgiq9HLpOlVThKaEoU3GOkNB61zmggUyw9EWTWIpLWWY9fGqpO1CN9nhKDzUCTmwi0zNxQoYK5jWbsgYGu0j1lMT4vufEBkB9kSuMca_KKZKbgetygLX0YbnS6HF_DRIVGnGXLEz0Ay2T436nREfy4Iu3yTM-1wfgZOfS0mtlR9g3hxnhGBNxsoRlwL6iZcnVBQfIpzF7cgB_EbxMkNvBT2I_2WSSGjwygy-E_56GhOIBcHPv-GUrDoZSIqE22CLr7O5OM6r21CAVllOmPAkSjIHA-P01IXdSoXvgKjc2C7sIRSOP_5qZ6F_vfILjxfiAQ8WkqvItqwCW5xz1IPRT5sFY9U_kwhNlRbalwqv9wHuZ8nryUNx1FPZ2mjcVDSF4-z5kWOgT71OOBzN4ppVMMyCjFpzJCta-OgmMd4ik43egXxwSav-xGNKm8RPEozvU6pPS1ZQE25JK63RR6YoI7w-gTbdO2UGM8UzyvLi3KJsknkFMxFpjwtpNLwqAiBvEHFipsfhtWmOF42OvZkhqk7vOMf2dGcl7UtpeGZdYuoiXse6JvQE4l1BJtPgpE7meZqw=w1006-h566-no?authuser=0"></li>
+                <li class="s-item s-item-3"><img src="https://lh3.googleusercontent.com/fpwPSpYY80buJVTbSMiyOWadh4-huVVy2IsjPWtKt9aOST2KMLD9D5yZlq9_c_8iXvCi3I6gqDgOjQHltcySK1W5ZqwwVRJDXhdolImlZujWImwucPpj2DfyCqmYcql1s1ReC4MjZPc161RwZKlngDIePox0OZMjd0JJZnyu3bt6fPko_z6PRAOBalmJ43ef38NfbjF02hYoKEPogMv2eKLfIbq_N3IAdJsj7OeGvFYLLGBhz6Bbr_FLxUQqThzRsqXnDRRPBQbUC94ynRvcbr-zUf7ewSiSlHaWjfOYyV_nYm9uCajwoHt0m526Xlm2AOMvMZuzy7BbmG4b3zpneojGRj1jffqcOiaqhV_ZtbF87JEy_8lxWlzFRn54cQlz1vwMc3-yWAwD5sDw0VTGCmUX1Qm5kzSlZXB1EOQLCSq8ye9Jm04B15fWFpkCGKQdpryzYDtzd1OdDRH5T2bMT7PSfYT-1gBccak0RFpNU5zIzCiG0RaTqEBuSUjil0VUfBkKTG6f5ADAiD1KNvJT0tcTdWgU1ejXcbhm618fHiNBtlNAcVIZNb0UUBjYWMDmEQMgSgH6fRZZ_wyO8kLmyWraJRWxOgYOjTSLBVBMc2d5CHDMCJzksyDnDO1Q-FjD41zwBUWVK2GDyeECM2kPdtCajm56cCVFZhA5BDCTdGm38K7ButUI8QW1AWDjb-Jqb9XRQSHg-E2xWt-LDl0WEA=w1006-h566-no?authuser=0"></li>
 
             </ul>
             <div class="s-control">
@@ -36,8 +39,5 @@
             </div>
         </div>
     </div>
-    <form action="quiz-scanner">
-        <button id="submit">Próximo</button>
-    </form>
 </body>
 </html>

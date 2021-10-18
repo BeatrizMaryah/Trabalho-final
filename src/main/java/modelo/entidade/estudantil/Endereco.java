@@ -131,12 +131,7 @@ public class Endereco implements Serializable {
 		return cidade;
 	}
 
-	public void setCidade(String cidade) { // throws CidadeInvalidaException 
-
-		 //for (char c : cidade.toCharArray()) {
-		 //if (!Character.isLetter(c) && !Character.isSpaceChar(c))
-		 //	 throw new CidadeInvalidaException("Tem que ser letras!");
-		 //}
+	public void setCidade(String cidade) {
 	
 		this.cidade = cidade;
 	}
@@ -156,5 +151,4 @@ public class Endereco implements Serializable {
 	public void setCep(int cep) {
 		this.cep = cep;
 	}
-
 }

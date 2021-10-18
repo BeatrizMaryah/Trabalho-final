@@ -12,13 +12,13 @@
 	
 	<div class="container">
 <div class="escolha">	
-	<h4>Escolha uma Disciplina: </h4>
-	<form id="form" method="post" action="escolher-disciplina-professores">
+	<h4>Escolha uma Turma: </h4>
+	<form id="form" method="post" action="escolher-turma-professores">
 			<div class="select">
-			<select id="standard-select" name="id-disciplina">
-				<c:forEach var="disciplina" items="${disciplinas}">
-					<option value="${disciplina.id}">
-						<c:out value="${disciplina.nome}"/>
+			<select id="standard-select" name="id-turma">
+				<c:forEach var="turma" items="${turmas}">
+					<option value="${turma.id}">
+						<c:out value="${turma.nome}"/>
 					</option>
 				</c:forEach>
 			</select>

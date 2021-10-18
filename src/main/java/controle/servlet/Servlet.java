@@ -1,8 +1,7 @@
 package controle.servlet;
-
 import java.io.IOException;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,8 +16,6 @@ import modelo.dao.aluno.AlunoDAO;
 import modelo.dao.aluno.AlunoDAOImpl;
 import modelo.dao.contato.ContatoDAO;
 import modelo.dao.contato.ContatoDAOImpl;
-import modelo.dao.disciplina.DisciplinaDAO;
-import modelo.dao.disciplina.DisciplinaDAOImpl;
 import modelo.dao.endereco.EnderecoDAO;
 import modelo.dao.endereco.EnderecoDAOImpl;
 import modelo.dao.escola.EscolaDAO;
@@ -33,7 +30,6 @@ import modelo.dao.usuario.UsuarioDAO;
 import modelo.dao.usuario.UsuarioDAOImpl;
 import modelo.entidade.estudantil.Aluno;
 import modelo.entidade.estudantil.Contato;
-import modelo.entidade.estudantil.Disciplina;
 import modelo.entidade.estudantil.Endereco;
 import modelo.entidade.estudantil.Escola;
 import modelo.entidade.estudantil.Professor;
@@ -52,7 +48,6 @@ public class Servlet extends HttpServlet {
 	private EscolaDAO daoEscola;
 	private ProfessorDAO daoProfessor;
 	private TurmaDAO daoTurma;
-	private DisciplinaDAO daoDisciplina;
 	private UsuarioDAO daoUsuario;
 	private FaseDAO daoFase;
 
@@ -63,7 +58,6 @@ public class Servlet extends HttpServlet {
 		daoEscola = new EscolaDAOImpl();
 		daoProfessor = new ProfessorDAOImpl();
 		daoTurma = new TurmaDAOImpl();
-		daoDisciplina = new DisciplinaDAOImpl();
 		daoUsuario = new UsuarioDAOImpl();
 		daoFase = new FaseDAOImpl();
 	}
@@ -105,8 +99,7 @@ public class Servlet extends HttpServlet {
 			case "/listar-alunos":
 				listarAlunos(request, response, sessao);
 				break;
-				
-				
+					
 			case "/escolher-turma-alunos":
 				listarAlunosDaTurma(request, response, sessao);
 				break;
@@ -151,9 +144,22 @@ public class Servlet extends HttpServlet {
 				listarProfessores(request, response, sessao);
 				break;
 				
-			case "/escolher-disciplina-professores":
-				listarProfessoresDaDisciplina(request, response, sessao);
+			case "/escolher-turma-professores":
+				listarProfessoresDaTurma(request, response, sessao);
 				break;
+			
+			case "/listar-alunos-professor":
+				telaProfessorListarAlunos(request, response, sessao);
+				break;
+			
+			case "/escolher-turma-alunos-professor":
+				telaProfessorListarAlunosDaTurma(request, response, sessao);
+				break;
+				
+			case "/mostrar-fases-aluno":
+				telaProfessorMostrarFasesAluno(request, response, sessao);
+				break;
+			
 				
 			// =========Turma=============
 
@@ -169,34 +175,8 @@ public class Servlet extends HttpServlet {
 				deletarTurma(request, response);
 				break;
 
-			case "/atualizar-turma":
-				atualizarTurma(request, response);
-				break;
-
 			case "/listar-turmas":
 				listarTurmas(request, response, sessao);
-				break;
-			// =========Disciplina=============
-				
-				
-			case "/nova-disciplina":
-				mostrarFormularioNovaDisciplina(request, response);
-				break;
-
-			case "/inserir-disciplina":
-				inserirDisciplina(request, response, sessao);
-				break;
-
-			case "/deletar-disciplina":
-				deletarDisciplina(request, response);
-				break;
-
-			case "/atualizar-disciplina":
-				atualizarDisciplina(request, response);
-				break;
-
-			case "/listar-disciplinas":
-				listarDisciplinas(request, response, sessao);
 				break;
 				
 			// =========Teoria=============
@@ -311,6 +291,10 @@ public class Servlet extends HttpServlet {
 			case "/salvar-nota":
 				salvarNota(request, response, sessao);
 				break;
+				
+			case "/mostrar-notas-aluno":
+				mostrarTelaNotasDoAluno(request, response, sessao);
+				break;
 		}	
 
 		} catch (SQLException ex) {
@@ -355,7 +339,7 @@ public class Servlet extends HttpServlet {
 		Usuario usuario = daoUsuario.recuperarUsuario(user); 
 
 		if (usuario instanceof Escola && senha.equals(usuario.getSenha())) {
-			System.out.println("É uma Escola");
+			System.out.println("É uma Escola"); //Debugar
 			sessao.setAttribute("usuario", usuario);
 			
 			if ((Usuario) sessao.getAttribute("usuario") == null)
@@ -365,8 +349,19 @@ public class Servlet extends HttpServlet {
 				response.sendRedirect("listar-turmas");
 			}
 			
+		} else 	if (usuario instanceof Professor && senha.equals(usuario.getSenha())) {
+			System.out.println("É um Professor"); //Debugar
+			sessao.setAttribute("usuario", usuario);
+			
+			if ((Usuario) sessao.getAttribute("usuario") == null)
+				response.sendRedirect("login");
+			else {
+				System.out.println(sessao.getAttribute("usuario"));
+				response.sendRedirect("listar-alunos-professor");
+			}
+			
 		} else if (usuario instanceof Aluno && senha.equals(usuario.getSenha())) {
-			System.out.println("É um Aluno!");
+			System.out.println("É um Aluno!"); //Debugar
 			sessao.setAttribute("usuario", usuario);
 			
 			if ((Usuario) sessao.getAttribute("usuario") == null)
@@ -387,34 +382,27 @@ public class Servlet extends HttpServlet {
 	
 	private void salvarNota(HttpServletRequest request, HttpServletResponse response, HttpSession sessao) throws IOException {
 		
-		Aluno aluno = (Aluno) sessao.getAttribute("usuario");
 		Fase fase = (Fase) sessao.getAttribute("fase");
 		
 		Integer nota = Integer.parseInt(request.getParameter("nota"));
 		
 		fase.setNota(nota);
-		
-		List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
-		List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
-		
-		if(alunosFase == null) {
-			alunosFase = new ArrayList<Aluno>();
-		}	
-		if(fasesAluno == null) {
-			fasesAluno = new ArrayList<Fase>();
-		}
-		
-		aluno.setFases(fasesAluno);
-		fase.setAlunos(alunosFase);
-		
-		aluno.getFases().add(fase);
-		fase.getAlunos().add(aluno);
 
 		daoFase.atualizarFase(fase);
-		daoAluno.atualizarAluno(aluno);
 		
 		sessao.removeAttribute("fase");
 		response.sendRedirect("fases");
+	}
+	
+	private void mostrarTelaNotasDoAluno(HttpServletRequest request, HttpServletResponse response, HttpSession sessao) throws IOException, ServletException {
+		
+		Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+		
+		List<Fase> fases = daoFase.recuperarFasesAluno(aluno);
+		request.setAttribute("fases", fases);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("notas-aluno.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 	//======================================Aluno===============================================
@@ -539,7 +527,7 @@ public class Servlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String telefone = request.getParameter("telefone");
 
-		String nomeEndereco = request.getParameter("nome");
+		String nomeEndereco = request.getParameter("rua");
 		String complemento = request.getParameter("complemento");
 		short numero = Short.parseShort((request.getParameter("numero")));
 		String cidade = request.getParameter("cidade");
@@ -574,28 +562,28 @@ public class Servlet extends HttpServlet {
 
 	private void listarProfessores(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws SQLException, IOException, ServletException {
-
+		
 		Escola escola = (Escola) sessao.getAttribute("usuario");
 		
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
-		request.setAttribute("disciplinas", disciplinas);
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
 		dispatcher.forward(request, response);
 	}
 	
-	private void listarProfessoresDaDisciplina(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+	private void listarProfessoresDaTurma(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws ServletException, IOException {
 		
-		Long idDisciplina = Long.parseLong(request.getParameter("id-disciplina"));
-		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina));
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
 		
 		Escola escola = (Escola) sessao.getAttribute("usuario");
 		
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
-		request.setAttribute("disciplinas", disciplinas);
+		List<Turma> turmas = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas", turmas);
 		
-		List<Professor> professores = daoProfessor.recuperarProfessoresDisciplina(disciplina);
+		List<Professor> professores = daoProfessor.recuperarProfessoresTurma(turma);
 		request.setAttribute("professores", professores);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-professores.jsp");
@@ -605,11 +593,17 @@ public class Servlet extends HttpServlet {
 
 	private void mostrarFormularioNovoProfessor(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 			throws ServletException, IOException {
-
+		
 		Escola escola = (Escola) sessao.getAttribute("usuario");
 		
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
-		request.setAttribute("disciplinas", disciplinas);
+		List<Turma> turmas1 = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas1", turmas1);
+		
+		List<Turma> turmas2 = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas2", turmas2);
+		
+		List<Turma> turmas3 = daoTurma.recuperarTurmasEscola(escola);
+		request.setAttribute("turmas3", turmas3);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-professor.jsp");
 		dispatcher.forward(request, response);
@@ -625,20 +619,58 @@ public class Servlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String telefone = request.getParameter("telefone");
 
+		long id1 = Long.parseLong(request.getParameter("id-turma-1"));
+		Turma turma1 = daoTurma.recuperarTurma(new Turma(id1));
+		
+		long id2 = Long.parseLong(request.getParameter("id-turma-2"));
+		Turma turma2 = daoTurma.recuperarTurma(new Turma(id2));
+		
+		long id3 = Long.parseLong(request.getParameter("id-turma-3"));
+		Turma turma3 = daoTurma.recuperarTurma(new Turma(id3));
+		
 		Professor professor = new Professor(nome, login, senha);
 		daoProfessor.inserirProfessor(professor);
 		
 		Contato contato = new Contato(email, telefone, professor);
 		daoContato.inserirContato(contato);
 		
-		Long idDisciplina = Long.parseLong(request.getParameter("id-disciplina"));
-		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(idDisciplina));
+		List<Turma> turmasAluno1 = daoTurma.recuperarTurmasProfessor(professor);
+		List<Professor> professoresTurma1 = daoProfessor.recuperarProfessoresTurma(turma1);
 		
-		professor.setDisciplina(disciplina);
+		professor.setTurmas(turmasAluno1);
+		turma1.setProfessor(professoresTurma1);
 		
+		professor.getTurmas().add(turma1);
+		turma1.getProfessores().add(professor);
+		
+		daoTurma.atualizarTurma(turma1);
 		daoProfessor.atualizarProfessor(professor);
-		daoContato.atualizarContato(contato);
 		
+		List<Turma> turmasAluno2 = daoTurma.recuperarTurmasProfessor(professor);
+		List<Professor> professoresTurma2 = daoProfessor.recuperarProfessoresTurma(turma2);
+		
+		professor.setTurmas(turmasAluno2);
+		turma2.setProfessor(professoresTurma2);
+		
+		professor.getTurmas().add(turma2);
+		turma2.getProfessores().add(professor);
+		
+		daoTurma.atualizarTurma(turma2);
+		daoProfessor.atualizarProfessor(professor);
+		
+		List<Turma> turmasAluno3 = daoTurma.recuperarTurmasProfessor(professor);
+		List<Professor> professoresTurma3 = daoProfessor.recuperarProfessoresTurma(turma3);
+		
+		professor.setTurmas(turmasAluno3);
+		turma3.setProfessor(professoresTurma3);
+		
+		professor.getTurmas().add(turma3);
+		turma3.getProfessores().add(professor);
+
+		daoTurma.atualizarTurma(turma3);
+		daoProfessor.atualizarProfessor(professor);
+		
+		daoContato.atualizarContato(contato);
 		response.sendRedirect("listar-professores");
 	}
 
@@ -660,6 +692,50 @@ public class Servlet extends HttpServlet {
 		Professor professor = daoProfessor.recuperarProfessor(new Professor(id));
 		daoProfessor.deletarProfessor(professor);
 		response.sendRedirect("listar");
+	}
+	
+	private void telaProfessorListarAlunos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws SQLException, IOException, ServletException {
+		
+		Professor professor = (Professor) sessao.getAttribute("usuario");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasProfessor(professor);
+		request.setAttribute("turmas", turmas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos-professor.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void telaProfessorListarAlunosDaTurma(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws ServletException, IOException {
+		
+		Long idTurma = Long.parseLong(request.getParameter("id-turma"));
+		Turma turma = daoTurma.recuperarTurma(new Turma(idTurma));
+		
+		Professor professor = (Professor) sessao.getAttribute("usuario");
+		
+		List<Turma> turmas = daoTurma.recuperarTurmasProfessor(professor);
+		request.setAttribute("turmas", turmas);
+		
+		List<Aluno> alunos = daoAluno.recuperarAlunosTurma(turma);
+		request.setAttribute("alunos", alunos);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-alunos-professor.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void telaProfessorMostrarFasesAluno(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
+			throws ServletException, IOException {
+		
+		Long idAluno = Long.parseLong(request.getParameter("id"));
+		Aluno aluno = daoAluno.recuperarAluno(new Aluno(idAluno));
+		request.setAttribute("aluno", aluno);
+		
+		List<Fase> fases = daoFase.recuperarFasesAluno(aluno);
+		request.setAttribute("fases", fases);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("professor-mostrar-fases-aluno.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	// ======================================Turma===============================================
@@ -688,20 +764,11 @@ public class Servlet extends HttpServlet {
 
 		String nome = request.getParameter("nome");
 		Escola escola = (Escola) sessao.getAttribute("usuario");
-		
+
 		Turma turma = new Turma(nome, escola);
-		
+
 		daoTurma.inserirTurma(turma);
 		daoEscola.atualizarEscola(escola);
-		response.sendRedirect("listar-turmas");
-	}
-
-	private void atualizarTurma(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		String nome = request.getParameter("nome");
-		daoTurma.atualizarTurma(new Turma(id, nome));
 		response.sendRedirect("listar-turmas");
 	}
 
@@ -713,70 +780,31 @@ public class Servlet extends HttpServlet {
 		daoTurma.deletarTurma(turma);
 		response.sendRedirect("listar-turmas");
 	}
-	
-	// ======================================Disciplinas===============================================
-	
-	private void listarDisciplinas(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
-			throws SQLException, IOException, ServletException {
-
-		Escola escola = (Escola) sessao.getAttribute("usuario");
-		
-		List<Disciplina> disciplinas = daoDisciplina.recuperarDisciplinasEscola(escola);
-		request.setAttribute("disciplinas", disciplinas);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("listar-disciplinas.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void mostrarFormularioNovaDisciplina(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro-disciplina.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void inserirDisciplina(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
-			throws SQLException, IOException {
-
-		String nome = request.getParameter("nome");
-		
-		Escola escola = (Escola) sessao.getAttribute("usuario");
-		
-		Disciplina disciplina = new Disciplina(nome, escola);
-		
-		daoDisciplina.inserirDisciplina(disciplina);
-		response.sendRedirect("listar-disciplinas");
-	}
-
-	private void atualizarDisciplina(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		String nome = request.getParameter("nome");
-		daoDisciplina.atualizarDisciplina(new Disciplina(id, nome));
-		response.sendRedirect("inicio-escola");
-	}
-
-	private void deletarDisciplina(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-
-		long id = Long.parseLong(request.getParameter("id"));
-		Disciplina disciplina = daoDisciplina.recuperarDisciplina(new Disciplina(id));
-		daoDisciplina.deletarDisciplina(disciplina);
-		response.sendRedirect("listar-disciplinas");
-	}
-	
 	// ======================================Teoria===============================================
 	
 		private void mostrarTelaTeoriaSystem(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("System", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
-			
-			System.out.println("fase 1");
+			System.out.println("fase 1"); //Debugar
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-system.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -784,12 +812,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaVariaveis(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("Variáveis", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 2"); //Debugar
 			
-			System.out.println("fase 2");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-variaveis.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -797,12 +839,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaScanner(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("Scanner", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 3"); //Debugar
 			
-			System.out.println("fase 3");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-scanner.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -810,12 +866,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaBoolean(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("Boolean", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 4"); //Debugar
 			
-			System.out.println("fase 4");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-boolean.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -824,12 +894,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaRelacionais(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("Operadores Relacionais", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 5"); //Debugar
 			
-			System.out.println("fase 6");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-relacionais.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -837,12 +921,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaIf(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("If e Else", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 6"); //Debugar
 			
-			System.out.println("fase 9");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-if.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -850,12 +948,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaSwitchCase(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("Switch Case", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 7"); //Debugar
 			
-			System.out.println("fase 8");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-switch-case.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -863,12 +975,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaLogicos(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("Operadores Lógicos", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 8"); //Debugar
 			
-			System.out.println("fase 7");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-logicos.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -876,12 +1002,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaWhile(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("While", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 9"); //Debugar
 			
-			System.out.println("fase 9");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-while.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -889,12 +1029,26 @@ public class Servlet extends HttpServlet {
 		private void mostrarTelaTeoriaFor(HttpServletRequest request, HttpServletResponse response, HttpSession sessao)
 				throws ServletException, IOException {
 			
-			long id = Long.parseLong(request.getParameter("id"));
-			Fase fase = daoFase.recuperarFase(new Fase(id));
+			byte ordem = Byte.parseByte(request.getParameter("id"));
+			Fase fase = new Fase("For", ordem);
+
+			Aluno aluno = (Aluno) sessao.getAttribute("usuario");
+
+			List<Fase> fasesAluno = daoFase.recuperarFasesAluno(aluno);
+			List<Aluno> alunosFase = daoAluno.recuperarAlunosFase(fase);
 			
+			aluno.setFases(fasesAluno);
+			fase.setAlunos(alunosFase);
+
+			aluno.getFases().add(fase);
+			fase.getAlunos().add(aluno);
+
+			daoFase.inserirFase(fase);
+			daoAluno.atualizarAluno(aluno);
+
 			sessao.setAttribute("fase", fase);
+			System.out.println("fase 10"); //Debugar
 			
-			System.out.println("fase 5");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("teoria-for.jsp");
 			dispatcher.forward(request, response);
 		}

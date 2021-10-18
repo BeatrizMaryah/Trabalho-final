@@ -43,9 +43,9 @@ public class Turma implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "turma", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 	
-	//Uma turma tem v�rias disciplinas.
+	//Uma turma tem vários professores.
 	@ManyToMany(mappedBy = "turmas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	private List<Professor> professores = new ArrayList<Professor>();
 
 	public Turma() {}
 	
@@ -53,22 +53,22 @@ public class Turma implements Serializable {
 		setId(id);
 	}
 
-	public Turma(String nome, Escola escola)  { //throws NomeInvalidoException
+	public Turma(String nome, Escola escola)  {
 		setNome(nome);
 		setEscola(escola);
 	}
 
-	public Turma(Long id, String nome, Escola escola)  { //throws NomeInvalidoException
+	public Turma(Long id, String nome, Escola escola)  {
 		setId(id);
 		setNome(nome);
 		setEscola(escola);
 	}
 	
-	public Turma(String nome)  { //throws NomeInvalidoException
+	public Turma(String nome)  {
 		setNome(nome);
 	}
 	
-	public Turma(Long id, String nome)  { //throws NomeInvalidoException
+	public Turma(Long id, String nome)  {
 		setId(id);
 		setNome(nome);
 	}
@@ -86,11 +86,7 @@ public class Turma implements Serializable {
 		return nome;
 	}
 
-	public void setNome(String nome)  { //throws NomeInvalidoException
-
-		//if (nome.isEmpty())
-			//throw new NomeInvalidoException("N�o pode ser vazio!");
-
+	public void setNome(String nome)  {
 		this.nome = nome;
 	}
 
@@ -109,7 +105,11 @@ public class Turma implements Serializable {
 		return alunos;
 	}
 
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+	
+	public void setProfessor(List<Professor> professores) {
+		this.professores = professores;
 	}
 }

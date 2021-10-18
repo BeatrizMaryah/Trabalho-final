@@ -3,6 +3,7 @@ package modelo.dao.turma;
 import java.util.List;
 
 import modelo.entidade.estudantil.Escola;
+import modelo.entidade.estudantil.Professor;
 import modelo.entidade.estudantil.Turma;
 
 public interface TurmaDAO {
@@ -18,4 +19,6 @@ public interface TurmaDAO {
 	List<Turma> recuperarTurmas();
 
 	List<Turma> recuperarTurmasEscola(Escola escola);
+	
+	List<Turma> recuperarTurmasProfessor(Professor professor);
 }
